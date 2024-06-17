@@ -1,8 +1,11 @@
 
 using CarShop.Context;
+using CarShop.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using CarShop.Filters;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +16,12 @@ builder.Services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOpti
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.Add
+// builder.Services.AddTransient<DbContext, CarShopDataContext>();
+// builder.Services.AddTransient<IConfiguration>( conf => builder.Configuration);
 builder.Services.AddDbContext<CarShopDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("defaultConn")));
+builder.Services.AddScoped<CarShopLoggingFilter>();
+
 
 var app = builder.Build();
 
@@ -24,9 +30,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.ConfigureExceptionHandler();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

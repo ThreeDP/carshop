@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using CarShop.Context;
 using CarShop.Models;
+using CarShop.Filters;
 
 namespace CarShop.Controllers;
 
@@ -16,16 +18,24 @@ public class ClientsController : ControllerBase
     }
 
     [HttpGet()]
-    public ActionResult<IEnumerable<ClientDB>> Get()
+    [ServiceFilter(typeof(CarShopLoggingFilter))]
+    public async Task<ActionResult<IEnumerable<ClientDB>>> Get()
     {
-        var c = _ctx.Clients.AsNoTracking().Take(10).ToArray();
-        if (c is null) {
-            return NotFound();
+        try {
+            var c = await _ctx.Clients.AsNoTracking().Take(10).ToArrayAsync();
+            if (c is null) {
+                return NotFound();
+            }
+            return c;
         }
-        return c;
+        catch
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                "Erro ao processar sua solicitação.");
+        }
     }
 
-    [HttpGet("{id:int}", Name="ObterCliente")]
+    [HttpGet("{id:int:min(1)}", Name="ObterCliente")]
     public ActionResult<ClientDB> Get(int id)
     {
         var c = _ctx.Clients.AsNoTracking().FirstOrDefault(c => c.ClientDBId == id);

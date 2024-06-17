@@ -3,6 +3,7 @@ using System;
 using CarShop.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CarShop.Migrations
 {
     [DbContext(typeof(CarShopDataContext))]
-    partial class CarShopDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240617173004_new_dbs_vehicle")]
+    partial class new_dbs_vehicle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,7 +78,7 @@ namespace CarShop.Migrations
 
                     b.Property<int>("ClientId")
                         .HasColumnType("integer")
-                        .HasColumnName("client_id");
+                        .HasColumnName("categoria_id");
 
                     b.Property<string>("FinancialTransactionType")
                         .IsRequired()
@@ -88,15 +90,9 @@ namespace CarShop.Migrations
                         .HasColumnType("numeric(10,2)")
                         .HasColumnName("value");
 
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("integer")
-                        .HasColumnName("vehicle_id");
-
                     b.HasKey("FinancialTransactionDBId");
 
                     b.HasIndex("ClientId");
-
-                    b.HasIndex("VehicleId");
 
                     b.ToTable("financial_transactions");
                 });
@@ -201,15 +197,7 @@ namespace CarShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CarShop.Models.VehicleDB", "Vehicle")
-                        .WithMany("FinancialTransactions")
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Client");
-
-                    b.Navigation("Vehicle");
                 });
 
             modelBuilder.Entity("CarShop.Models.VehicleImageDB", b =>
@@ -230,8 +218,6 @@ namespace CarShop.Migrations
 
             modelBuilder.Entity("CarShop.Models.VehicleDB", b =>
                 {
-                    b.Navigation("FinancialTransactions");
-
                     b.Navigation("VehicleImages");
                 });
 #pragma warning restore 612, 618

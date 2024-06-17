@@ -11,13 +11,19 @@ public class CarShopDataContext : DbContext
     public CarShopDataContext(IConfiguration conf)
     {
         this.Conf = conf;
+        // Clients = new DbSet<ClientDB>();
+        // FinancialTransactions = new DbSet<FinancialTransactionsDB>();
+        // VehicleImages = new DbSet<VehicleImageDB>();
+        // Vehicles = new DbSet<VehicleDB>();
     }
+
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         options.UseNpgsql(Conf.GetConnectionString("defaultConn"));
     }
 
-    public DbSet<ClientDB>? Clients { get; set; } = null;
-    
-    public DbSet<FinancialTransactionsDB>? FinancialTransations { get; set; } = null;
+    public DbSet<ClientDB>? Clients { get; set; }
+    public DbSet<FinancialTransactionsDB>? FinancialTransactions { get; set; }
+    public DbSet<VehicleImageDB>? VehicleImages { get; set; }
+    public DbSet<VehicleDB>? Vehicles { get; set; }
 }
