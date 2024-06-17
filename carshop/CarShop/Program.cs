@@ -21,6 +21,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CarShopDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("defaultConn")));
 builder.Services.AddScoped<CarShopLoggingFilter>();
+builder.Services.AddCors();
+
 
 
 var app = builder.Build();
@@ -31,6 +33,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     app.ConfigureExceptionHandler();
+    app.UseCors(x => x
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(origin => true));
+                    //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins separated with comma
+                    // .AllowCredentials());
 }
 
 //app.UseHttpsRedirection();

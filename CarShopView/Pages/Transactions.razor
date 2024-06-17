@@ -1,0 +1,61 @@
+﻿@page "/movimentacoes"
+@inject HttpClient Http
+@using CarShopView.Models;
+
+<PageTitle>Movimentações Financeiras</PageTitle>
+
+<h1>Movimentações Financeiras</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tipo de Transação</th>
+                <th>Cliente</th>
+                <th>Veiculo</th>
+                <th>Valor (R$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.TypeTransaction</td>
+                    <td>@forecast.ClientId</td>
+                    <td>@forecast.VehicleId</td>
+                    <td>@forecast.Value</td>
+                </tr>
+            }
+            <tr>
+                <th colspan="2"></th>
+                <th>Numero de Movimentações</th>
+                <th>Valor Total</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td>@TotalMovimentation</td>
+                <td>@TotalValue</td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@code {
+    private Transaction[]? forecasts;
+    private decimal TotalValue = 0;
+    private int     TotalMovimentation = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await Http.GetFromJsonAsync<Transaction[]>("movimentacoes");
+        TotalValue = forecasts.Sum(f => f.Value);
+        TotalMovimentation = forecasts.Count();
+    }
+}

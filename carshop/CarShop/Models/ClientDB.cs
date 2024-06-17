@@ -17,6 +17,7 @@ public class ClientDB
     [Key]
     [Column("client_id")]
     [JsonPropertyName("client_id")]
+    [JsonIgnore]
     public int ClientDBId { get; set; }
 
     [Required]
