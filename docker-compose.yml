@@ -1,8 +1,33 @@
 version: '3'
 
+networks:
+  controller_net:
+  view_net:
+
 services:
+  view:
+    container_name: frontend
+    build:
+      context: frontend
+    restart: always
+    depends_on:
+      - back
+    networks:
+      - view_net
+
+  back:
+    container_name: backend
+    build:
+      context: backend
+    networks:
+      - view_net
+      - controller_net
+    depends_on:
+      db:
+        condition: service_healthy
 
   db:
+    container_name: db
     image: postgres
     restart: always
     user: postgres
@@ -13,13 +38,28 @@ services:
     environment:
       - POSTGRES_DB=CarShop
       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-    ports:
-      - 5432:5432
+    expose:
+      - 5432
     healthcheck:
       test: [ "CMD", "pg_isready" ]
       interval: 10s
       timeout: 5s
       retries: 5
+
+  proxy:
+    container_name: proxy
+    image: nginx
+    volumes:
+      - images-volume:/images
+      - type: bind
+        source: ./proxy/nginx.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+    ports:
+      - 8000:8000
+    depends_on:
+      - view
+      - back
 
 volumes:
   db-volume:
@@ -28,6 +68,13 @@ volumes:
       type: none
       o: bind
       device: database
+
+  images-volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: images
 
 secrets:
   db-password:
