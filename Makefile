@@ -1,6 +1,7 @@
-IMAGES				=			nginx postgres
-PROCESS				=			mvtest-db-1
-VOLUMES				=			mvtest_db-volume 
+IMAGES				=			nginx postgres back-image front-image
+PROCESS				=			db proxy frontend backend
+VOLUMES				=			db-volume images-volume 
+NETWORKS			=			controller_net view_net
 
 all: build
 	sudo docker compose up -d
@@ -16,8 +17,9 @@ create_dirs:
 
 clean:
 	docker stop $(PROCESS)
-	docker volume rm $(VOLUMES)
 	docker rm -f $(PROCESS)
 
 fclean: clean
 	docker rmi -f $(IMAGES)
+	docker volume rm $(VOLUMES)
+	docker network rm $(NETWORKS)

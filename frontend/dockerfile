@@ -1,43 +1,42 @@
-# syntax=docker/dockerfile:1.4
-
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:6.0 AS base
-
+FROM  mcr.microsoft.com/dotnet/sdk:6.0 AS base
+RUN apt update -y
 WORKDIR /app
 
-COPY CarShopView/CarShopView.csproj ./
+COPY CarShopView/ /app
 
-RUN ["dotnet", "restore"]
+#RUN ["dotnet", "restore"]
 
-FROM base as builder
+# FROM base as builder
 
-COPY CarShopView .
+# COPY CarShopView .
 
-CMD ["dotnet", "build", "-c", "-o", "/build"]
+# CMD ["dotnet", "build", "-c", "-o", "/build"]
 
-FROM builder as dev-envs
+# FROM builder as dev-envs
 
-RUN <<EOF
-apt-get update
-apt-get install -y git
-EOF
+# RUN <<EOF
+# apt-get update
+# apt-get install -y git
+# EOF
 
-RUN <<EOF
-useradd -s /bin/bash -m vscode
-groupadd docker
-usermod -aG docker vscode
-EOF
-# install Docker tools (cli, buildx, compose)
-COPY --from=gloursdocker/docker / /
-
+# RUN <<EOF
+# useradd -s /bin/bash -m vscode
+# groupadd docker
+# usermod -aG docker vscode
+# EOF
+# # install Docker tools (cli, buildx, compose)
+# COPY --from=gloursdocker/docker / /
 CMD ["dotnet", "run"]
+# CMD ["tail", "-f", "/dev/null"]
 
-FROM builder AS publisher
+# FROM builder AS publisher
 
-RUN ["dotnet", "publish", "-c", "Release", "-o", "/build"]
+# RUN ["dotnet", "publish", "-c", "Release", "-o", "/build"]
 
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:6.0
+# FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:8.0
 
-WORKDIR /app
-COPY --from=publisher /build .
+# WORKDIR /app
+# COPY --from=publisher /build .
 
-CMD ["dotnet", "aspnetapp.dll"]
+# CMD ["tail", "-f", "/dev/null"]
+# #CMD ["dotnet", "CarShopView.dll"]

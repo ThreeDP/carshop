@@ -2,26 +2,36 @@ version: '3'
 
 networks:
   controller_net:
+    name: controller_net
   view_net:
+    name: view_net
 
 services:
   view:
     container_name: frontend
     build:
       context: frontend
+    image: front-image
     restart: always
     depends_on:
       - back
+    expose:
+      - 5061
     networks:
       - view_net
+    ports:
+      - 5063:5063
 
   back:
     container_name: backend
     build:
       context: backend
+    image: back-image
     networks:
       - view_net
       - controller_net
+    expose:
+      - 5103
     depends_on:
       db:
         condition: service_healthy
@@ -40,6 +50,8 @@ services:
       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
     expose:
       - 5432
+    networks:
+      - controller_net
     healthcheck:
       test: [ "CMD", "pg_isready" ]
       interval: 10s
@@ -60,9 +72,12 @@ services:
     depends_on:
       - view
       - back
+    networks:
+      - view_net
 
 volumes:
   db-volume:
+    name: db-volume
     driver: local
     driver_opts:
       type: none
@@ -70,6 +85,7 @@ volumes:
       device: database
 
   images-volume:
+    name: images-volume
     driver: local
     driver_opts:
       type: none
