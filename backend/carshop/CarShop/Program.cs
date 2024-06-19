@@ -10,20 +10,17 @@ using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// builder.Services.AddTransient<DbContext, CarShopDataContext>();
+// builder.Services.AddTransient<DbContext, CarShopDataContext>( conf => );
 // builder.Services.AddTransient<IConfiguration>( conf => builder.Configuration);
 builder.Services.AddDbContext<CarShopDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("defaultConn")));
 builder.Services.AddScoped<CarShopLoggingFilter>();
 builder.Services.AddCors();
-
-
 
 var app = builder.Build();
 

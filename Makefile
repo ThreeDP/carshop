@@ -3,23 +3,36 @@ PROCESS				=			db proxy frontend backend
 VOLUMES				=			db-volume images-volume 
 NETWORKS			=			controller_net view_net
 
-all: build
-	sudo docker compose up -d
-	cd backend/carshop/Carshop; sudo dotnet watch
+all: create_dirs build up
+	docker compose up -d
+
+dev:
+	docker compose up -d
+	cd backend/carshop/CarShop && dotnet watch
+
+front:
+	cd frontend/CarShopView && dotnet watch
 
 build:
-	sudo docker compose build
+	docker compose build
+
+up:
+	docker compose up -d
+
+down:
+	docker compose down
 
 create_dirs:
 	mkdir -p storage
 	mkdir -p storage/database
 	mkdir -p storage/images
 
-clean:
-	docker stop $(PROCESS)
+clean: down
 	docker rm -f $(PROCESS)
 
 fclean: clean
 	docker rmi -f $(IMAGES)
 	docker volume rm $(VOLUMES)
 	docker network rm $(NETWORKS)
+
+re: fclean all

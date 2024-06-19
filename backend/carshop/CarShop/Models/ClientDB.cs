@@ -9,15 +9,13 @@ namespace CarShop.Models;
 [Table("clients")]
 public class ClientDB
 {
-    public ClientDB()
-    {
+    public ClientDB() {
         FinancialTransactions = new Collection<FinancialTransactionsDB>();
     }
 
     [Key]
     [Column("client_id")]
     [JsonPropertyName("client_id")]
-    [JsonIgnore]
     public int ClientDBId { get; set; }
 
     [Required]
@@ -51,4 +49,8 @@ public class ClientDB
 
     [JsonIgnore]
     public ICollection<FinancialTransactionsDB> FinancialTransactions { get; set; }
+
+    public override string ToString() {
+        return $"name: {this.Name}";
+    }
 }

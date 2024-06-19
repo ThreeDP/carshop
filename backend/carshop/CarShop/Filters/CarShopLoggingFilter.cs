@@ -9,16 +9,11 @@ public class CarShopLoggingFilter : IActionFilter {
         _logger = logger;
     }
 
-    public void OnActionExecuting(ActionExecutingContext ctx)
-    {
-        _logger.LogInformation("==== OnActionExecuting ====");
-        _logger.LogInformation($"{DateTime.Now.ToLongTimeString()}");
-        _logger.LogInformation($"ModelState: {ctx.ModelState.IsValid}");
+    public void OnActionExecuting(ActionExecutingContext ctx) {
+        _logger.LogInformation($"Request on {ctx.RouteData.Values["controller"]} with method {ctx.RouteData.Values["action"]} [ {DateTime.Now.ToLongTimeString()} ] - model is valid: {ctx.ModelState.IsValid}");
     }
 
     public void OnActionExecuted(ActionExecutedContext ctx) {
-        _logger.LogInformation("==== OnActionExecuted ====");
-        _logger.LogInformation($"{DateTime.Now.ToLongTimeString()}");
-        _logger.LogInformation($"ModelState: {ctx.HttpContext.Response.StatusCode}");
+        _logger.LogInformation($"Response from {ctx.RouteData.Values["controller"]}/{ctx.RouteData.Values["action"]} [ {DateTime.Now.ToLongTimeString()} ] - status: {ctx.HttpContext.Response.StatusCode}");
     }
 }

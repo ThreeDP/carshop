@@ -4,70 +4,269 @@
 
 <PageTitle>Clientes</PageTitle>
 
-<h1>Clientes</h1>
-@* 
-<p role="status">Current count: @currentCount</p> *@
-
-<EditForm Model="@client" OnValidSubmit="@HandleInsertClientSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <div class="form-group mt-3">
-        <label for="name">Name:</label>
-        <InputText id="name" class="form-control" @bind-Value="@client.Name" />
-        <ValidationMessage For="@(() => client.Name)" />
+<h1>Painel de Clientes</h1>
+<nav class="row row-cols-auto justify-content-end mb-5">
+    <div class="col justify-content-md-end">
+        <AutoComplete @bind-Value="clientInputName"
+                      TItem="Client"
+                      DataProvider="CustomersDataProvider"
+                      PropertyName="Name"
+                      Placeholder="Procure por um cliente..."
+                      OnChanged="(Client clientInput) => OnAutoCompleteChanged(clientInput)"
+                      Size="AutoCompleteSize.Small" />
     </div>
-
-    <div class="form-group mt-3">
-        <label for="url">Image de Perfil:</label>
-        <InputText id="url" class="form-control" @bind-Value="@client.UrlImage" />
-        <ValidationMessage For="@(() => client.UrlImage)" />
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <Button Class="col bi bi-person-plus-fill" Color="ButtonColor.Primary" @onclick='OnShowModalRegister'> Cadastrar Cliente</Button>
     </div>
+</nav>
 
-    <div class="form-group mt-3">
-        <label for="documentType">Tipo de Documento:</label>
-        <InputSelect id="documentType" class="form-control" @bind-Value="client.DocType">
-            <option value="">Selecione uma opção</option>
-            <option value="CPF">CPF</option>
-            <option value="CNPJ">CNPJ</option>
-        </InputSelect>
-        <ValidationMessage For="@(() => client.DocType)" />
-    </div>
-
-    <div class="form-group mt-3">
-        <label for="documentNumber">Número do documento:</label>
-        <InputText id="documentNumber" class="form-control" @bind-Value="@client.DocNumber" />
-        <ValidationMessage For="@(() => client.DocNumber)" />
-    </div>
-
-    <div class="form-group mt-3">
-        <label for="cellphone">Celular:</label>
-        <InputText id="cellphone" class="form-control" @bind-Value="@client.CellPhone" />
-        <ValidationMessage For="@(() => client.CellPhone)" />
-    </div>
-
-    <div class="mt-3">
-        <button type="submit" class="btn btn-success">Submit</button>
-    </div>
-</EditForm>
-
-@code {
-    private Client client = new Client();
-
-    private async void HandleInsertClientSubmit()
-    {
-        var ts = await Http.PostAsJsonAsync("clientes", client);
-        Console.WriteLine(ts);
-    }
+@if (clients == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Tipo de Documento</th>
+                <th>Numero Documento</th>
+                <th>Celular</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in clients)
+            {
+                <tr>
+                    <td>@c.Name</td>
+                    <td>@c.DocType</td>
+                    <td>@c.DocNumber</td>
+                    <td>@c.CellPhone</td>
+                    <td><button class="btn btn-primary bi bi-pencil-square" @onclick="() => OnShowModalEdit(c.Id)"></button></td>
+                    <td><button class="btn btn-danger bi bi-trash3" @onclick='() => OnShowModalDelete(c.Id)'></button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
-@* <button class="btn btn-primary" @onclick="IncrementCount">Click me</button> *@
+<Modal @ref="deleteClientModal"
+    OnHidden='() => OnHideModalDelete("no")'
+    Title="Deseja prosseguir com a exclusão?">
+    <BodyTemplate>
+        Ao confirmar essa ação o cliente @client.Name será excluido.
+    </BodyTemplate>
+    <FooterTemplate>
+        <Button Color="ButtonColor.Secondary" @onclick='() => OnHideModalDelete("no")'>Close</Button>
+        <Button Color="ButtonColor.Primary" @onclick='() => OnHideModalDelete("yes")'>Save changes</Button>
+    </FooterTemplate>
+</Modal>
 
-@* @code {
-    private int currentCount = 0;
+<Modal @ref="registerClientModal"
+    OnShow='OnShowModalRegister'
+    OnHidden='OnHideModalRegister'
+    Title="Cadastrar Cliente">
+    <BodyTemplate>
+        <EditForm Model="@client" OnValidSubmit="@HandleInsertClientSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
-    private void IncrementCount()
-    {
-        currentCount++;
+            <div class="form-group mt-3">
+                <label for="name">Name: <span class="text-danger">*</span></label>
+                <InputText id="name" class="form-control" @bind-Value="@client.Name" />
+                <ValidationMessage For="@(() => client.Name)" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="url">Image de Perfil:</label>
+                <InputText id="url" class="form-control" @bind-Value="@client.UrlImage" />
+                <ValidationMessage For="@(() => client.UrlImage)" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="documentType">Tipo de Documento: <span class="text-danger">*</span></label>
+                <InputSelect id="documentType" class="form-control" @bind-Value="client.DocType">
+                    <option value="">Selecione uma opção</option>
+                    <option value="CPF">CPF</option>
+                    <option value="CNPJ">CNPJ</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => client.DocType)" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="documentNumber">Número do documento: <span class="text-danger">*</span></label>
+                <InputText id="documentNumber" class="form-control" @bind-Value="@client.DocNumber" />
+                <ValidationMessage For="@(() => client.DocNumber)" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="cellphone">Celular: <span class="text-danger">*</span></label>
+                <InputText id="cellphone" class="form-control" @bind-Value="@client.CellPhone" />
+                <ValidationMessage For="@(() => client.CellPhone)" />
+            </div>
+
+            <div class="mt-3">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </EditForm>
+    </BodyTemplate>
+</Modal>
+
+<Modal @ref="editClientModal"
+    OnHidden='OnHideModalEdit'
+    Title="Editar Cliente">
+    <BodyTemplate>
+        <EditForm Model="@client" OnValidSubmit="@HandleEditClientSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group mt-3">
+                <label for="name">Name:</label>
+                <InputText id="name" class="form-control" @bind-Value="@client.Name" />
+                <ValidationMessage For="@(() => client.Name)" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="url">Image de Perfil:</label>
+                <InputText id="url" class="form-control" @bind-Value="@client.UrlImage" />
+                <ValidationMessage For="@(() => client.UrlImage)" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="documentType">Tipo de Documento:</label>
+                <InputSelect id="documentType" class="form-control" @bind-Value="client.DocType">
+                    <option value="">Selecione uma opção</option>
+                    <option value="CPF">CPF</option>
+                    <option value="CNPJ">CNPJ</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => client.DocType)" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="documentNumber">Número do documento:</label>
+                <InputText id="documentNumber" class="form-control" @bind-Value="@client.DocNumber" />
+                <ValidationMessage For="@(() => client.DocNumber)" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="cellphone">Celular:</label>
+                <InputText id="cellphone" class="form-control" @bind-Value="@client.CellPhone" />
+                <ValidationMessage For="@(() => client.CellPhone)" />
+            </div>
+
+            <div class="mt-3">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </EditForm>
+    </BodyTemplate>
+</Modal>
+
+
+@code {
+    private int                     deleteId = 0;
+    private Modal                   registerClientModal = default!;
+    private Modal                   deleteClientModal = default!;
+    private Modal                   editClientModal = default!;
+    const string                    route = "clientes";
+
+    private string?                 clientInputName;
+    private IEnumerable<Client>?    clients;
+
+    private Client                  client = new Client();
+
+    private async Task OnShowModalDelete(int id) {
+        client = await Http.GetFromJsonAsync<Client?>($"{route}/{id}");
+        await deleteClientModal.ShowAsync();
     }
-} *@
+
+    private async Task OnHideModalDelete(string label) {
+        if (label == "yes") {
+            await Http.DeleteAsync($"{route}/{client.Id}");      
+        }
+        client = new Client();
+        await deleteClientModal.HideAsync();
+    }
+
+    private async Task OnShowModalEdit(int id) {
+        client = await Http.GetFromJsonAsync<Client?>($"{route}/{id}");
+        await editClientModal.ShowAsync();
+    }
+
+    private async Task OnHideModalEdit() {
+        client = new Client();
+        await editClientModal.HideAsync();
+    }
+
+    private async Task OnShowModalRegister() {
+        await registerClientModal.ShowAsync();
+    }
+
+    private async Task OnHideModalRegister() {
+        await registerClientModal.HideAsync();
+    }
+
+    private async Task HandleInsertClientSubmit() {
+        var ts = await Http.PostAsJsonAsync(route, client);
+        Console.WriteLine(ts);
+        registerClientModal.HideAsync();
+    }
+
+    private async Task HandleEditClientSubmit() {
+        var ts = await Http.PutAsJsonAsync($"{route}/{client.Id}", client);
+        Console.WriteLine(ts);
+        editClientModal.HideAsync();
+    }
+
+    private async Task<AutoCompleteDataProviderResult<Client>> CustomersDataProvider(AutoCompleteDataProviderRequest<Client> request) {
+        clients = await GetCustomers(request.Filter.Value);
+        return await Task.FromResult(request.ApplyTo(clients.OrderBy(Client => Client.Name)));
+    }
+
+    private async Task<IEnumerable<Client>> GetCustomers(string input) {
+        return await Http.GetFromJsonAsync<Client[]?>($"{route}/{input}");
+    }
+
+    private void OnAutoCompleteChanged(Client clientInput) {
+        Console.WriteLine($"'{clientInput?.Name}' selected.");
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync() {
+        var list = await Http.GetFromJsonAsync<Client[]>(route);
+        clients = list;
+    }
+
+    @* public void HandleOnValidSubmit()
+    {
+        disableSave = !(editContext?.Validate() ?? false);
+
+        var toastMessage = new ToastMessage
+            {
+                Title = "Save Employee Details",
+                Message = $"Employee details saved successfully.",
+                AutoHide = true,
+                Type = ToastType.Success,
+                IconName = IconName.CheckCircleFill,
+            };
+
+        ToastService.Notify(toastMessage);
+    }
+
+    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+    {
+        disableSave = !(editContext?.Validate() ?? false);
+
+        var toastMessage = new ToastMessage
+            {
+                Title = "Field Changed Notification",
+                Message = $"The field \"{e.FieldIdentifier.FieldName}\" was changed.",
+                AutoHide = true,
+                Type = ToastType.Info
+            };
+
+        ToastService.Notify(toastMessage);
+    } *@
+}

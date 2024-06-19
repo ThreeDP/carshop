@@ -11,10 +11,6 @@ public class CarShopDataContext : DbContext
     public CarShopDataContext(IConfiguration conf)
     {
         this.Conf = conf;
-        // Clients = new DbSet<ClientDB>();
-        // FinancialTransactions = new DbSet<FinancialTransactionsDB>();
-        // VehicleImages = new DbSet<VehicleImageDB>();
-        // Vehicles = new DbSet<VehicleDB>();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)

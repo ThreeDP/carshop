@@ -8,6 +8,9 @@ namespace CarShopView.Models;
 
 public class Client
 {
+  [JsonPropertyName("client_id")]
+  public int                Id { get; set; }
+
   [JsonPropertyName("name")]
   public string?            Name { get; set; }
   
