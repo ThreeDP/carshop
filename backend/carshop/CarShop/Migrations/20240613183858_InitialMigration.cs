@@ -10,10 +10,10 @@ namespace CarShop.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "clients",
+                name: "customers",
                 columns: table => new
                 {
-                    client_id = table.Column<int>(type: "integer", nullable: false)
+                    customer_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: false),
                     image_url = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: true),
@@ -23,7 +23,7 @@ namespace CarShop.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_clients", x => x.client_id);
+                    table.PrimaryKey("PK_customers", x => x.customer_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -35,22 +35,22 @@ namespace CarShop.Migrations
                     value = table.Column<decimal>(type: "numeric(10,2)", nullable: false),
                     type_transation = table.Column<string>(type: "character varying(6)", maxLength: 6, nullable: true),
                     categoria_id = table.Column<int>(type: "integer", nullable: false),
-                    ClientDBId = table.Column<int>(type: "integer", nullable: true)
+                    CustomerDBId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_financial_transactions", x => x.financial_transation_id);
                     table.ForeignKey(
-                        name: "FK_financial_transactions_clients_ClientDBId",
-                        column: x => x.ClientDBId,
-                        principalTable: "clients",
-                        principalColumn: "client_id");
+                        name: "FK_financial_transactions_customers_CustomerDBId",
+                        column: x => x.CustomerDBId,
+                        principalTable: "customers",
+                        principalColumn: "customer_id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_financial_transactions_ClientDBId",
+                name: "IX_financial_transactions_CustomerDBId",
                 table: "financial_transactions",
-                column: "ClientDBId");
+                column: "CustomerDBId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -59,7 +59,7 @@ namespace CarShop.Migrations
                 name: "financial_transactions");
 
             migrationBuilder.DropTable(
-                name: "clients");
+                name: "customers");
         }
     }
 }

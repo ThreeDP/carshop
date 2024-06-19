@@ -11,15 +11,15 @@ namespace CarShop.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_financial_transactions_clients_ClientDBId",
+                name: "FK_financial_transactions_customers_CustomerDBId",
                 table: "financial_transactions");
 
             migrationBuilder.DropIndex(
-                name: "IX_financial_transactions_ClientDBId",
+                name: "IX_financial_transactions_CustomerDBId",
                 table: "financial_transactions");
 
             migrationBuilder.DropColumn(
-                name: "ClientDBId",
+                name: "CustomerDBId",
                 table: "financial_transactions");
 
             migrationBuilder.AlterColumn<string>(
@@ -87,18 +87,18 @@ namespace CarShop.Migrations
                 column: "vehicle_id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_financial_transactions_clients_categoria_id",
+                name: "FK_financial_transactions_customers_categoria_id",
                 table: "financial_transactions",
                 column: "categoria_id",
-                principalTable: "clients",
-                principalColumn: "client_id",
+                principalTable: "customers",
+                principalColumn: "customer_id",
                 onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_financial_transactions_clients_categoria_id",
+                name: "FK_financial_transactions_customers_categoria_id",
                 table: "financial_transactions");
 
             migrationBuilder.DropTable(
@@ -122,22 +122,22 @@ namespace CarShop.Migrations
                 oldMaxLength: 6);
 
             migrationBuilder.AddColumn<int>(
-                name: "ClientDBId",
+                name: "CustomerDBId",
                 table: "financial_transactions",
                 type: "integer",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_financial_transactions_ClientDBId",
+                name: "IX_financial_transactions_CustomerDBId",
                 table: "financial_transactions",
-                column: "ClientDBId");
+                column: "CustomerDBId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_financial_transactions_clients_ClientDBId",
+                name: "FK_financial_transactions_customers_CustomerDBId",
                 table: "financial_transactions",
-                column: "ClientDBId",
-                principalTable: "clients",
-                principalColumn: "client_id");
+                column: "CustomerDBId",
+                principalTable: "customers",
+                principalColumn: "customer_id");
         }
     }
 }

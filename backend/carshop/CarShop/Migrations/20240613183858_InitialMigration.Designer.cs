@@ -24,14 +24,14 @@ namespace CarShop.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("CarShop.Models.ClientDB", b =>
+            modelBuilder.Entity("CarShop.Models.CustomerDB", b =>
                 {
-                    b.Property<int>("ClientDBId")
+                    b.Property<int>("CustomerDBId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("client_id");
+                        .HasColumnName("customer_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ClientDBId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CustomerDBId"));
 
                     b.Property<string>("DocNumber")
                         .IsRequired()
@@ -62,9 +62,9 @@ namespace CarShop.Migrations
                         .HasColumnType("character varying(15)")
                         .HasColumnName("phonenumber");
 
-                    b.HasKey("ClientDBId");
+                    b.HasKey("CustomerDBId");
 
-                    b.ToTable("clients");
+                    b.ToTable("customers");
                 });
 
             modelBuilder.Entity("CarShop.Models.FinancialTransactionsDB", b =>
@@ -80,7 +80,7 @@ namespace CarShop.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("categoria_id");
 
-                    b.Property<int?>("ClientDBId")
+                    b.Property<int?>("CustomerDBId")
                         .HasColumnType("integer");
 
                     b.Property<string>("FinancialTransactionType")
@@ -94,21 +94,21 @@ namespace CarShop.Migrations
 
                     b.HasKey("FinancialTransactionDBId");
 
-                    b.HasIndex("ClientDBId");
+                    b.HasIndex("CustomerDBId");
 
                     b.ToTable("financial_transactions");
                 });
 
             modelBuilder.Entity("CarShop.Models.FinancialTransactionsDB", b =>
                 {
-                    b.HasOne("CarShop.Models.ClientDB", "Client")
+                    b.HasOne("CarShop.Models.CustomerDB", "Customer")
                         .WithMany("FinancialTransactions")
-                        .HasForeignKey("ClientDBId");
+                        .HasForeignKey("CustomerDBId");
 
-                    b.Navigation("Client");
+                    b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("CarShop.Models.ClientDB", b =>
+            modelBuilder.Entity("CarShop.Models.CustomerDB", b =>
                 {
                     b.Navigation("FinancialTransactions");
                 });

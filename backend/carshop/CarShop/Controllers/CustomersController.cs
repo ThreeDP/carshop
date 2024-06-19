@@ -9,23 +9,23 @@ namespace CarShop.Controllers;
 
 [ApiController]
 [Route("clientes")]
-public class ClientsController : ControllerBase
+public class CustomersController : ControllerBase
 {
     private readonly CarShopDataContext _ctx;
 
-    public ClientsController(CarShopDataContext ctx) {
+    public CustomersController(CarShopDataContext ctx) {
         _ctx = ctx;
     }
 
     [HttpGet()]
     [ServiceFilter(typeof(CarShopLoggingFilter))]
-    public async Task<ActionResult<IEnumerable<ClientDB>>> Get()
+    public async Task<ActionResult<IEnumerable<CustomerDB>>> Get()
     {
-        try {
-            var c = await _ctx.Clients.AsNoTracking().OrderBy(c => c.Name).Take(10).ToArrayAsync();
+            var c = await _ctx.Customers.AsNoTracking().OrderBy(c => c.Name).Take(10).ToArrayAsync();
             if (c is null) {
                 return NotFound();
             }
+        try {
             return c;
         }
         catch {
@@ -36,10 +36,10 @@ public class ClientsController : ControllerBase
 
     [HttpGet("{id:int:min(1)}", Name="ObterCliente")]
     [ServiceFilter(typeof(CarShopLoggingFilter))]
-    public ActionResult<ClientDB> Get(int id)
+    public ActionResult<CustomerDB> Get(int id)
     {
         try {
-            var c = _ctx.Clients.AsNoTracking().FirstOrDefault(c => c.ClientDBId == id);
+            var c = _ctx.Customers.AsNoTracking().FirstOrDefault(c => c.Id == id);
             if (c is null) {
                 return NotFound();
             }
@@ -52,9 +52,9 @@ public class ClientsController : ControllerBase
 
     [HttpGet("{name}")]
     [ServiceFilter(typeof(CarShopLoggingFilter))]
-    public ActionResult<IEnumerable<ClientDB>> Get(string name) {
+    public ActionResult<IEnumerable<CustomerDB>> Get(string name) {
         try {
-            var c = _ctx.Clients.AsNoTracking()
+            var c = _ctx.Customers.AsNoTracking()
                 .Where( c => c.Name.ToUpper()
                     .StartsWith(name.ToUpper())
                 )
@@ -66,40 +66,40 @@ public class ClientsController : ControllerBase
             return c;
         } catch {
             return StatusCode(StatusCodes.Status500InternalServerError,
-                $"Erro ao encontrar cliente {name}");
+                $"Erro ao encontrar customere {name}");
         }
     }
 
     [HttpPost]
     [ServiceFilter(typeof(CarShopLoggingFilter))]
-    public ActionResult Post([FromBody] ClientDB c)
+    public ActionResult Post([FromBody] CustomerDB c)
     {
         try {
             if (!ModelState.IsValid || c is null)
                 return BadRequest(ModelState);
-            _ctx.Clients.Add(c);
+            _ctx.Customers.Add(c);
             _ctx.SaveChanges();
-            return new CreatedAtRouteResult("ObterCliente",
-                new { id = c.ClientDBId }, c);
+            return new CreatedAtRouteResult("ObterCustomere",
+                new { id = c.Id }, c);
         } catch {
             return StatusCode(StatusCodes.Status500InternalServerError,
-                $"Erro ao cadastrar cliente {c}. Tente mais tarde...");
+                $"Erro ao cadastrar customere {c}. Tente mais tarde...");
         }
     }
 
     [HttpPut("{id:int}")]
     [ServiceFilter(typeof(CarShopLoggingFilter))]
-    public ActionResult Put(int id, [FromBody] ClientDB c)
+    public ActionResult Put(int id, [FromBody] CustomerDB c)
     {
         try {
-            if (id != c.ClientDBId || !ModelState.IsValid || c is null) 
+            if (id != c.Id || !ModelState.IsValid || c is null) 
                 return BadRequest();
             _ctx.Entry(c).State = EntityState.Modified;
             _ctx.SaveChanges();
             return Ok(c);
         } catch {
             return StatusCode(StatusCodes.Status500InternalServerError,
-                $"Erro ao atualizar cliente {c}. Tente mais tarde...");
+                $"Erro ao atualizar customere {c}. Tente mais tarde...");
         }
     }
 
@@ -108,14 +108,14 @@ public class ClientsController : ControllerBase
     public ActionResult Delete(int id)
     {
         try {
-            var client = _ctx.Clients.FirstOrDefault(c => c.ClientDBId == id);
-            if (client is null) { return NotFound("Cliente não encontrado!"); };
-            _ctx.Clients.Remove(client);
+            var customer = _ctx.Customers.FirstOrDefault(c => c.Id == id);
+            if (customer is null) { return NotFound("Customere não encontrado!"); };
+            _ctx.Customers.Remove(customer);
             _ctx.SaveChanges();
-            return Ok(client);
+            return Ok(customer);
         } catch {
             return StatusCode(StatusCodes.Status500InternalServerError,
-                $"Erro ao deletar cliente with id: {id}. Tente mas tarde...");
+                $"Erro ao deletar customere with id: {id}. Tente mas tarde...");
         }
     }
 }

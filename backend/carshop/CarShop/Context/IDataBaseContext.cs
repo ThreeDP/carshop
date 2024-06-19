@@ -1,20 +1,15 @@
-using CarShop.Models;
-using Microsoft.EntityFrameworkCore;
+// using CarShop.Models;
+// using Microsoft.EntityFrameworkCore;
 
-namespace CarShop.Context;
+// namespace CarShop.Context;
 
-public abstract class IDataBaseContext : DbContext
-{
-    protected readonly IConfiguration Conf;
-    public IDataBaseContext(IConfiguration conf) 
-    {
-        this.Conf = conf;
-    }
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-    {
-        options.UseNpgsql(Conf.GetConnectionString("defaultConn"));
-    }
-
-    public virtual DbSet<ClientDB>? Clients { get; set; } 
-    public virtual DbSet<FinancialTransactionsDB>? FinancialTransations { get; set; }
-}
+// public interface IDataBaseContext : IDisposable
+// {
+//     public DbSet<CustomerDB>? Customers { get; set; } 
+//     public DbSet<FinancialTransactionsDB>? FinancialTransactions { get; set; }
+//     public DbSet<VehicleImageDB>? VehicleImages { get; set; }
+//     public DbSet<VehicleDB>? Vehicles { get; set; }
+//     IQueryable<TEntity> Query<TEntity>() where TEntity : class;
+//     TEntity GetById<TEntity, TId>(TId id) where TEntity : class;
+//     int SaveChanges();
+// }

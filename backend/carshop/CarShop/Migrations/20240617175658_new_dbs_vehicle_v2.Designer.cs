@@ -24,14 +24,14 @@ namespace CarShop.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("CarShop.Models.ClientDB", b =>
+            modelBuilder.Entity("CarShop.Models.CustomerDB", b =>
                 {
-                    b.Property<int>("ClientDBId")
+                    b.Property<int>("CustomerDBId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("client_id");
+                        .HasColumnName("customer_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ClientDBId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CustomerDBId"));
 
                     b.Property<string>("DocNumber")
                         .IsRequired()
@@ -62,9 +62,9 @@ namespace CarShop.Migrations
                         .HasColumnType("character varying(15)")
                         .HasColumnName("phonenumber");
 
-                    b.HasKey("ClientDBId");
+                    b.HasKey("CustomerDBId");
 
-                    b.ToTable("clients");
+                    b.ToTable("customers");
                 });
 
             modelBuilder.Entity("CarShop.Models.FinancialTransactionsDB", b =>
@@ -76,9 +76,9 @@ namespace CarShop.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FinancialTransactionDBId"));
 
-                    b.Property<int>("ClientId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("integer")
-                        .HasColumnName("client_id");
+                        .HasColumnName("customer_id");
 
                     b.Property<string>("FinancialTransactionType")
                         .IsRequired()
@@ -96,7 +96,7 @@ namespace CarShop.Migrations
 
                     b.HasKey("FinancialTransactionDBId");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("VehicleId");
 
@@ -197,9 +197,9 @@ namespace CarShop.Migrations
 
             modelBuilder.Entity("CarShop.Models.FinancialTransactionsDB", b =>
                 {
-                    b.HasOne("CarShop.Models.ClientDB", "Client")
+                    b.HasOne("CarShop.Models.CustomerDB", "Customer")
                         .WithMany("FinancialTransactions")
-                        .HasForeignKey("ClientId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -209,7 +209,7 @@ namespace CarShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Client");
+                    b.Navigation("Customer");
 
                     b.Navigation("Vehicle");
                 });
@@ -225,7 +225,7 @@ namespace CarShop.Migrations
                     b.Navigation("Vehicle");
                 });
 
-            modelBuilder.Entity("CarShop.Models.ClientDB", b =>
+            modelBuilder.Entity("CarShop.Models.CustomerDB", b =>
                 {
                     b.Navigation("FinancialTransactions");
                 });

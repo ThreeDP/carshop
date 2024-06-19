@@ -27,9 +27,9 @@ public class FinancialTransactionsDB
     public string? FinancialTransactionType { get; set; }
 
     [Required]
-    [Column("client_id")]
-    [JsonPropertyName("client_id")]
-    public int ClientId { get; set; }
+    [Column("customer_id")]
+    [JsonPropertyName("customer_id")]
+    public int CustomerId { get; set; }
 
     [Required]
     [Column("vehicle_id")]
@@ -37,7 +37,7 @@ public class FinancialTransactionsDB
     public int VehicleId { get; set; }
 
     [JsonIgnore]
-    public ClientDB? Client { get; set; }
+    public CustomerDB? Customer { get; set; }
 
     [JsonIgnore]
     public VehicleDB? Vehicle { get; set; }

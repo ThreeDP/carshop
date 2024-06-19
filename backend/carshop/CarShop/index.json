@@ -61,12 +61,12 @@
     {
       "@id": "https://azuresearch-usnc.nuget.org/query",
       "@type": "SearchQueryService/3.0.0-rc",
-      "comment": "Query endpoint of NuGet Search service (primary) used by RC clients"
+      "comment": "Query endpoint of NuGet Search service (primary) used by RC customers"
     },
     {
       "@id": "https://azuresearch-ussc.nuget.org/query",
       "@type": "SearchQueryService/3.0.0-rc",
-      "comment": "Query endpoint of NuGet Search service (secondary) used by RC clients"
+      "comment": "Query endpoint of NuGet Search service (secondary) used by RC customers"
     },
     {
       "@id": "https://azuresearch-usnc.nuget.org/query",
@@ -81,12 +81,12 @@
     {
       "@id": "https://azuresearch-usnc.nuget.org/autocomplete",
       "@type": "SearchAutocompleteService/3.0.0-rc",
-      "comment": "Autocomplete endpoint of NuGet Search service (primary) used by RC clients"
+      "comment": "Autocomplete endpoint of NuGet Search service (primary) used by RC customers"
     },
     {
       "@id": "https://azuresearch-ussc.nuget.org/autocomplete",
       "@type": "SearchAutocompleteService/3.0.0-rc",
-      "comment": "Autocomplete endpoint of NuGet Search service (secondary) used by RC clients"
+      "comment": "Autocomplete endpoint of NuGet Search service (secondary) used by RC customers"
     },
     {
       "@id": "https://azuresearch-usnc.nuget.org/autocomplete",
@@ -101,62 +101,62 @@
     {
       "@id": "https://api.nuget.org/v3/registration5-semver1/",
       "@type": "RegistrationsBaseUrl/3.0.0-rc",
-      "comment": "Base URL of Azure storage where NuGet package registration info is stored used by RC clients. This base URL does not include SemVer 2.0.0 packages."
+      "comment": "Base URL of Azure storage where NuGet package registration info is stored used by RC customers. This base URL does not include SemVer 2.0.0 packages."
     },
     {
       "@id": "https://www.nuget.org/packages/{id}/{version}/ReportAbuse",
       "@type": "ReportAbuseUriTemplate/3.0.0-rc",
-      "comment": "URI template used by NuGet Client to construct Report Abuse URL for packages used by RC clients"
+      "comment": "URI template used by NuGet Customer to construct Report Abuse URL for packages used by RC customers"
     },
     {
       "@id": "https://api.nuget.org/v3/registration5-semver1/{id-lower}/index.json",
       "@type": "PackageDisplayMetadataUriTemplate/3.0.0-rc",
-      "comment": "URI template used by NuGet Client to construct display metadata for Packages using ID"
+      "comment": "URI template used by NuGet Customer to construct display metadata for Packages using ID"
     },
     {
       "@id": "https://api.nuget.org/v3/registration5-semver1/{id-lower}/{version-lower}.json",
       "@type": "PackageVersionDisplayMetadataUriTemplate/3.0.0-rc",
-      "comment": "URI template used by NuGet Client to construct display metadata for Packages using ID, Version"
+      "comment": "URI template used by NuGet Customer to construct display metadata for Packages using ID, Version"
     },
     {
       "@id": "https://azuresearch-usnc.nuget.org/query",
       "@type": "SearchQueryService/3.0.0-beta",
-      "comment": "Query endpoint of NuGet Search service (primary) used by beta clients"
+      "comment": "Query endpoint of NuGet Search service (primary) used by beta customers"
     },
     {
       "@id": "https://azuresearch-ussc.nuget.org/query",
       "@type": "SearchQueryService/3.0.0-beta",
-      "comment": "Query endpoint of NuGet Search service (secondary) used by beta clients"
+      "comment": "Query endpoint of NuGet Search service (secondary) used by beta customers"
     },
     {
       "@id": "https://azuresearch-usnc.nuget.org/autocomplete",
       "@type": "SearchAutocompleteService/3.0.0-beta",
-      "comment": "Autocomplete endpoint of NuGet Search service (primary) used by beta clients"
+      "comment": "Autocomplete endpoint of NuGet Search service (primary) used by beta customers"
     },
     {
       "@id": "https://azuresearch-ussc.nuget.org/autocomplete",
       "@type": "SearchAutocompleteService/3.0.0-beta",
-      "comment": "Autocomplete endpoint of NuGet Search service (secondary) used by beta clients"
+      "comment": "Autocomplete endpoint of NuGet Search service (secondary) used by beta customers"
     },
     {
       "@id": "https://api.nuget.org/v3/registration5-semver1/",
       "@type": "RegistrationsBaseUrl/3.0.0-beta",
-      "comment": "Base URL of Azure storage where NuGet package registration info is stored used by Beta clients. This base URL does not include SemVer 2.0.0 packages."
+      "comment": "Base URL of Azure storage where NuGet package registration info is stored used by Beta customers. This base URL does not include SemVer 2.0.0 packages."
     },
     {
       "@id": "https://www.nuget.org/packages/{id}/{version}/ReportAbuse",
       "@type": "ReportAbuseUriTemplate/3.0.0-beta",
-      "comment": "URI template used by NuGet Client to construct Report Abuse URL for packages"
+      "comment": "URI template used by NuGet Customer to construct Report Abuse URL for packages"
     },
     {
       "@id": "https://www.nuget.org/packages/{id}/{version}?_src=template",
       "@type": "PackageDetailsUriTemplate/5.1.0",
-      "comment": "URI template used by NuGet Client to construct details URL for packages"
+      "comment": "URI template used by NuGet Customer to construct details URL for packages"
     },
     {
       "@id": "https://www.nuget.org/profiles/{owner}?_src=template",
       "@type": "OwnerDetailsUriTemplate/6.11.0",
-      "comment": "URI template used by NuGet Client to construct owner URL for packages"
+      "comment": "URI template used by NuGet Customer to construct owner URL for packages"
     },
     {
       "@id": "https://api.nuget.org/v3/registration5-gz-semver1/",
@@ -171,7 +171,7 @@
     {
       "@id": "https://api.nuget.org/v3/registration5-gz-semver2/",
       "@type": "RegistrationsBaseUrl/Versioned",
-      "clientVersion": "4.3.0-alpha",
+      "customerVersion": "4.3.0-alpha",
       "comment": "Base URL of Azure storage where NuGet package registration info is stored in GZIP format. This base URL includes SemVer 2.0.0 packages."
     },
     {

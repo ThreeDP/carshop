@@ -9,18 +9,18 @@ namespace CarShop.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_financial_transactions_clients_categoria_id",
+                name: "FK_financial_transactions_customers_categoria_id",
                 table: "financial_transactions");
 
             migrationBuilder.RenameColumn(
                 name: "categoria_id",
                 table: "financial_transactions",
-                newName: "client_id");
+                newName: "customer_id");
 
             migrationBuilder.RenameIndex(
                 name: "IX_financial_transactions_categoria_id",
                 table: "financial_transactions",
-                newName: "IX_financial_transactions_client_id");
+                newName: "IX_financial_transactions_customer_id");
 
             migrationBuilder.AddColumn<int>(
                 name: "vehicle_id",
@@ -35,11 +35,11 @@ namespace CarShop.Migrations
                 column: "vehicle_id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_financial_transactions_clients_client_id",
+                name: "FK_financial_transactions_customers_customer_id",
                 table: "financial_transactions",
-                column: "client_id",
-                principalTable: "clients",
-                principalColumn: "client_id",
+                column: "customer_id",
+                principalTable: "customers",
+                principalColumn: "customer_id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
@@ -54,7 +54,7 @@ namespace CarShop.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_financial_transactions_clients_client_id",
+                name: "FK_financial_transactions_customers_customer_id",
                 table: "financial_transactions");
 
             migrationBuilder.DropForeignKey(
@@ -70,21 +70,21 @@ namespace CarShop.Migrations
                 table: "financial_transactions");
 
             migrationBuilder.RenameColumn(
-                name: "client_id",
+                name: "customer_id",
                 table: "financial_transactions",
                 newName: "categoria_id");
 
             migrationBuilder.RenameIndex(
-                name: "IX_financial_transactions_client_id",
+                name: "IX_financial_transactions_customer_id",
                 table: "financial_transactions",
                 newName: "IX_financial_transactions_categoria_id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_financial_transactions_clients_categoria_id",
+                name: "FK_financial_transactions_customers_categoria_id",
                 table: "financial_transactions",
                 column: "categoria_id",
-                principalTable: "clients",
-                principalColumn: "client_id",
+                principalTable: "customers",
+                principalColumn: "customer_id",
                 onDelete: ReferentialAction.Cascade);
         }
     }

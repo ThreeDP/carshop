@@ -8,10 +8,10 @@ mkdir -p $PATH_OUT
 
 # TEST GET CLIENTES
 {
-    EXP=$PATH_EXP"test_getclientes.json"
-    OUT=$PATH_OUT"out_getclientes.json"
+    EXP=$PATH_EXP"test_getcustomeres.json"
+    OUT=$PATH_OUT"out_getcustomeres.json"
 
-    curl -X GET $HOST"clientes" > $OUT; diff $EXP $OUT 
+    curl -X GET $HOST"customeres" > $OUT; diff $EXP $OUT 
 }
 
 

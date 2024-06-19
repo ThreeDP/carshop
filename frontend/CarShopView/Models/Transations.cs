@@ -10,8 +10,8 @@ public class Transaction
     public decimal  Value { get; set; }
     [JsonPropertyName("type_transation")]
     public string?  TypeTransaction { get; set; }
-    [JsonPropertyName("client_id")]
-    public int      ClientId { get; set; }
+    [JsonPropertyName("customer_id")]
+    public int      CustomerId { get; set; }
     [JsonPropertyName("vehicle_id")]
     public int      VehicleId { get; set; }
 }

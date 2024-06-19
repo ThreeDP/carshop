@@ -6,9 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace CarShopView.Models;
 
-public class Client
+public class Customer
 {
-  [JsonPropertyName("client_id")]
+  [JsonPropertyName("customer_id")]
   public int                Id { get; set; }
 
   [JsonPropertyName("name")]

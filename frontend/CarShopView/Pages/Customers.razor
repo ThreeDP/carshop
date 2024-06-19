@@ -7,12 +7,12 @@
 <h1>Painel de Clientes</h1>
 <nav class="row row-cols-auto justify-content-end mb-5">
     <div class="col justify-content-md-end">
-        <AutoComplete @bind-Value="clientInputName"
-                      TItem="Client"
+        <AutoComplete @bind-Value="customerInputName"
+                      TItem="Customer"
                       DataProvider="CustomersDataProvider"
                       PropertyName="Name"
-                      Placeholder="Procure por um cliente..."
-                      OnChanged="(Client clientInput) => OnAutoCompleteChanged(clientInput)"
+                      Placeholder="Procure por um clientes..."
+                      OnChanged="(Customer customerInput) => OnAutoCompleteChanged(customerInput)"
                       Size="AutoCompleteSize.Small" />
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -20,7 +20,7 @@
     </div>
 </nav>
 
-@if (clients == null)
+@if (customers == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -38,7 +38,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var c in clients)
+            @foreach (var c in customers)
             {
                 <tr>
                     <td>@c.Name</td>
@@ -53,11 +53,11 @@ else
     </table>
 }
 
-<Modal @ref="deleteClientModal"
+<Modal @ref="deleteCustomerModal"
     OnHidden='() => OnHideModalDelete("no")'
     Title="Deseja prosseguir com a exclusão?">
     <BodyTemplate>
-        Ao confirmar essa ação o cliente @client.Name será excluido.
+        Ao confirmar essa ação o customere @customer.Name será excluido.
     </BodyTemplate>
     <FooterTemplate>
         <Button Color="ButtonColor.Secondary" @onclick='() => OnHideModalDelete("no")'>Close</Button>
@@ -65,47 +65,47 @@ else
     </FooterTemplate>
 </Modal>
 
-<Modal @ref="registerClientModal"
+<Modal @ref="registerCustomerModal"
     OnShow='OnShowModalRegister'
     OnHidden='OnHideModalRegister'
     Title="Cadastrar Cliente">
     <BodyTemplate>
-        <EditForm Model="@client" OnValidSubmit="@HandleInsertClientSubmit">
+        <EditForm Model="@customer" OnValidSubmit="@HandleInsertCustomerSubmit">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
             <div class="form-group mt-3">
                 <label for="name">Name: <span class="text-danger">*</span></label>
-                <InputText id="name" class="form-control" @bind-Value="@client.Name" />
-                <ValidationMessage For="@(() => client.Name)" />
+                <InputText id="name" class="form-control" @bind-Value="@customer.Name" />
+                <ValidationMessage For="@(() => customer.Name)" />
             </div>
 
             <div class="form-group mt-3">
                 <label for="url">Image de Perfil:</label>
-                <InputText id="url" class="form-control" @bind-Value="@client.UrlImage" />
-                <ValidationMessage For="@(() => client.UrlImage)" />
+                <InputText id="url" class="form-control" @bind-Value="@customer.UrlImage" />
+                <ValidationMessage For="@(() => customer.UrlImage)" />
             </div>
 
             <div class="form-group mt-3">
                 <label for="documentType">Tipo de Documento: <span class="text-danger">*</span></label>
-                <InputSelect id="documentType" class="form-control" @bind-Value="client.DocType">
+                <InputSelect id="documentType" class="form-control" @bind-Value="customer.DocType">
                     <option value="">Selecione uma opção</option>
                     <option value="CPF">CPF</option>
                     <option value="CNPJ">CNPJ</option>
                 </InputSelect>
-                <ValidationMessage For="@(() => client.DocType)" />
+                <ValidationMessage For="@(() => customer.DocType)" />
             </div>
 
             <div class="form-group mt-3">
                 <label for="documentNumber">Número do documento: <span class="text-danger">*</span></label>
-                <InputText id="documentNumber" class="form-control" @bind-Value="@client.DocNumber" />
-                <ValidationMessage For="@(() => client.DocNumber)" />
+                <InputText id="documentNumber" class="form-control" @bind-Value="@customer.DocNumber" />
+                <ValidationMessage For="@(() => customer.DocNumber)" />
             </div>
 
             <div class="form-group mt-3">
                 <label for="cellphone">Celular: <span class="text-danger">*</span></label>
-                <InputText id="cellphone" class="form-control" @bind-Value="@client.CellPhone" />
-                <ValidationMessage For="@(() => client.CellPhone)" />
+                <InputText id="cellphone" class="form-control" @bind-Value="@customer.CellPhone" />
+                <ValidationMessage For="@(() => customer.CellPhone)" />
             </div>
 
             <div class="mt-3">
@@ -115,46 +115,46 @@ else
     </BodyTemplate>
 </Modal>
 
-<Modal @ref="editClientModal"
+<Modal @ref="editCustomerModal"
     OnHidden='OnHideModalEdit'
-    Title="Editar Cliente">
+    Title="Editar Customere">
     <BodyTemplate>
-        <EditForm Model="@client" OnValidSubmit="@HandleEditClientSubmit">
+        <EditForm Model="@customer" OnValidSubmit="@HandleEditCustomerSubmit">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
             <div class="form-group mt-3">
                 <label for="name">Name:</label>
-                <InputText id="name" class="form-control" @bind-Value="@client.Name" />
-                <ValidationMessage For="@(() => client.Name)" />
+                <InputText id="name" class="form-control" @bind-Value="@customer.Name" />
+                <ValidationMessage For="@(() => customer.Name)" />
             </div>
 
             <div class="form-group mt-3">
                 <label for="url">Image de Perfil:</label>
-                <InputText id="url" class="form-control" @bind-Value="@client.UrlImage" />
-                <ValidationMessage For="@(() => client.UrlImage)" />
+                <InputText id="url" class="form-control" @bind-Value="@customer.UrlImage" />
+                <ValidationMessage For="@(() => customer.UrlImage)" />
             </div>
 
             <div class="form-group mt-3">
                 <label for="documentType">Tipo de Documento:</label>
-                <InputSelect id="documentType" class="form-control" @bind-Value="client.DocType">
+                <InputSelect id="documentType" class="form-control" @bind-Value="customer.DocType">
                     <option value="">Selecione uma opção</option>
                     <option value="CPF">CPF</option>
                     <option value="CNPJ">CNPJ</option>
                 </InputSelect>
-                <ValidationMessage For="@(() => client.DocType)" />
+                <ValidationMessage For="@(() => customer.DocType)" />
             </div>
 
             <div class="form-group mt-3">
                 <label for="documentNumber">Número do documento:</label>
-                <InputText id="documentNumber" class="form-control" @bind-Value="@client.DocNumber" />
-                <ValidationMessage For="@(() => client.DocNumber)" />
+                <InputText id="documentNumber" class="form-control" @bind-Value="@customer.DocNumber" />
+                <ValidationMessage For="@(() => customer.DocNumber)" />
             </div>
 
             <div class="form-group mt-3">
                 <label for="cellphone">Celular:</label>
-                <InputText id="cellphone" class="form-control" @bind-Value="@client.CellPhone" />
-                <ValidationMessage For="@(() => client.CellPhone)" />
+                <InputText id="cellphone" class="form-control" @bind-Value="@customer.CellPhone" />
+                <ValidationMessage For="@(() => customer.CellPhone)" />
             </div>
 
             <div class="mt-3">
@@ -167,76 +167,76 @@ else
 
 @code {
     private int                     deleteId = 0;
-    private Modal                   registerClientModal = default!;
-    private Modal                   deleteClientModal = default!;
-    private Modal                   editClientModal = default!;
+    private Modal                   registerCustomerModal = default!;
+    private Modal                   deleteCustomerModal = default!;
+    private Modal                   editCustomerModal = default!;
     const string                    route = "clientes";
 
-    private string?                 clientInputName;
-    private IEnumerable<Client>?    clients;
+    private string?                 customerInputName;
+    private IEnumerable<Customer>?    customers;
 
-    private Client                  client = new Client();
+    private Customer                  customer = new Customer();
 
     private async Task OnShowModalDelete(int id) {
-        client = await Http.GetFromJsonAsync<Client?>($"{route}/{id}");
-        await deleteClientModal.ShowAsync();
+        customer = await Http.GetFromJsonAsync<Customer?>($"{route}/{id}");
+        await deleteCustomerModal.ShowAsync();
     }
 
     private async Task OnHideModalDelete(string label) {
         if (label == "yes") {
-            await Http.DeleteAsync($"{route}/{client.Id}");      
+            await Http.DeleteAsync($"{route}/{customer.Id}");      
         }
-        client = new Client();
-        await deleteClientModal.HideAsync();
+        customer = new Customer();
+        await deleteCustomerModal.HideAsync();
     }
 
     private async Task OnShowModalEdit(int id) {
-        client = await Http.GetFromJsonAsync<Client?>($"{route}/{id}");
-        await editClientModal.ShowAsync();
+        customer = await Http.GetFromJsonAsync<Customer?>($"{route}/{id}");
+        await editCustomerModal.ShowAsync();
     }
 
     private async Task OnHideModalEdit() {
-        client = new Client();
-        await editClientModal.HideAsync();
+        customer = new Customer();
+        await editCustomerModal.HideAsync();
     }
 
     private async Task OnShowModalRegister() {
-        await registerClientModal.ShowAsync();
+        await registerCustomerModal.ShowAsync();
     }
 
     private async Task OnHideModalRegister() {
-        await registerClientModal.HideAsync();
+        await registerCustomerModal.HideAsync();
     }
 
-    private async Task HandleInsertClientSubmit() {
-        var ts = await Http.PostAsJsonAsync(route, client);
+    private async Task HandleInsertCustomerSubmit() {
+        var ts = await Http.PostAsJsonAsync(route, customer);
         Console.WriteLine(ts);
-        registerClientModal.HideAsync();
+        registerCustomerModal.HideAsync();
     }
 
-    private async Task HandleEditClientSubmit() {
-        var ts = await Http.PutAsJsonAsync($"{route}/{client.Id}", client);
+    private async Task HandleEditCustomerSubmit() {
+        var ts = await Http.PutAsJsonAsync($"{route}/{customer.Id}", customer);
         Console.WriteLine(ts);
-        editClientModal.HideAsync();
+        editCustomerModal.HideAsync();
     }
 
-    private async Task<AutoCompleteDataProviderResult<Client>> CustomersDataProvider(AutoCompleteDataProviderRequest<Client> request) {
-        clients = await GetCustomers(request.Filter.Value);
-        return await Task.FromResult(request.ApplyTo(clients.OrderBy(Client => Client.Name)));
+    private async Task<AutoCompleteDataProviderResult<Customer>> CustomersDataProvider(AutoCompleteDataProviderRequest<Customer> request) {
+        customers = await GetCustomers(request.Filter.Value);
+        return await Task.FromResult(request.ApplyTo(customers.OrderBy(Customer => Customer.Name)));
     }
 
-    private async Task<IEnumerable<Client>> GetCustomers(string input) {
-        return await Http.GetFromJsonAsync<Client[]?>($"{route}/{input}");
+    private async Task<IEnumerable<Customer>> GetCustomers(string input) {
+        return await Http.GetFromJsonAsync<Customer[]?>($"{route}/{input}");
     }
 
-    private void OnAutoCompleteChanged(Client clientInput) {
-        Console.WriteLine($"'{clientInput?.Name}' selected.");
+    private void OnAutoCompleteChanged(Customer customerInput) {
+        Console.WriteLine($"'{customerInput?.Name}' selected.");
         StateHasChanged();
     }
 
     protected override async Task OnInitializedAsync() {
-        var list = await Http.GetFromJsonAsync<Client[]>(route);
-        clients = list;
+        var list = await Http.GetFromJsonAsync<Customer[]>(route);
+        customers = list;
     }
 
     @* public void HandleOnValidSubmit()
