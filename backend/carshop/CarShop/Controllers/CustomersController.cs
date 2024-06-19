@@ -56,10 +56,10 @@ public class CustomersController : ControllerBase
                 )
                 .Take(10)
                 .ToList();
-            if (c is null) {
+            if (c is null || c.Count() == 0) {
                 return NotFound();
             }
-            return c;
+            return Ok(c);
         } catch {
             return StatusCode(StatusCodes.Status500InternalServerError,
                 $"Erro ao encontrar customere {name}");
