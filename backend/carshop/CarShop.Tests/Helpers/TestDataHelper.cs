@@ -1,3 +1,4 @@
+using System;
 namespace CarShop.Tests.Helpers;
 
 public static class TestDataHelper
@@ -25,5 +26,13 @@ public static class TestDataHelper
                 Phone = "5511987365345",
             }
         };
+    }
+
+    public static List<CustomerDB> GetFakeNullCustomerList() {
+        return new List<CustomerDB>();
+    }
+
+    public static List<CustomerDB> GetFakeServerError() {
+        return new List<CustomerDB>();
     }
 }

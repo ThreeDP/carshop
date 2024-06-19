@@ -6,6 +6,9 @@ NETWORKS			=			controller_net view_net
 all: create_dirs build up
 	docker compose up -d
 
+test:
+	cd backend/carshop/CarShop.Tests && dotnet test
+
 dev:
 	docker compose up -d
 	cd backend/carshop/CarShop && dotnet watch

@@ -21,12 +21,12 @@ public class CustomersController : ControllerBase
     [ServiceFilter(typeof(CarShopLoggingFilter))]
     public async Task<ActionResult<IEnumerable<CustomerDB>>> Get()
     {
+        try {
             var c = await _ctx.Customers.AsNoTracking().OrderBy(c => c.Name).Take(10).ToArrayAsync();
-            if (c is null) {
+            if (c is null || c.Count() == 0) {
                 return NotFound();
             }
-        try {
-            return c;
+            return Ok(c);
         }
         catch {
             return StatusCode(StatusCodes.Status500InternalServerError,
@@ -43,7 +43,7 @@ public class CustomersController : ControllerBase
             if (c is null) {
                 return NotFound();
             }
-            return c;
+            return Ok(c);
         } catch {
             return StatusCode(StatusCodes.Status500InternalServerError,
                 $"Erro ao processar sua solicitação para o id: {id}.");
