@@ -12,25 +12,8 @@ public class GetCustomersById
         contextMock = new Mock<CarShopDataContext>();
     }
 
-    // [Fact]
-    // public async Task GetEmployeeById_WhenCalled_ReturnsEmployeeAsync()
-    // {
-    //     // Arrange            
-    //     var employeeContextMock = new Mock<EmployeeDBContext>();
-    //     employeeContextMock.Setup(x => x.Employees.FindAsync(1).Result)
-    //         .Returns(TestDataHelper.GetFakeEmployeeList().Find(e => e.Id == 1) ?? new Employee());
-
-    //     //Act
-    //     EmployeesController employeesController = new(employeeContextMock.Object);
-    //     var employee = (await employeesController.GetEmployeeById(1)).Value;
-
-    //     //Assert
-    //     Assert.NotNull(employee);
-    //     Assert.Equal(1, employee.Id);
-    // }
-
     [Fact]
-    public async Task Test_GetCustomersById_WhenCalled_ReturnsACustomer()
+    public async Task Test_GetCustomerById_WhenCalled_ReturnsACustomer()
     {
         // Arrange
         var expected = TestDataHelper.GetFakeCustomerList()[0];
@@ -48,36 +31,35 @@ public class GetCustomersById
         Assert.Equal(expected, customer);
     }
 
-    [Fact]
-    public async Task Test_GetCustomers_WhenCalled_ReturnsNotFound()
+        [Fact]
+    public async Task Test_GetCustomerById_WhenCalled_ReturnsNotFound()
     {
         // Arrange
         contextMock.Setup<DbSet<CustomerDB>>(x => x.Customers)
-            .ReturnsDbSet(TestDataHelper.GetFakeNullCustomerList());
+            .ReturnsDbSet(TestDataHelper.GetFakeCustomerList());
 
         //Act
         CustomersController customerController = new(contextMock.Object);
-        var customers = await customerController.Get();
+        var actionResult = customerController.Get(99);
 
-        //Assert
-        Assert.IsType<NotFoundResult>(customers.Result);
+        // Assert
+        var okResult = Assert.IsType<NotFoundResult>(actionResult.Result);
     }
 
-    // [Fact]
-    // public async Task Test_GetCustomers_WhenCalled_ReturnsServerError()
-    // {
-    //     // Arrange
-    //     contextMock.Setup<DbSet<CustomerDB>>(x => x.Customers)
-    //         .Throws<InvalidOperationException>();
+    [Fact]
+    public async Task Test_GetCustomerById_WhenCalled_ReturnsServerError()
+    {
+        // Arrange
+        contextMock.Setup<DbSet<CustomerDB>?>(x => x.Customers)
+            .Throws<InvalidOperationException>();
 
-    //     //Act
-    //     CustomersController customerController = new(contextMock.Object);
-    //     var customers = await customerController.Get();
+        //Act
+        CustomersController customerController = new(contextMock.Object);
+        var actionResult = await customerController.Get();
 
-    //     //Assert
-    //     var objectResult = customers.Result as ObjectResult;
-    //     Assert.Equal(500, objectResult.StatusCode);
-    // }
-
+        //Assert
+        var stc = Assert.IsType<ObjectResult>(actionResult.Result);
+        Assert.Equal(500, stc.StatusCode);
+    }
 
 }

@@ -23,12 +23,8 @@ public class CustomersController : ControllerBase
     {
         try {
             var c = await _ctx.Customers.AsNoTracking().OrderBy(c => c.Name).Take(10).ToArrayAsync();
-            if (c is null || c.Count() == 0) {
-                return NotFound();
-            }
             return Ok(c);
-        }
-        catch {
+        } catch {
             return StatusCode(StatusCodes.Status500InternalServerError,
                 "Erro ao processar sua solicitação.");
         }

@@ -17,7 +17,7 @@ public class GetCustomers
     {
         // Arrange
         var expected = TestDataHelper.GetFakeCustomerList();
-        contextMock.Setup<DbSet<CustomerDB>>(x => x.Customers)
+        contextMock.Setup<DbSet<CustomerDB>?>(x => x.Customers)
             .ReturnsDbSet(TestDataHelper.GetFakeCustomerList());
 
         //Act
@@ -34,25 +34,10 @@ public class GetCustomers
     }
 
     [Fact]
-    public async Task Test_GetCustomers_WhenCalled_ReturnsNotFound()
-    {
-        // Arrange
-        contextMock.Setup<DbSet<CustomerDB>>(x => x.Customers)
-            .ReturnsDbSet(TestDataHelper.GetFakeNullCustomerList());
-
-        //Act
-        CustomersController customerController = new(contextMock.Object);
-        var customers = await customerController.Get();
-
-        //Assert
-        Assert.IsType<NotFoundResult>(customers.Result);
-    }
-
-    [Fact]
     public async Task Test_GetCustomers_WhenCalled_ReturnsServerError()
     {
         // Arrange
-        contextMock.Setup<DbSet<CustomerDB>>(x => x.Customers)
+        contextMock.Setup<DbSet<CustomerDB>?>(x => x.Customers)
             .Throws<InvalidOperationException>();
 
         //Act
