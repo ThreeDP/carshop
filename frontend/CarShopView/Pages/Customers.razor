@@ -1,6 +1,8 @@
 ﻿@page "/clientes"
 @inject HttpClient Http
+@using System.ComponentModel.DataAnnotations;
 @using CarShopView.Models;
+@using System.Net;
 
 <PageTitle>Clientes</PageTitle>
 
@@ -11,7 +13,7 @@
                       TItem="Customer"
                       DataProvider="CustomersDataProvider"
                       PropertyName="Name"
-                      Placeholder="Procure por um clientes..."
+                      Placeholder="Procure por clientes..."
                       OnChanged="(Customer customerInput) => OnAutoCompleteChanged(customerInput)"
                       Size="AutoCompleteSize.Small" />
     </div>
@@ -54,14 +56,14 @@ else
 }
 
 <Modal @ref="deleteCustomerModal"
-    OnHidden='() => OnHideModalDelete("no")'
+    OnHidden='OnHideModalDelete'
     Title="Deseja prosseguir com a exclusão?">
     <BodyTemplate>
-        Ao confirmar essa ação o customere @customer.Name será excluido.
+        Ao confirmar essa ação o cliente @customer.Name será excluido.
     </BodyTemplate>
     <FooterTemplate>
-        <Button Color="ButtonColor.Secondary" @onclick='() => OnHideModalDelete("no")'>Close</Button>
-        <Button Color="ButtonColor.Primary" @onclick='() => OnHideModalDelete("yes")'>Save changes</Button>
+        <Button Color="ButtonColor.Secondary" @onclick='OnHideModalDelete'>Close</Button>
+        <Button Color="ButtonColor.Primary" @onclick='HandleDeleteCustomerSubmit'>Save changes</Button>
     </FooterTemplate>
 </Modal>
 
@@ -117,7 +119,7 @@ else
 
 <Modal @ref="editCustomerModal"
     OnHidden='OnHideModalEdit'
-    Title="Editar Customere">
+    Title="Editar Cliente">
     <BodyTemplate>
         <EditForm Model="@customer" OnValidSubmit="@HandleEditCustomerSubmit">
             <DataAnnotationsValidator />
@@ -164,29 +166,45 @@ else
     </BodyTemplate>
 </Modal>
 
+<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopRight" />
+
 
 @code {
+    @* Config Route *@
+    const string                    route = "clientes";
     private int                     deleteId = 0;
+
+    @* Config Modals *@
     private Modal                   registerCustomerModal = default!;
     private Modal                   deleteCustomerModal = default!;
     private Modal                   editCustomerModal = default!;
-    const string                    route = "clientes";
 
+    @* Config input context *@
+    private EditContext?            editContext;
+
+    @* Config Info Message *@
+    List<ToastMessage> messages = new List<ToastMessage>();
+    private void ShowMessage(ToastMessage toastType) => messages.Add(CreateToastMessage(toastType));
+
+    @* Config search Input *@
     private string?                 customerInputName;
-    private IEnumerable<Customer>?    customers;
 
-    private Customer                  customer = new Customer();
+    @* Response and Request *@
+    private Customer                customer;
+    private IEnumerable<Customer>?  customers;
+
+    private void ResetCustumer() {
+        customer = new Customer();
+        editContext = new EditContext(customers);
+    }
 
     private async Task OnShowModalDelete(int id) {
         customer = await Http.GetFromJsonAsync<Customer?>($"{route}/{id}");
         await deleteCustomerModal.ShowAsync();
     }
 
-    private async Task OnHideModalDelete(string label) {
-        if (label == "yes") {
-            await Http.DeleteAsync($"{route}/{customer.Id}");      
-        }
-        customer = new Customer();
+    private async Task OnHideModalDelete() {
+        ResetCustumer();
         await deleteCustomerModal.HideAsync();
     }
 
@@ -196,7 +214,7 @@ else
     }
 
     private async Task OnHideModalEdit() {
-        customer = new Customer();
+        ResetCustumer();
         await editCustomerModal.HideAsync();
     }
 
@@ -205,19 +223,12 @@ else
     }
 
     private async Task OnHideModalRegister() {
+        ResetCustumer();
         await registerCustomerModal.HideAsync();
     }
 
-    private async Task HandleInsertCustomerSubmit() {
-        var ts = await Http.PostAsJsonAsync(route, customer);
-        Console.WriteLine(ts);
-        registerCustomerModal.HideAsync();
-    }
-
-    private async Task HandleEditCustomerSubmit() {
-        var ts = await Http.PutAsJsonAsync($"{route}/{customer.Id}", customer);
-        Console.WriteLine(ts);
-        editCustomerModal.HideAsync();
+    private ToastMessage CreateToastMessage(ToastMessage toastType) {
+        return toastType;
     }
 
     private async Task<AutoCompleteDataProviderResult<Customer>> CustomersDataProvider(AutoCompleteDataProviderRequest<Customer> request) {
@@ -237,36 +248,83 @@ else
     protected override async Task OnInitializedAsync() {
         var list = await Http.GetFromJsonAsync<Customer[]>(route);
         customers = list;
+        customer = new Customer();
+        editContext = new EditContext(customers);
     }
 
-    @* public void HandleOnValidSubmit()
+    private class ToastErrorMessage : ToastMessage
     {
-        disableSave = !(editContext?.Validate() ?? false);
-
-        var toastMessage = new ToastMessage
-            {
-                Title = "Save Employee Details",
-                Message = $"Employee details saved successfully.",
-                AutoHide = true,
-                Type = ToastType.Success,
-                IconName = IconName.CheckCircleFill,
-            };
-
-        ToastService.Notify(toastMessage);
+        public ToastErrorMessage(string title, string message) {
+            Type = ToastType.Danger;
+            Title = title;
+            HelpText = $"{DateTime.Now}";
+            Message = $"{message} {DateTime.Now}";
+            AutoHide = true;
+        }
     }
 
-    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+    private class ToastWarningMessage : ToastMessage
     {
-        disableSave = !(editContext?.Validate() ?? false);
+        public ToastWarningMessage(string title, string message) {
+            Type = ToastType.Warning;
+            Title = title;
+            HelpText = $"{DateTime.Now}";
+            Message = $"{message} {DateTime.Now}";
+            AutoHide = true;
+        }
+    }
 
-        var toastMessage = new ToastMessage
-            {
-                Title = "Field Changed Notification",
-                Message = $"The field \"{e.FieldIdentifier.FieldName}\" was changed.",
-                AutoHide = true,
-                Type = ToastType.Info
-            };
+    private class ToastSucessMessage : ToastMessage
+    {
+        public ToastSucessMessage(string title, string message) {
+            Type = ToastType.Success;
+            Title = title;
+            HelpText = $"{DateTime.Now}";
+            Message = $"{message} {DateTime.Now}";
+            AutoHide = true;
+        }
+    }
 
-        ToastService.Notify(toastMessage);
-    } *@
+    private async Task HandleInsertCustomerSubmit() {
+        var validInputs = (editContext?.Validate() ?? false);
+
+        if (validInputs) {
+            var response = await Http.PostAsJsonAsync(route, customer);
+            if (response.StatusCode == HttpStatusCode.Created) {
+                ShowMessage(new ToastSucessMessage("Cliente cadastrado", "o cliente foi cadastrado com sucesso."));
+                OnHideModalRegister();
+            } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
+                ShowMessage(new ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
+                OnHideModalRegister();
+            } else {
+                ShowMessage(new ToastWarningMessage("Informações incorretas", "error ao processar dados."));
+            }
+        }
+    }
+
+    private async Task HandleEditCustomerSubmit() {
+        var response = await Http.PutAsJsonAsync($"{route}/{customer.Id}", customer);
+        if (response.StatusCode == HttpStatusCode.Created) {
+            ShowMessage(new ToastSucessMessage("Cliente editado", "o cliente foi editado com sucesso."));
+            OnHideModalEdit();
+        } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
+            ShowMessage(new ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
+            OnHideModalEdit();
+        } else {
+            ShowMessage(new ToastWarningMessage("Informações incorretas", "error ao processar dados."));
+        }
+    }
+
+    private async Task HandleDeleteCustomerSubmit() {
+        var response = await Http.DeleteAsync($"{route}/{customer.Id}");
+        if (response.StatusCode == HttpStatusCode.Created) {
+            ShowMessage(new ToastSucessMessage("Cliente deletado", "o cliente foi deletado com sucesso."));
+            OnHideModalDelete();
+        } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
+            ShowMessage(new ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
+            OnHideModalDelete();
+        } else {
+            ShowMessage(new ToastWarningMessage("Informações incorretas", "error ao processar dados."));
+        }
+    }
 }

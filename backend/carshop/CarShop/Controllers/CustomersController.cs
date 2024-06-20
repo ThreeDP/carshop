@@ -67,7 +67,6 @@ public class CustomersController : ControllerBase
     }
 
     [HttpPost]
-    [ServiceFilter(typeof(CarShopLoggingFilter))]
     public ActionResult Post([FromBody] CustomerDB c)
     {
         try {
