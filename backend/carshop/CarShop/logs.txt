@@ -2,393 +2,174 @@ Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method Get [ 15:39:57 ] - modelo válido
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:39:58 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 15:40:05 ] - modelo válido
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:40:05 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 15:40:12 ] - modelo válido
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:40:12 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 15:40:13 ] - modelo válido
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:40:13 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 15:40:14 ] - modelo válido
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:40:14 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 15:40:14 ] - modelo válido
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:40:14 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 15:40:15 ] - modelo válido
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:40:15 ]
-	Status Code: [ 200 ]
 Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method Get [ 15:42:17 ] - modelo válido
-Information: 0 - ta chegando
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:42:18 ]
-	Status Code: [ 200 ]
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method Get [ 18:12:28 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 18:12:28 ]
-	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: UnhandledException - An unhandled exception has occurred while executing the request.
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: UnhandledException - An unhandled exception has occurred while executing the request.
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
 Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Application is shutting down...
 Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method Get [ 18:13:47 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: UnhandledException - An unhandled exception has occurred while executing the request.
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Request on Customers with method Get [ 17:10:22 ] - modelo válido
+Information: 0 - Get on /clientes with params [1000  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 18:13:47 ]
+	DateTime: [ 17:10:22 ]
 	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 18:13:50 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
+Information: 0 - Request on Customers with method Get [ 17:10:22 ] - modelo válido
+Information: 0 - Get on /clientes with params [10000  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 18:13:50 ]
+	DateTime: [ 17:10:22 ]
 	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 18:13:59 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
+Information: 0 - Request on Customers with method Get [ 17:10:23 ] - modelo válido
+Information: 0 - Get on /clientes with params [100000  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 18:13:59 ]
+	DateTime: [ 17:10:23 ]
 	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 18:16:28 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
+Information: 0 - Request on Customers with method Get [ 17:10:26 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 18:16:28 ]
+	DateTime: [ 17:10:26 ]
 	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 18:16:31 ] - modelo válido
-Information: 0 - Get on /clientes with params [davy  10]
+Information: 0 - Request on Customers with method Get [ 17:10:58 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 18:16:31 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 18:23:38 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 18:23:38 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 18:23:42 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 18:23:42 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 18:23:45 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 18:23:45 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 18:23:47 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 18:23:47 ]
+	DateTime: [ 17:10:58 ]
 	Status Code: [ 200 ]
 Error: UnhandledException - An unhandled exception has occurred while executing the request.
-Error: UnhandledException - An unhandled exception has occurred while executing the request.
-Information: 0 - Request on Customers with method Get [ 19:14:37 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
+Information: 0 - Request on Customers with method Get [ 17:14:37 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:14:37 ]
+	DateTime: [ 17:14:37 ]
 	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:14:39 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:14:39 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:14:48 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:14:48 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:14:54 ] - modelo válido
-Information: 0 - Get on /clientes with params [davy  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:14:54 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:31:35 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:31:35 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:32:48 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:32:48 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:52:26 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:52:26 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:52:36 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:52:36 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:52:39 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:52:39 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:04:37 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:04:37 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:04:39 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:04:39 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:04:41 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:04:41 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:04:42 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:04:42 ]
-	Status Code: [ 200 ]
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method Get [ 12:37:55 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 12:37:55 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 13:21:05 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 13:21:05 ]
-	Status Code: [ 200 ]
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Request on Customers with method Get [ 15:52:36 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:52:36 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 15:55:38 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:55:38 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 15:55:44 ] - modelo válido
-Information: 0 - Get on /clientes with params [h  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:55:44 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 15:55:46 ] - modelo válido
-Information: 0 - Get on /clientes with params [da  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 15:55:46 ]
-	Status Code: [ 200 ]
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
 Error: 0 - Ocorreu um erro inesperado ou não tratado.
 Information: 0 - Application is shutting down...
 Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Request on Customers with method Get [ 17:17:11 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:17:12 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
 Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Application is shutting down...
 Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
 Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Request on Customers with method Get [ 21:45:48 ] - modelo válido
+Information: 0 - Request on Customers with method Get [ 17:25:52 ] - modelo válido
+Information: 0 - Get on /clientes with params [mA  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:25:53 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Request on Customers with method Get [ 17:26:44 ] - modelo válido
+Information: 0 - Get on /clientes with params [mARI  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:26:44 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Request on Customers with method Get [ 17:28:04 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:28:04 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Request on Customers with method Get [ 17:30:57 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:30:57 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Request on Customers with method Get [ 17:31:26 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:31:27 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Request on Customers with method Get [ 17:32:31 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:32:31 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Request on Customers with method Get [ 17:36:05 ] - modelo válido
+Information: 0 - Get on /clientes with params [Maria  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:36:05 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Request on Customers with method Get [ 17:36:57 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:36:57 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Request on Customers with method Get [ 17:37:41 ] - modelo válido
 Information: 0 - Get on /clientes with params [  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:45:48 ]
+	DateTime: [ 17:37:41 ]
 	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 21:45:52 ] - modelo válido
+Information: 0 - Request on Customers with method Get [ 17:39:26 ] - modelo válido
 Information: 0 - Get on /clientes with params [  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:45:52 ]
+	DateTime: [ 17:39:26 ]
 	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 21:47:35 ] - modelo válido
+Information: 0 - Request on Customers with method Get [ 17:39:33 ] - modelo válido
 Information: 0 - Get on /clientes with params [  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:47:35 ]
+	DateTime: [ 17:39:33 ]
 	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 21:48:25 ] - modelo válido
+Information: 0 - Request on Customers with method Get [ 17:39:37 ] - modelo válido
 Information: 0 - Get on /clientes with params [  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:48:25 ]
+	DateTime: [ 17:39:37 ]
 	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 21:48:43 ] - modelo válido
+Information: 0 - Request on Customers with method Get [ 17:39:41 ] - modelo válido
 Information: 0 - Get on /clientes with params [  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:48:43 ]
+	DateTime: [ 17:39:41 ]
 	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 21:48:50 ] - modelo válido
+Information: 0 - Request on Customers with method Get [ 17:40:00 ] - modelo válido
 Information: 0 - Get on /clientes with params [  10]
 Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:48:50 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 21:49:20 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:49:20 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 21:49:27 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:49:27 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 21:49:31 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:49:31 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 21:49:32 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:49:32 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 21:59:24 ] - modelo válido
-Information: 0 - Get on /clientes with params [davy  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 21:59:24 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 22:20:59 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 22:20:59 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 22:32:45 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 22:32:45 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 22:32:48 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 22:32:48 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 22:33:33 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 22:33:33 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 22:33:40 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 22:33:40 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 22:35:14 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 22:35:14 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 22:35:18 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 22:35:18 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 22:35:20 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 22:35:20 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 22:35:23 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 22:35:23 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 22:48:51 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 22:48:51 ]
+	DateTime: [ 17:40:00 ]
 	Status Code: [ 200 ]

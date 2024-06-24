@@ -23,23 +23,30 @@ public class VehiclesController : ControllerBase
         string? model, DateTime? modelYear, string? vehicleType,
         string? situation, int range=10
     ) {
-        var v = await _ctx.Vehicles?
-            .AsNoTracking()
-            .OrderBy(v => v.Model)
-            .Where( v => string.IsNullOrEmpty(renavan) || v.Renavan.StartsWith(renavan))
-            .Where( v => string.IsNullOrEmpty(licensePlate) || v.LicensePlate.StartsWith(licensePlate))
-            .Where( v => string.IsNullOrEmpty(brand) || v.Brand == brand)
-            .Where( v => string.IsNullOrEmpty(model) || v.Model == model)
-            .Where( v => modelYear == null || v.ModelYear == modelYear)
-            .Where( v => string.IsNullOrEmpty(vehicleType) || v.VehicleType == vehicleType)
-            .Where( v => string.IsNullOrEmpty(situation) || v.Situation == situation)
-            .Take(range)
+        var vehicle = _ctx.Vehicles?.OrderBy(v => v.Model).AsQueryable();
+
+        if (renavan is not null)
+            vehicle = vehicle.Where( v => v.Renavan.StartsWith(renavan));
+        if (licensePlate is not null)
+            vehicle = vehicle.Where( v => v.LicensePlate.StartsWith(licensePlate));
+        if (brand is not null)
+            vehicle = vehicle.Where( v => v.Brand == brand);
+        if (model is not null)
+            vehicle = vehicle.Where( v => v.Model == model);
+        if (model is not null)
+            vehicle = vehicle.Where( v => v.ModelYear == modelYear);
+        if (vehicleType is not null)
+            vehicle = vehicle.Where( v => v.VehicleType == vehicleType);
+        if (situation is not null)
+            vehicle = vehicle.Where( v => v.Situation == situation);
+            
+        var res = await vehicle.Take(range)
             .Include(v => v.VehicleImages)
             .ToListAsync();
-        if (v is null) {
+        if (res is null) {
             return NotFound();
         }
-        return Ok(v);
+        return Ok(res);
     }
 
     [HttpGet("{id:int:min(1)}", Name="obter-veiculo")]

@@ -26,22 +26,22 @@ public class CustomersController : ControllerBase
         _logger.LogInformation($"Get on /clientes with params [{name} {docType} {range}]");
         var filterName = name?.ToUpper().Normalize();
         var filterDocType = docType?.ToUpper();
-        var c = await _ctx.Customers?.AsNoTracking()
-            .Where(
-                c => string.IsNullOrEmpty(filterDocType)
-                || c.DocType == filterDocType
-            )
-            .Where(
-                c => string.IsNullOrEmpty(filterName)
-                || c.Name.ToUpper()
-                    .StartsWith(filterName)
-            )
-            .OrderBy(c => c.Name)
-            .Take(range)
+        var customer = _ctx.Customers?.OrderBy(c => c.Name).AsQueryable();
+
+        if (filterDocType is not null) {
+            customer = customer.Where(c => c.DocType == filterDocType);
+        }
+
+        if (filterName is not null) {
+            customer = customer.Where(c => c.Name.ToUpper().StartsWith(filterName));
+        }
+
+        var res = await customer.Take(range)
             .ToArrayAsync();
-        if (c is null)
+
+        if (res is null)
             return NotFound();
-        return Ok(c);
+        return Ok(res);
     }
 
     [HttpGet("{id:int:min(1)}", Name="ObterCliente")]
@@ -71,11 +71,11 @@ public class CustomersController : ControllerBase
             new { id = c.Id }, c);
     }
 
-    [HttpPut("{id:int}")]
+    [HttpPut("{id:int:min(1)}")]
     [ServiceFilter(typeof(CarShopLoggingFilter))]
     public ActionResult Put(int id, [FromBody] CustomerDB c)
     {
-        if (id != c.Id || !ModelState.IsValid || c is null) 
+        if (c is null ||id != c.Id || !ModelState.IsValid) 
             return BadRequest();
         _ctx.Entry(c).State = EntityState.Modified;
         _ctx.SaveChanges();

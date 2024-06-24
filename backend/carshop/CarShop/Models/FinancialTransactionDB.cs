@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using CarShop.DTO;
 
 namespace CarShop.Models;
 
@@ -11,6 +12,19 @@ public class FinancialTransactionsDB
 {
 
     public FinancialTransactionsDB(){}
+
+    public FinancialTransactionsDB(TransactionRequestDTO other) {
+        if (other is not null) {
+            Value = other.Value;
+            FinancialTransactionType = other.Type;
+            CustomerId = other.CustomerId;
+            VehicleId = other.VehicleId;
+            if (other != null) {
+                Customer = other.Customer != null ? new CustomerDB(other.Customer) : null;
+                Vehicle = other.Vehicle != null ? new VehicleDB(other.Vehicle) : null;
+            }
+        }
+    }
     public FinancialTransactionsDB(FinancialTransactionsDB other) {
         Id = other.Id;
         Value = other.Value;
@@ -53,4 +67,18 @@ public class FinancialTransactionsDB
     public CustomerDB? Customer { get; set; }
 
     public VehicleDB? Vehicle { get; set; }
+
+    public override string ToString()
+    {
+        string msg = $"[ Id: {Id}, Value: {Value}, Type: {FinancialTransactionType}, customerId: {CustomerId}, vehicleId: {VehicleId},";
+        if (Customer is not null)
+            msg += $"Customer: [ Id: {this.Customer.Id}, Nanme: {this.Customer.Name} ], ";
+        else
+            msg += "Customer: [null], ";
+        if (Vehicle is not null)
+            msg += $"Vehicle: [ Id: {this.Vehicle.Id}, Nanme: {this.Vehicle.Brand} ] ]";
+        else
+            msg += "Vehicle: [null] ]";
+        return msg;
+    }
 }

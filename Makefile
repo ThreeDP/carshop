@@ -11,7 +11,7 @@ test:
 
 dev:
 	docker compose up -d
-	cd backend/carshop/CarShop && dotnet watch
+	cd backend/carshop/CarShop && dotnet build && dotnet watch
 
 front:
 	cd frontend/CarShopView && dotnet watch

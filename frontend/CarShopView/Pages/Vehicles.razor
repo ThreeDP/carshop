@@ -38,9 +38,9 @@ else
                     <CardSubTitle Class="mb-2 text-muted">@v.Model | @v.ModelYear.Year</CardSubTitle>
                     <CardText class="font-weight-light"><small>@v.Description</small></CardText>
                     <div class="row">
-                        <Button @onclick='OnShowModalSellVehicle' class="bi bi-cart-fill col-6 ms-1" Color="ButtonColor.Success" To="#" Type="ButtonType.Link"> Vender</Button>
+                        <Button @onclick='() => OnShowModalSellVehicle(v)' class="bi bi-cart-fill col-6 ms-1" Color="ButtonColor.Success" To="#" Type="ButtonType.Link"> Vender</Button>
                         <Button @onclick='() => ShowConfirmationDeleteVehicleAsync(v.Id)' class="bi bi-trash-fill col ms-1" Color="ButtonColor.Danger" Type="ButtonType.Link"></Button>
-                        <Button @onclick='OnShowModalInfoVehicle' class="bi  bi-info-circle-fill col ms-1" Color="ButtonColor.Primary" Type="ButtonType.Link"></Button>
+                        <Button @onclick='() => OnShowModalInfoVehicle(v)' class="bi  bi-info-circle-fill col ms-1" Color="ButtonColor.Primary" Type="ButtonType.Link"></Button>
                     </div>
                 </CardBody>
             </Card>
@@ -147,10 +147,24 @@ else
 </Modal>
 
 <Modal @ref="sellVehicleModal"
-    OnShow='OnShowModalSellVehicle'
     OnHidden='OnHideModalSellVehicle'
     Title="Venda de Veiculo">
     <BodyTemplate>
+        <img src="images/placeholder.png" class="img-thumbnail rounded mx-auto d-block mb-4" alt="...">
+        <div >
+            <p class="h2">
+                @vehicle.Brand | @vehicle.Model | @vehicle.ModelYear.Year
+            </p>
+            <div class="row">
+                <p class="col-6 bi bi-file-medical-fill"> Placa: @vehicle.License</p>
+                <p class="col-6 bi bi-file-medical-fill"> Renavan: @vehicle.Renavan</p>
+            </div>
+            <div class="row">
+                <p class="col-6 bi bi-"> Tipo: @vehicle.VehicleType</p>
+                <p class="col-6 bi bi-cart-check-fill"> Situação: @vehicle.Situation</p>
+            </div>
+            <p><small class="bi bi-info-circle"> Descrição:<br> @vehicle.Description</small></p>
+        </div>
         <EditForm Model="@vehicle" OnValidSubmit="@HandleSellVehicleSubmit">
             <DataAnnotationsValidator />
             <ValidationSummary />
@@ -178,11 +192,24 @@ else
 </Modal>
 
 <Modal @ref="infoVehicleModal"
-    OnShow='OnShowModalInfoVehicle'
     OnHidden='OnHideModalInfoVehicle'
-    Title="Informações do Veiculo">
+    Title="Informações do Carro">
     <BodyTemplate>
-
+        <img src="images/placeholder.png" class="img-thumbnail rounded mx-auto d-block mb-4" alt="...">
+        <div >
+            <p class="h2">
+                @vehicle.Brand | @vehicle.Model | @vehicle.ModelYear.Year
+            </p>
+            <div class="row">
+                <p class="col-6 bi bi-file-medical-fill"> Placa: @vehicle.License</p>
+                <p class="col-6 bi bi-file-medical-fill"> Renavan: @vehicle.Renavan</p>
+            </div>
+            <div class="row">
+                <p class="col-6 bi bi-"> Tipo: @vehicle.VehicleType</p>
+                <p class="col-6 bi bi-cart-check-fill"> Situação: @vehicle.Situation</p>
+            </div>
+            <p><small class="bi bi-info-circle"> Descrição:<br> @vehicle.Description</small></p>
+        </div>
     </BodyTemplate>
 </Modal>
 
@@ -193,12 +220,14 @@ else
 @code {
     private decimal                 ValueV;
     private string                  route = "veiculos";
+    private string                  routeFinancial = "movimentacoes";
     private Modal                   buyVehicleModal = default!;
     private Modal                   sellVehicleModal = default!;
     private Modal                   infoVehicleModal = default!;
     private EditContext?            editContext;
 
     private Vehicle                 vehicle;
+    private Transaction              transaction;
     private IEnumerable<Vehicle>?   vehicles;
     private IEnumerable<Customer>?  customers;
     private DateTime                dateTimeModelYear;
@@ -234,6 +263,7 @@ else
         dateTimeModelYear = DateTime.Now;
         dateTimeYearManufacture = DateTime.Now;
         vehicle = new Vehicle();
+        transaction = new Transaction();
         editContext = new EditContext(vehicle);
     }
 
@@ -246,7 +276,8 @@ else
         ResetVehicle();
     }
 
-    private async Task OnShowModalSellVehicle() {
+    private async Task OnShowModalSellVehicle(Vehicle v) {
+        vehicle = v;
         await sellVehicleModal.ShowAsync();
     }
 
@@ -255,7 +286,8 @@ else
         ResetVehicle();
     }
 
-    private async Task OnShowModalInfoVehicle() {
+    private async Task OnShowModalInfoVehicle(Vehicle v) {
+        vehicle = v;
         await infoVehicleModal.ShowAsync();
     }
 
@@ -272,7 +304,27 @@ else
     }
 
     private async Task HandleSellVehicleSubmit() {
-        await Http.GetFromJsonAsync<Vehicles[]>(route);
+        var validInputs = (editContext?.Validate() ?? false);
+
+        if (validInputs) {
+            transaction.TypeTransaction = "VENDA";
+            transaction.Value = ValueV;
+            transaction.VehicleId = vehicle.Id;
+            transaction.Vehicle = vehicle;
+            transaction.Vehicle.Situation = "INDISPONIVEL";
+            transaction.Customer = null;
+            Console.WriteLine(transaction.ToString());
+            var response = await Http.PostAsJsonAsync(routeFinancial, transaction);
+            if (response.StatusCode == HttpStatusCode.Created) {
+                ShowMessage(new ToastSucessMessage("Veiculo vendido", "o veiculo foi vendido com sucesso."));
+                OnHideModalBuyVehicle();
+            } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
+                ShowMessage(new ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
+                OnHideModalBuyVehicle();
+            } else {
+                ShowMessage(new ToastWarningMessage("Informações incorretas", "error ao processar dados."));
+            }
+        };
     }
 
     private async Task HandleBuyVehicleSubmit() {
@@ -281,7 +333,11 @@ else
         vehicle.ModelYear = dateTimeModelYear.ToUniversalTime();
         vehicle.YearManufacture = dateTimeYearManufacture.ToUniversalTime();
         if (validInputs) {
-            var response = await Http.PostAsJsonAsync(route, vehicle);
+            transaction.TypeTransaction = "COMPRA";
+            transaction.Value = ValueV;
+            transaction.Vehicle = vehicle;
+            Console.WriteLine(transaction.ToString());
+            var response = await Http.PostAsJsonAsync(routeFinancial, transaction);
             if (response.StatusCode == HttpStatusCode.Created) {
                 ShowMessage(new ToastSucessMessage("Veiculo cadastrado", "o veiculo foi cadastrado com sucesso."));
                 OnHideModalBuyVehicle();
@@ -300,6 +356,7 @@ else
         dateTimeModelYear = DateTime.Now;
         dateTimeYearManufacture = DateTime.Now;
         vehicle = new Vehicle();
+        transaction = new Transaction();
         editContext = new EditContext(vehicle);
     }
 
@@ -348,6 +405,7 @@ else
     }
 
     private void OnAutoCompleteChanged(Customer customerInput) {
+        transaction.CustomerId = customerInput.Id;
         Console.WriteLine($"'{customerInput?.Name}' selected.");
         StateHasChanged();
     }

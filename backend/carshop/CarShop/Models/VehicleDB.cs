@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using CarShop.DTO;
 using Microsoft.Extensions.Options;
 
 namespace CarShop.Models;
@@ -14,6 +15,37 @@ public class VehicleDB : IValidatableObject
     {
         FinancialTransactions = new Collection<FinancialTransactionsDB>();
         VehicleImages = new Collection<VehicleImageDB>();
+    }
+
+    public VehicleDB(IVehicleDTO? other) {
+        if (other is not null) {
+            Id = other.Id;
+            Renavan = other.Renavan;
+            LicensePlate = other.LicensePlate;
+            Brand = other.Brand;
+            Model = other.Model;
+            ModelYear = other.ModelYear;
+            VehicleType = other.VehicleType;
+            YearManufacture = other.YearManufacture;
+            Description = other.Description;
+            Situation = other.Situation;
+        }
+        FinancialTransactions = new Collection<FinancialTransactionsDB>();
+        VehicleImages = new Collection<VehicleImageDB>();
+    }
+
+    public void Copy(IVehicleDTO? other) {
+        if (other is not null) {
+            Renavan = other.Renavan;
+            LicensePlate = other.LicensePlate;
+            Brand = other.Brand;
+            Model = other.Model;
+            ModelYear = other.ModelYear;
+            VehicleType = other.VehicleType;
+            YearManufacture = other.YearManufacture;
+            Description = other.Description;
+            Situation = other.Situation;
+        }
     }
 
     public VehicleDB(VehicleDB other) {

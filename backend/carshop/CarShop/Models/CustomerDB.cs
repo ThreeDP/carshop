@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using CarShop.DTO;
 using CarShop.Validations;
 
 namespace CarShop.Models;
@@ -11,6 +12,18 @@ namespace CarShop.Models;
 public class CustomerDB : IEquatable<CustomerDB>
 {
     public CustomerDB() {
+        FinancialTransactions = new Collection<FinancialTransactionsDB>();
+    }
+
+    public CustomerDB(ICustomerDTO? other) {
+        if (other is not null) {
+            Id = other.Id;
+            Name = other.Name;
+            PerfilPhoto = other.Photo;
+            DocType = other.DocType;
+            DocNumber = other.DocNumber;
+            Phone = other.Phone;
+        }
         FinancialTransactions = new Collection<FinancialTransactionsDB>();
     }
 
