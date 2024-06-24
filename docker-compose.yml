@@ -21,6 +21,18 @@ services:
       timeout: 5s
       retries: 5
 
+  proxy:
+    container_name: proxy
+    image: nginx
+    volumes:
+      - images-volume:/api/v1/images
+      - type: bind
+        source: ./proxy/nginx.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+    ports:
+      - 8000:8000
+
 volumes:
   db-volume:
     name: db-volume
@@ -29,6 +41,14 @@ volumes:
       type: none
       o: bind
       device: storage/database
+
+  images-volume:
+    name: images-volume
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: storage/images
 
 secrets:
   db-password:

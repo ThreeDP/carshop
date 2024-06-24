@@ -3,11 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Options;
 
 namespace CarShop.Models;
 
 [Table("vehicles")]
-public class VehicleDB
+public class VehicleDB : IValidatableObject
 {
     public VehicleDB()
     {
@@ -15,11 +16,25 @@ public class VehicleDB
         VehicleImages = new Collection<VehicleImageDB>();
     }
 
+    public VehicleDB(VehicleDB other) {
+        Id = other.Id;
+        Renavan = other.Renavan;
+        LicensePlate = other.LicensePlate;
+        Brand = other.Brand;
+        Model = other.Model;
+        ModelYear = other.ModelYear;
+        VehicleType = other.VehicleType;
+        YearManufacture = other.YearManufacture;
+        RegistrationDate = other.RegistrationDate;
+        ChangeDate = other.ChangeDate;
+        Description = other.Description;
+        Situation = other.Situation;
+    }
+
     [Key]
     [Column("vehicle_id")]
     [JsonPropertyName("vehicle_id")]
-    [JsonIgnore]
-    public int          VehicleDBId { get; set; }
+    public int          Id { get; set; }
 
     [Required]
     [Column("renavan", TypeName="varchar(12)")]
@@ -74,9 +89,21 @@ public class VehicleDB
     [JsonPropertyName("situation")]
     public string?      Situation { get; set; }
 
-    [JsonIgnore]
+    [JsonPropertyName("vehicle_images")]
     public ICollection<VehicleImageDB> VehicleImages { get; set; }
 
     [JsonIgnore]
     public ICollection<FinancialTransactionsDB> FinancialTransactions { get; set; }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext vctx) {
+        if (!string.IsNullOrEmpty(this.Situation)) {
+            var situation = this.Situation.ToUpper().Normalize();
+            if (situation != "DISPONIVEL" && situation != "INDISPONIVEL") {
+                yield return new ValidationResult("Situação inválida.",
+                new[] {
+                    nameof(this.Situation)
+                });
+            }
+        }
+    }
 }

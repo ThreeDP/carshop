@@ -193,9 +193,9 @@ else
     private Customer                customer;
     private IEnumerable<Customer>?  customers;
 
-    private void ResetCustumer() {
+    private void ResetCustomer() {
         customer = new Customer();
-        editContext = new EditContext(customers);
+        editContext = new EditContext(customer);
     }
 
     private async Task OnShowModalDelete(int id) {
@@ -204,7 +204,7 @@ else
     }
 
     private async Task OnHideModalDelete() {
-        ResetCustumer();
+        ResetCustomer();
         await deleteCustomerModal.HideAsync();
     }
 
@@ -214,7 +214,7 @@ else
     }
 
     private async Task OnHideModalEdit() {
-        ResetCustumer();
+        ResetCustomer();
         await editCustomerModal.HideAsync();
     }
 
@@ -223,7 +223,7 @@ else
     }
 
     private async Task OnHideModalRegister() {
-        ResetCustumer();
+        ResetCustomer();
         await registerCustomerModal.HideAsync();
     }
 
@@ -237,7 +237,7 @@ else
     }
 
     private async Task<IEnumerable<Customer>> GetCustomers(string input) {
-        return await Http.GetFromJsonAsync<Customer[]?>($"{route}/{input}");
+        return await Http.GetFromJsonAsync<Customer[]?>($"{route}/?name={input}");
     }
 
     private void OnAutoCompleteChanged(Customer customerInput) {
@@ -249,7 +249,7 @@ else
         var list = await Http.GetFromJsonAsync<Customer[]>(route);
         customers = list;
         customer = new Customer();
-        editContext = new EditContext(customers);
+        editContext = new EditContext(customer);
     }
 
     private class ToastErrorMessage : ToastMessage
@@ -304,7 +304,7 @@ else
 
     private async Task HandleEditCustomerSubmit() {
         var response = await Http.PutAsJsonAsync($"{route}/{customer.Id}", customer);
-        if (response.StatusCode == HttpStatusCode.Created) {
+        if (response.StatusCode == HttpStatusCode.OK) {
             ShowMessage(new ToastSucessMessage("Cliente editado", "o cliente foi editado com sucesso."));
             OnHideModalEdit();
         } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
@@ -317,7 +317,7 @@ else
 
     private async Task HandleDeleteCustomerSubmit() {
         var response = await Http.DeleteAsync($"{route}/{customer.Id}");
-        if (response.StatusCode == HttpStatusCode.Created) {
+        if (response.StatusCode == HttpStatusCode.OK) {
             ShowMessage(new ToastSucessMessage("Cliente deletado", "o cliente foi deletado com sucesso."));
             OnHideModalDelete();
         } else if (response.StatusCode == HttpStatusCode.InternalServerError) {

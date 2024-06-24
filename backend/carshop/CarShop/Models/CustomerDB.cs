@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using CarShop.Validations;
 
 namespace CarShop.Models;
 
@@ -11,6 +12,16 @@ public class CustomerDB : IEquatable<CustomerDB>
 {
     public CustomerDB() {
         FinancialTransactions = new Collection<FinancialTransactionsDB>();
+    }
+
+    public CustomerDB(CustomerDB other) {
+        Id = other.Id;
+        Name = other.Name;
+        PerfilPhoto = other.PerfilPhoto;
+        DocType = other.DocType;
+        DocNumber = other.DocNumber;
+        Phone = other.Phone;
+        FinancialTransactions = other.FinancialTransactions.Select(financial => new FinancialTransactionsDB(financial)).ToList();
     }
 
     [Key]
@@ -33,6 +44,7 @@ public class CustomerDB : IEquatable<CustomerDB>
     [Column("doc_type")]
     [StringLength(4)]
     [JsonPropertyName("document_type")]
+    [DocTypeAttribute]
     public string? DocType { get; set; }
 
     [Required]
@@ -67,7 +79,7 @@ public class CustomerDB : IEquatable<CustomerDB>
 
     public static bool operator !=(CustomerDB x, CustomerDB y) => !(x == y);
 
-    public bool Equals(CustomerDB other)
+    public bool Equals(CustomerDB? other)
     {
         if (ReferenceEquals(other, null))
             return false;
@@ -80,14 +92,14 @@ public class CustomerDB : IEquatable<CustomerDB>
             this.DocNumber == other.DocNumber &&
             this.Phone == other.Phone;
     }
-    public override bool Equals(object obj) => Equals(obj as CustomerDB);
+    public override bool Equals(object? obj) => Equals(obj as CustomerDB);
 
     public override int GetHashCode()
     {
         unchecked
         {
-            int hashCode = Name.GetHashCode();
-            hashCode = (hashCode * 397) ^ DocNumber.GetHashCode();
+            int hashCode = Name != null ? Name.GetHashCode() : 0;
+            hashCode = DocNumber != null ? (hashCode * 397) ^ DocNumber.GetHashCode() : 0;
             return hashCode;
         }
     }

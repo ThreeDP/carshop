@@ -14,4 +14,6 @@ public class Transaction
     public int      CustomerId { get; set; }
     [JsonPropertyName("vehicle_id")]
     public int      VehicleId { get; set; }
+    public Customer? Customer { get; set; }
+    public Vehicle?     Vehicle { get; set; }
 }

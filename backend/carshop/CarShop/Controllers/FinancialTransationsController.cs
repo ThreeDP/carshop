@@ -18,18 +18,27 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<FinancialTransactionsDB>> Get()
+    public async Task<ActionResult<IEnumerable<FinancialTransactionsDB>>> GetAsync(string? customer, string? vehicle, string? licensePlate, int range=10)
     {
-        var mov = _ctx.FinancialTransactions.AsNoTracking().Take(10).ToList();
+        var mov = await _ctx.FinancialTransactions?
+            .AsNoTracking()
+            .Include(f => f.Customer)
+            .Include(f => f.Vehicle)
+            .Take(range)
+            .ToListAsync();
         if (mov is null) {
             return NotFound();
         }
-        return mov;
+        return Ok(mov);
     }
 
     [HttpGet("{id:int:min(1)}", Name="new-transation")]
-    public ActionResult<FinancialTransactionsDB> Get(int id) {
-        var mov = _ctx.FinancialTransactions.AsNoTracking().FirstOrDefault(t => t.FinancialTransactionDBId == id);
+    public ActionResult<FinancialTransactionsDB> GetAsync(int id) {
+        var mov = _ctx.FinancialTransactions?
+            .AsNoTracking()
+            .Include(f => f.Customer)
+            .Include(f => f.Vehicle)
+            .FirstOrDefault(t => t.Id == id);
         if (mov is null) {
             return NotFound();
         }
@@ -43,6 +52,6 @@ public class FinancialTransationsController : ControllerBase
         _ctx.FinancialTransactions.Add(mov);
         _ctx.SaveChanges();
         return new CreatedAtRouteResult("new-transation",
-            new { id = mov.FinancialTransactionDBId }, mov);
+            new { id = mov.Id }, mov);
     }
 }

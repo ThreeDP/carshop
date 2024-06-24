@@ -62,7 +62,7 @@ services:
     container_name: proxy
     image: nginx
     volumes:
-      - images-volume:/images
+      - images-volume:/api/v1/images
       - type: bind
         source: ./proxy/nginx.conf
         target: /etc/nginx/conf.d/default.conf

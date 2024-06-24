@@ -28,8 +28,8 @@ else
             {
                 <tr>
                     <td>@forecast.TypeTransaction</td>
-                    <td>@forecast.CustomerId</td>
-                    <td>@forecast.VehicleId</td>
+                    <td>@forecast.Customer.Name</td>
+                    <td>@forecast.Vehicle.Brand | @forecast.Vehicle.Model | @forecast.Vehicle.ModelYear.Year</td>
                     <td>@forecast.Value</td>
                 </tr>
             }
