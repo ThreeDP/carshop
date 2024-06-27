@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using CarShop.Context;
 using CarShop.Models;
-using CarShop.Filters;
 using CarShop.Repositories;
+using CarShop.DTO;
 
 namespace CarShop.Controllers;
 
@@ -46,18 +43,19 @@ public class CustomersController : ControllerBase
     // }
 
     [HttpGet]
-    public ActionResult<IEnumerable<CustomerDB>> GetCustomers() {
+    public ActionResult<IEnumerable<CustomerDTO>> GetCustomers() {
         var customers = _unitDB.CustomerRepository.GetAll();
-        return Ok(customers);
+        var ResponseCustomers = customers.Select(c => new CustomerDTO(c)).ToList();
+        return Ok(ResponseCustomers);
     }
 
     [HttpGet("{id:int:min(1)}", Name="obter-cliente")]
-    public ActionResult<CustomerDB> GetCustomer(int id) {
+    public ActionResult<CustomerDTO> GetCustomer(int id) {
         var customer = _unitDB.CustomerRepository.Get(c => c.Id == id);
         if (customer is null) {
             return NotFound();
         }
-        return Ok(customer);
+        return Ok(new CustomerDTO(customer));
     }
 
     // [HttpGet("{id:int:min(1)}", Name="ObterCliente")]
@@ -74,13 +72,14 @@ public class CustomersController : ControllerBase
     // }
 
     [HttpPost]
-    public ActionResult<CustomerDB> PostCustomer([FromBody] CustomerDB c) {
-        if (c is null) {
+    public ActionResult<CustomerDTO> PostCustomer([FromBody] CustomerDTO requestCustomer) {
+        if (requestCustomer is null) {
             return BadRequest();
         }
-        var customer = _unitDB.CustomerRepository.Add(c);
+        var newCustomer = _unitDB.CustomerRepository.Add(new CustomerDB(requestCustomer));
+        var responseCustomer = new CustomerDTO(newCustomer);
         _unitDB.Commit();
-        return new CreatedAtRouteResult("obter-cliente", new { id = customer.Id}, customer);
+        return new CreatedAtRouteResult("obter-cliente", new { id = responseCustomer.Id}, responseCustomer);
     }
 
 
@@ -99,13 +98,14 @@ public class CustomersController : ControllerBase
     // }
 
     [HttpPut("id:int:min(1)")]
-    public ActionResult<CustomerDB> Put(int id, [FromBody] CustomerDB c) {
-        if (c is null) {
+    public ActionResult<CustomerDTO> Put(int id, [FromBody] CustomerDTO requestCustomer) {
+        if (requestCustomer is null) {
             return BadRequest();
         }
-        var customer = _unitDB.CustomerRepository.Update(c);
+        var updateCustomer = _unitDB.CustomerRepository.Update(new CustomerDB(requestCustomer));
+        var responseCustomer = new CustomerDTO(updateCustomer);
         _unitDB.Commit();
-        return Ok(c);
+        return Ok(responseCustomer);
     }
 
     // [HttpPut("{id:int:min(1)}")]
@@ -120,14 +120,15 @@ public class CustomersController : ControllerBase
     // }
 
     [HttpDelete("{id:int}")]
-    public ActionResult<CustomerDB> Delete(int id) {
+    public ActionResult<CustomerDTO> Delete(int id) {
         var customerToDelete = _unitDB.CustomerRepository.Get(c => c.Id == id);
         if (customerToDelete is null) {
             return NotFound();
         }
-        var customer = _unitDB.CustomerRepository.Delete(customerToDelete);
+        var deletedCustomer = _unitDB.CustomerRepository.Delete(customerToDelete);
+        var responseCustomer = new CustomerDTO(deletedCustomer);
         _unitDB.Commit();
-        return Ok(customer);
+        return Ok(responseCustomer);
     }
 
     // [HttpDelete("{id:int}")]

@@ -34,7 +34,7 @@ public class VehicleDB : IValidatableObject
         VehicleImages = new Collection<VehicleImageDB>();
     }
 
-    public void Copy(IVehicleDTO? other) {
+    public VehicleDB Copy(IVehicleDTO? other) {
         if (other is not null) {
             Renavan = other.Renavan;
             LicensePlate = other.LicensePlate;
@@ -46,6 +46,7 @@ public class VehicleDB : IValidatableObject
             Description = other.Description;
             Situation = other.Situation;
         }
+        return this;
     }
 
     public VehicleDB(VehicleDB other) {

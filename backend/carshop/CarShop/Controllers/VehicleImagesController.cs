@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using CarShop.Context;
 using CarShop.Models;
-using CarShop.Filters;
 using CarShop.Repositories;
+using CarShop.DTO;
 
 namespace CarShop.Controllers;
 
@@ -19,50 +16,52 @@ public class VehicleImagesController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<VehicleImageDB>> GetImages() {
+    public ActionResult<IEnumerable<VehicleImageDTO>> GetImages() {
         var images = _unitDB.VehicleImageRepository.GetAll();
-        return Ok(images);
+        var responseImages = images.Select(i => new VehicleImageDTO(i)).ToList();
+        return Ok(responseImages);
     }
 
     [HttpGet("{id:int:min(1)}", Name="obter-imagem-veiculo")]
-    public ActionResult<VehicleImageDB> GetImage(int id) {
+    public ActionResult<VehicleImageDTO> GetImage(int id) {
         var image = _unitDB.VehicleImageRepository.Get( i => i.VehicleImageDBId == id);
         if (image is null) {
             return NotFound();
         }
-        return Ok(image);
+        return Ok(new VehicleImageDTO(image));
     }
 
     [HttpPost]
-    public ActionResult<VehicleImageDB> PostImage([FromBody] VehicleImageDB img) {
+    public ActionResult<VehicleImageDTO> PostImage([FromBody] VehicleImageDTO img) {
         if (img is null) {
             return BadRequest();
         }
-        var image = _unitDB.VehicleImageRepository.Add(img);
+        var newImage = _unitDB.VehicleImageRepository.Add(new VehicleImageDB(img));
+        var responseImage = new VehicleImageDTO(newImage);
         _unitDB.Commit();
         return new CreatedAtRouteResult("obter-imagem-veiculo",
-            new {id = image.VehicleImageDBId}, image);
+            new {id = responseImage.Id}, responseImage);
     }
 
     [HttpPut("{id:int:min(1)}")]
-    public ActionResult<VehicleImageDB> PutImage(int id, [FromBody] VehicleImageDB img) {
+    public ActionResult<VehicleImageDTO> PutImage(int id, [FromBody] VehicleImageDTO img) {
         if (img is null) {
             return BadRequest();
         }
-        var image = _unitDB.VehicleImageRepository.Update(img);
+        var updatedImage = _unitDB.VehicleImageRepository.Update(new VehicleImageDB(img));
         _unitDB.Commit();
-        return Ok(image);
+        return Ok(new VehicleImageDTO(updatedImage));
     }
 
     [HttpDelete("id:int:min(1)")]
-    public ActionResult<VehicleImageDB> DeleteImage(int id) {
+    public ActionResult<VehicleImageDTO> DeleteImage(int id) {
         var image = _unitDB.VehicleImageRepository.Get(i => i.VehicleImageDBId == id);
         if (image is null) {
             return NotFound();
         }
-        _unitDB.VehicleImageRepository.Delete(image);
+        var deletedImage = _unitDB.VehicleImageRepository.Delete(image);
         _unitDB.Commit();
-        return Ok(image);
+        return Ok(new VehicleImageDTO(deletedImage));
     }
 
 }

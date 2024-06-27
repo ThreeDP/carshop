@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using CarShop.DTO;
 
 namespace CarShop.Models;
 
@@ -26,4 +27,11 @@ public class VehicleImageDB {
 
     [JsonIgnore]
     public VehicleDB? Vehicle { get; set; }
+
+    public VehicleImageDB(IVehicleImageDTO? other) {
+        if (other is not null) {
+            this.VehicleImageDBId = other.Id;
+            this.Url = other.Image;
+        }
+    }
 }

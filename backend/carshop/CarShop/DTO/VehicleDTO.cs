@@ -1,30 +1,28 @@
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json;
 using System.Text.Json.Serialization;
-using CarShop.Validations;
-using Microsoft.AspNetCore.Mvc;
+using CarShop.Models;
 
 namespace CarShop.DTO;
-
-public interface IVehicleDTO {
-    public int          Id { get; set; }
-    public string?      Renavan { get; set; }
-    public string?      LicensePlate { get; set; }
-    public string?      Brand { get; set; }
-    public string?      Model { get; set; }
-    public DateTime?    ModelYear { get; set; }
-    public string?      VehicleType { get; set; }
-    public DateTime?    YearManufacture { get; set; }
-    public string?      Description { get; set; }
-    public string?      Situation { get; set; }
-}
 
 public class VehicleDTO : IVehicleDTO, IValidatableObject {
     private static readonly string[] situationOptions = { 
         "DISPONIVEL", "INDISPONIVEL", "VENDIDO"
     };
+
+    public VehicleDTO(VehicleDB? other) {
+        if (other is not null) {
+            this.Id = other.Id;
+            this.Renavan = other.Renavan;
+            this.LicensePlate = other.LicensePlate;
+            this.Brand = other.Brand;
+            this.Model = other.Model;
+            this.ModelYear = other.ModelYear;
+            this.VehicleType = other.VehicleType;
+            this.YearManufacture = other.YearManufacture;
+            this.Description = other.Description;
+            this.Situation = other.Situation;
+        }
+    }
 
     [JsonPropertyName("vehicle_id")]
     public int          Id { get; set; }

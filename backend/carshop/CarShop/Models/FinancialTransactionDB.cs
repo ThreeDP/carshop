@@ -13,7 +13,7 @@ public class FinancialTransactionsDB
 
     public FinancialTransactionsDB(){}
 
-    public FinancialTransactionsDB(TransactionRequestDTO other) {
+    public FinancialTransactionsDB(ITransactionDTO? other) {
         if (other is not null) {
             Value = other.Value;
             FinancialTransactionType = other.Type;

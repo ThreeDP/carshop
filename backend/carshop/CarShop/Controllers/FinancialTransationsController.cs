@@ -1,13 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using CarShop.Context;
 using CarShop.Models;
-using CarShop.DTO;
-using CarShop.Filters;
-using System.Runtime.Intrinsics;
-using System.Security.Cryptography.X509Certificates;
 using CarShop.Repositories;
+using CarShop.DTO;
 
 namespace CarShop.Controllers;
 
@@ -39,18 +33,19 @@ public class FinancialTransationsController : ControllerBase
     // }
 
     [HttpGet]
-    public ActionResult<IEnumerable<FinancialTransactionsDB>> GetTransactions() {
-        var transactions = _unitDB.VehicleRepository.GetAll();
-        return Ok(transactions);
+    public ActionResult<IEnumerable<TransactionDTO>> GetTransactions() {
+        var transactions = _unitDB.TransactionRepository.GetAll();
+        var responseTransactions = transactions.Select(t => new TransactionDTO(t)).ToList();
+        return Ok(responseTransactions);
     }
 
     [HttpGet("{id:int:min(1)}", Name="nova-transacao")]
-    public ActionResult<FinancialTransactionsDB>    GetTransaction(int id) {
-        var transaction = _unitDB.VehicleRepository.Get(v => v.Id == id);
+    public ActionResult<TransactionDTO>    GetTransaction(int id) {
+        var transaction = _unitDB.TransactionRepository.Get(v => v.Id == id);
         if (transaction is null) {
             return NotFound();
         }
-        return Ok(transaction);
+        return Ok(new TransactionDTO(transaction));
     }
 
     // [HttpGet("{id:int:min(1)}", Name="new-transation")]
@@ -67,14 +62,16 @@ public class FinancialTransationsController : ControllerBase
     // }
 
     [HttpPost]
-    public ActionResult<FinancialTransactionsDB> PostTransaction([FromBody] FinancialTransactionsDB mov) {
+    public ActionResult<TransactionDTO> PostTransaction(
+        [FromBody] TransactionDTO mov) {
         if (mov is null) {
             return BadRequest();
         }
-        var transaction = _unitDB.TransactionRepository.Add(mov);
+        var newTransaction = _unitDB.TransactionRepository.Add(new FinancialTransactionsDB(mov));
+        var responseTransaction = new TransactionDTO(newTransaction);
         _unitDB.Commit();
         return new CreatedAtRouteResult("nova-transacao", 
-            new {id = transaction.Id}, transaction);
+            new {id = responseTransaction.Id}, responseTransaction);
     }
 
     // [HttpPost]
@@ -96,59 +93,22 @@ public class FinancialTransationsController : ControllerBase
     // }
 
     [HttpPut("{id:int:min(1)}")]
-    public ActionResult<FinancialTransactionsDB> PutTrnsaction([FromBody] FinancialTransactionsDB mov) {
+    public ActionResult<TransactionDTO> PutTrnsaction([FromBody] TransactionDTO mov) {
         if (mov is null) {
             return BadRequest();
         }
-        var transaction = _unitDB.TransactionRepository.Update(mov);
+        var transaction = _unitDB.TransactionRepository.Update(new FinancialTransactionsDB(mov));
         _unitDB.Commit();
-        return Ok(transaction);
+        return Ok(new TransactionDTO(transaction));
     }
 
-    // [HttpPut("{id:int:min(1)}")]
-    // public ActionResult Put(int id, [FromBody] FinancialTransactionsDB mov) {
-    //     if (mov is null || id != mov.Id || !ModelState.IsValid) {
-    //         return BadRequest();
-    //     }
-    //     _ctx.Entry(mov).State = EntityState.Modified;
-    //     _ctx.SaveChanges();
-    //     return Ok(mov);
-    // }
-
     [HttpDelete("{id:int:min(1)}")]
-    public ActionResult<FinancialTransactionsDB> DeleteTransaction(int id) {
+    public ActionResult<TransactionDTO> DeleteTransaction(int id) {
         var transactionToDel = _unitDB.TransactionRepository.Get(t => t.Id == id);
         if (transactionToDel is null) {
             return NotFound();
         }
         var mov = _unitDB.TransactionRepository.Delete(transactionToDel);
-        return Ok(mov);
+        return Ok(new TransactionDTO(mov));
     }
-    // [HttpDelete("{id:int:min(1)}")]
-    // public ActionResult Delete(int id) {
-    //     var mov = _ctx.FinancialTransactions?.FirstOrDefault(m => m.Id == id);
-    //     if (mov is null) { return NotFound("Transação não encontrada!"); }
-    //     _ctx.FinancialTransactions?.Remove(mov);
-    //     _ctx.SaveChanges();
-    //     return Ok(mov);
-    // }
 }
-
-// {
-//   "value": 11,
-//   "Type": "string",
-//   "customer_id": 1,
-//   "VehicleId": 1,
-//   "vehicle": {
-//     "vehicle_id": 1,
-//     "renavan": "string",
-//     "license_plate": "string",
-//     "brand": "string",
-//     "model": "string",
-//     "model_year": "2024-06-24T19:27:58.615Z",
-//     "vehicle_type": "string",
-//     "year_manufacture": "2024-06-24T19:27:58.615Z",
-//     "description": "string",
-//     "situation": "INDISPONIVEL"
-//   }
-// }

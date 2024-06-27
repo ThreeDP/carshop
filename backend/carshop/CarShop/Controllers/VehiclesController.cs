@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using CarShop.Context;
 using CarShop.Models;
-using CarShop.Filters;
 using CarShop.Repositories;
+using CarShop.DTO;
 
 namespace CarShop.Controllers;
 
@@ -51,18 +48,19 @@ public class VehiclesController : ControllerBase
     // }
 
     [HttpGet]
-    public ActionResult<IEnumerable<VehicleDB>> GetVehicles() {
+    public ActionResult<IEnumerable<VehicleDTO>> GetVehicles() {
         var vehicles = _unitDB.VehicleRepository.GetAll();
-        return Ok(vehicles);
+        var responseVehicles = vehicles.Select(v => new VehicleDTO(v)).ToList();
+        return Ok(responseVehicles);
     }
 
     [HttpGet("{id:int:min(1)}", Name="obter-veiculo")]
-    public ActionResult<VehicleDB> GetVehicle(int id) {
+    public ActionResult<VehicleDTO> GetVehicle(int id) {
         var vehicle = _unitDB.VehicleRepository.Get(v => v.Id == id);
         if (vehicle is null) {
             return NotFound();
         }
-        return Ok(vehicle);
+        return Ok(new VehicleDTO(vehicle));
     }
 
     // [HttpGet("{id:int:min(1)}", Name="obter-veiculo")]
@@ -77,14 +75,15 @@ public class VehiclesController : ControllerBase
     //     return Ok(v);
     // }
     [HttpPost]
-    public ActionResult<VehicleDB> PostVehicle([FromBody] VehicleDB v) {
+    public ActionResult<VehicleDTO> PostVehicle([FromBody] VehicleDTO v) {
         if (v is null) {
             return BadRequest();
         }
-        var vehicle = _unitDB.VehicleRepository.Add(v);
+        var newVehicle = _unitDB.VehicleRepository.Add(new VehicleDB(v));
+        var responseVehicle = new VehicleDTO(newVehicle);
         _unitDB.Commit();
         return new CreatedAtRouteResult("obter-veiculo",
-            new {id = vehicle.Id}, vehicle);
+            new {id = responseVehicle.Id}, responseVehicle);
     }
 
     // [HttpPost]
@@ -98,13 +97,13 @@ public class VehiclesController : ControllerBase
     // }
 
     [HttpPut("{id:int:min(1)}")]
-    public ActionResult<VehicleDB> PutVehicle(int id, [FromBody] VehicleDB v) {
+    public ActionResult<VehicleDTO> PutVehicle(int id, [FromBody] VehicleDTO v) {
         if (v is null) {
             return BadRequest();
         }
-        var vehicle = _unitDB.VehicleRepository.Update(v);
+        var vehicle = _unitDB.VehicleRepository.Update(new VehicleDB(v));
         _unitDB.Commit();
-        return Ok(vehicle);
+        return Ok(new VehicleDTO(vehicle));
     }
 
     // [HttpPut("{id:int}")]
@@ -129,13 +128,13 @@ public class VehiclesController : ControllerBase
     // }
 
     [HttpDelete("{id:int:min(1)}")]
-    public ActionResult<VehicleDB> DeleteVehicle(int id) {
+    public ActionResult<VehicleDTO> DeleteVehicle(int id) {
         var vehicleToDel = _unitDB.VehicleRepository.Get(v => v.Id == id);
         if (vehicleToDel is null) {
             return BadRequest();
         }
         var vehicle = _unitDB.VehicleRepository.Delete(vehicleToDel);
         _unitDB.Commit();
-        return Ok(vehicle);
+        return Ok(new VehicleDTO(vehicle));
     }
 }
