@@ -38,7 +38,7 @@ else
                     <CardSubTitle Class="mb-2 text-muted">@v.Model | @v.ModelYear.Year</CardSubTitle>
                     <CardText class="font-weight-light"><small>@v.Description</small></CardText>
                     <div class="row">
-                        <Button @onclick='() => OnShowModalSellVehicle(v)' class="bi bi-cart-fill col-6 ms-1" Color="ButtonColor.Success" To="#" Type="ButtonType.Link"> Vender</Button>
+                        <Button @onclick='() => OnShowModalSellVehicle(v)' class="bi bi-cart-fill col-6 ms-1" Color="ButtonColor.Success" To="#" Type="ButtonType.Link" Disabled="@(v.Situation != "DISPONIVEL")"> Vender</Button>
                         <Button @onclick='() => ShowConfirmationDeleteVehicleAsync(v.Id)' class="bi bi-trash-fill col ms-1" Color="ButtonColor.Danger" Type="ButtonType.Link"></Button>
                         <Button @onclick='() => OnShowModalInfoVehicle(v)' class="bi  bi-info-circle-fill col ms-1" Color="ButtonColor.Primary" Type="ButtonType.Link"></Button>
                     </div>

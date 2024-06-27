@@ -54,7 +54,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<Transaction[]>("movimentacoes");
+        forecasts = await Http.GetFromJsonAsync<Transaction[]>("movimentacoes/?range=1000");
         if (forecasts is not null) {
             TotalValue = forecasts.Sum(f => f.Value);
             TotalMovimentation = forecasts.Count();

@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 using CarShop.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using CarShop.Logger;
+using CarShop.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ builder.Services.AddCors();
 builder.Logging.AddProvider(new CustomLoggerProvider( new CustomLoggerProviderConfig {
     LogLevel = LogLevel.Information
 }));
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

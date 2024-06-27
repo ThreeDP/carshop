@@ -57,7 +57,7 @@ public class CustomerDB : IEquatable<CustomerDB>
     [Column("doc_type")]
     [StringLength(4)]
     [JsonPropertyName("document_type")]
-    [DocTypeAttribute]
+    //[DocTypeAttribute]
     public string? DocType { get; set; }
 
     [Required]

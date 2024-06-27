@@ -173,3 +173,281 @@ Information: 0 - Get on /clientes with params [  10]
 Information: 0 - 	Response from [ Get/Customers ]
 	DateTime: [ 17:40:00 ]
 	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 17:42:27 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:42:27 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 17:42:36 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:42:36 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 17:42:39 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:42:39 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 17:43:19 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:43:19 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 17:44:09 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:44:09 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 17:44:23 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:44:23 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 17:44:27 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:44:27 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 17:44:29 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:44:29 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 17:51:46 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:51:46 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 17:52:04 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 17:52:04 ]
+	Status Code: [ 200 ]
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Request on Customers with method Get [ 19:05:17 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:05:17 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:05:50 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:05:50 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Request on Customers with method Get [ 19:06:17 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:06:17 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Request on Customers with method Get [ 19:08:19 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:08:19 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:09:00 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:09:00 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:09:18 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:09:18 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:14:55 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:14:55 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:15:30 ] - modelo válido
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:15:30 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:29:44 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:29:44 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:30:16 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:30:16 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:30:53 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:30:53 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:47:53 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:47:53 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:48:02 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ma  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:48:02 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:48:09 ] - modelo válido
+Information: 0 - Get on /clientes with params [ RG 10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:48:09 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:48:13 ] - modelo válido
+Information: 0 - Get on /clientes with params [ RG 10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:48:13 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:48:19 ] - modelo válido
+Information: 0 - Get on /clientes with params [ CPF 10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:48:19 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 19:48:26 ] - modelo válido
+Information: 0 - Get on /clientes with params [ CNPJ 10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 19:48:26 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:01:37 ] - modelo válido
+Information: 0 - Get on /clientes with params [da  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:01:37 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Request on Customers with method Get [ 20:01:50 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:01:50 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Post [ 20:06:56 ] - modelo válido
+Information: 0 - 	Response from [ Post/Customers ]
+	DateTime: [ 20:06:56 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Post [ 20:07:01 ] - modelo válido
+Information: 0 - 	Response from [ Post/Customers ]
+	DateTime: [ 20:07:01 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Post [ 20:07:48 ] - modelo válido
+Information: 0 - 	Response from [ Post/Customers ]
+	DateTime: [ 20:07:48 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:08:02 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:08:02 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:09:14 ] - modelo válido
+Information: 0 - Get on /clientes with params [h  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:09:14 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Request on Customers with method Get [ 20:10:31 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:10:31 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:12:47 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:12:47 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:12:49 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:12:49 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:13:07 ] - modelo válido
+Information: 0 - Get on /clientes with params [davy  1000]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:13:07 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:13:10 ] - modelo válido
+Information: 0 - Get on /clientes with params [ha  1000]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:13:10 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:13:10 ] - modelo válido
+Information: 0 - Get on /clientes with params [h  1000]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:13:10 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Post [ 20:13:55 ] - modelo válido
+Information: 0 - 	Response from [ Post/Customers ]
+	DateTime: [ 20:13:55 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:14:01 ] - modelo válido
+Information: 0 - Get on /clientes with params [Rica  1000]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:14:01 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:17:20 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:17:20 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:18:29 ] - modelo válido
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:18:29 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Delete [ 20:18:31 ] - modelo válido
+Information: 0 - 	Response from [ Delete/Customers ]
+	DateTime: [ 20:18:31 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:18:35 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:18:35 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:18:38 ] - modelo válido
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:18:38 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Put [ 20:18:44 ] - modelo válido
+Information: 0 - 	Response from [ Put/Customers ]
+	DateTime: [ 20:18:44 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:18:46 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:18:46 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:21:30 ] - modelo válido
+Information: 0 - Get on /clientes with params [Rica  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:21:30 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Request on Customers with method Get [ 20:22:04 ] - modelo válido
+Information: 0 - Get on /clientes with params [Ha  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:22:04 ]
+	Status Code: [ 200 ]
+Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Request on Customers with method Get [ 20:23:18 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:23:18 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method Get [ 20:23:57 ] - modelo válido
+Information: 0 - Get on /clientes with params [  10]
+Information: 0 - 	Response from [ Get/Customers ]
+	DateTime: [ 20:23:57 ]
+	Status Code: [ 200 ]
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/

@@ -237,7 +237,7 @@ else
     }
 
     private async Task<IEnumerable<Customer>> GetCustomers(string input) {
-        return await Http.GetFromJsonAsync<Customer[]?>($"{route}/?name={input}");
+        return await Http.GetFromJsonAsync<Customer[]?>($"{route}/?name={input}&range=1000");
     }
 
     private void OnAutoCompleteChanged(Customer customerInput) {
