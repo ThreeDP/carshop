@@ -12,6 +12,10 @@ public class VehicleImageDTO : IVehicleImageDTO {
     [JsonPropertyName("image")]
     public string? Image { get; set; }
 
+    [Required]
+    [JsonPropertyName("vehicle_id")]
+    public int  VehicleId { get; set; }
+
     public VehicleImageDTO(VehicleImageDB? other) {
         if (other is not null) {
             this.Id = other.VehicleImageDBId;

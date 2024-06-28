@@ -5,9 +5,9 @@ using CarShop.Models;
 namespace CarShop.Repositories;
 
 public class UnitOfWork : IUnitOfWork {
-    private IRepository<CustomerDB>?                 _customerRepo;
-    private IRepository<FinancialTransactionsDB>?    _transactionRepo;
-    private IRepository<VehicleDB>?                  _vehicleRepo;
+    private ICustomerRepository?                     _customerRepo;
+    private ITransactionRepository?                 _transactionRepo;
+    private IVehicleRepository?                      _vehicleRepo;
     private IRepository<VehicleImageDB>?             _vehicleImageRepo;
     public CarShopDataContext _ctx;
 
@@ -15,21 +15,21 @@ public class UnitOfWork : IUnitOfWork {
         _ctx = context;
     }
 
-    public IRepository<CustomerDB> CustomerRepository {
+    public ICustomerRepository CustomerRepository {
         get {
-            return _customerRepo = _customerRepo ?? new Repository<CustomerDB>(_ctx);
+            return _customerRepo = _customerRepo ?? new CustomerRepository(_ctx);
         }
     }
 
-    public IRepository<FinancialTransactionsDB> TransactionRepository {
+    public ITransactionRepository TransactionRepository {
         get {
-            return _transactionRepo = _transactionRepo ?? new Repository<FinancialTransactionsDB>(_ctx); 
+            return _transactionRepo = _transactionRepo ?? new TransactionRepository(_ctx); 
         }
     }
 
-    public IRepository<VehicleDB> VehicleRepository {
+    public IVehicleRepository VehicleRepository {
         get {
-            return _vehicleRepo = _vehicleRepo ?? new Repository<VehicleDB>(_ctx);
+            return _vehicleRepo = _vehicleRepo ?? new VehicleRepository(_ctx);
         }
     }
 

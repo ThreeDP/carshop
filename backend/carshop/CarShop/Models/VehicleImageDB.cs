@@ -28,9 +28,12 @@ public class VehicleImageDB {
     [JsonIgnore]
     public VehicleDB? Vehicle { get; set; }
 
+    public VehicleImageDB(){}
+
     public VehicleImageDB(IVehicleImageDTO? other) {
         if (other is not null) {
             this.VehicleImageDBId = other.Id;
+            this.VehicleDBId = other.Id;
             this.Url = other.Image;
         }
     }

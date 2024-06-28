@@ -507,3 +507,71 @@ Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Error: 0 - Ocorreu um erro inesperado ou não tratado.

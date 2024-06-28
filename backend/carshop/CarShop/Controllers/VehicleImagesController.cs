@@ -63,5 +63,4 @@ public class VehicleImagesController : ControllerBase
         _unitDB.Commit();
         return Ok(new VehicleImageDTO(deletedImage));
     }
-
 }
