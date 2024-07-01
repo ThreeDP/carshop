@@ -18,24 +18,10 @@ public class FinancialTransationsController : ControllerBase
         _logger = logger;
     }
 
-    // [HttpGet]
-    // public async Task<ActionResult<IEnumerable<FinancialTransactionsDB>>> GetAsync(string? customer, string? vehicle, string? licensePlate, int range=10)
-    // {
-    //     var mov = await _ctx.FinancialTransactions?
-    //         .AsNoTracking()
-    //         .Include(f => f.Customer)
-    //         .Include(f => f.Vehicle)
-    //         .Take(range)
-    //         .ToListAsync();
-    //     if (mov is null) {
-    //         return NotFound();
-    //     }
-    //     return Ok(mov);
-    // }
-
     [HttpGet]
     public ActionResult<IEnumerable<TransactionResponseDTO>> GetTransactions([FromQuery] TransactionQueryFilter filter) {
         var transactions = _unitDB.TransactionRepository.GetTransactionsWithFilter(filter);
+        Response.Headers.Append("X-Pagination", transactions.CreateMetaData());
         var responseTransactions = transactions.Select(t => new TransactionResponseDTO(t)).ToList();
         return Ok(responseTransactions);
     }
@@ -49,24 +35,15 @@ public class FinancialTransationsController : ControllerBase
         return Ok(new TransactionResponseDTO(transaction));
     }
 
-    // [HttpGet("{id:int:min(1)}", Name="new-transation")]
-    // public ActionResult<FinancialTransactionsDB> GetAsync(int id) {
-    //     var mov = _ctx.FinancialTransactions?
-    //         .AsNoTracking()
-    //         .Include(f => f.Customer)
-    //         .Include(f => f.Vehicle)
-    //         .FirstOrDefault(t => t.Id == id);
-    //     if (mov is null) {
-    //         return NotFound();
-    //     }
-    //     return mov;
-    // }
-
     [HttpPost]
     public ActionResult<TransactionResponseDTO> PostTransaction(
         [FromBody] TransactionDTO mov) {
         if (mov is null) {
             return BadRequest();
+        }
+        if (mov.Vehicle is not null) {
+             _unitDB.VehicleRepository.Update(new VehicleDB(mov.Vehicle));
+             mov.Vehicle = null;
         }
         var newTransaction = _unitDB.TransactionRepository.Add(new FinancialTransactionsDB(mov));
         var responseTransaction = new TransactionResponseDTO(newTransaction);
@@ -74,24 +51,6 @@ public class FinancialTransationsController : ControllerBase
         return new CreatedAtRouteResult("nova-transacao", 
             new {id = responseTransaction.Id}, responseTransaction);
     }
-
-    // [HttpPost]
-    // public ActionResult Post([FromBody] TransactionRequestDTO mov) {
-    //     _logger.LogInformation($"Get on /movimentacoes with params [ {mov} ]");
-    //     if (!ModelState.IsValid || mov is null)
-    //         return BadRequest(ModelState);
-    //     var v = _ctx.Vehicles?.FirstOrDefault(v => v.Id == mov.VehicleId);
-    //     if (v is not null) {
-    //         v.Copy(mov.Vehicle);
-    //         _ctx.Entry(v).State = EntityState.Modified;
-    //         mov.Vehicle = null;
-    //     }
-    //     var res = new FinancialTransactionsDB(mov);
-    //     _ctx.FinancialTransactions?.Add(res);
-    //     _ctx.SaveChanges();
-    //     return new CreatedAtRouteResult("new-transation",
-    //        new { id = res.Id }, res);
-    // }
 
     [HttpPut("{id:int:min(1)}")]
     public ActionResult<TransactionResponseDTO> PutTrnsaction([FromBody] TransactionDTO mov) {

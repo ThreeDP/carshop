@@ -24,6 +24,7 @@ public class CustomersController : ControllerBase
     public ActionResult<IEnumerable<CustomerDTO>> GetCustomers([FromQuery] CustomerQueryFilter filter) {
         _logger.LogInformation($"Get on /clientes with params [{filter}]");
         var customers = _unitDB.CustomerRepository.GetCustomersWithFilter(filter);
+        Response.Headers.Append("X-Pagination", customers.CreateMetaData());
         var ResponseCustomers = customers.Select(c => new CustomerDTO(c)).ToList();
         return Ok(ResponseCustomers);
     }

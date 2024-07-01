@@ -575,3 +575,29 @@ Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
 Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Request on Customers with method GetCustomers [ 12:01:10 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 12:01:11 ]
+	Status Code: [ 200 ]
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Request on Customers with method GetCustomers [ 15:05:57 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 15:05:58 ]
+	Status Code: [ 200 ]

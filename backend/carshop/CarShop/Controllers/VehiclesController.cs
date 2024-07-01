@@ -19,6 +19,7 @@ public class VehiclesController : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<VehicleDTO>> GetVehicles([FromQuery] VehicleQueryFilter filter) {
         var vehicles = _unitDB.VehicleRepository.GetVehiclesWithFilter(filter);
+        Response.Headers.Add("X-Pagination", vehicles.CreateMetaData());
         var responseVehicles = vehicles.Select(v => new VehicleDTO(v)).ToList();
         return Ok(responseVehicles);
     }

@@ -1,8 +1,9 @@
 using CarShop.HandlerQueryStrings;
 using CarShop.Models;
+using HandlerQueryStrings;
 
 namespace CarShop.Repositories;
 
 public interface IVehicleRepository : IRepository<VehicleDB> {
-    public IEnumerable<VehicleDB> GetVehiclesWithFilter(VehicleQueryFilter filter);
+    public PagedList<VehicleDB> GetVehiclesWithFilter(VehicleQueryFilter filter);
 }
