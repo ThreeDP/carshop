@@ -1,6 +1,8 @@
 # CarShop
 > Projeto com o foco de desenvolver um pequeno projeto de gestão de compra e venda de carros utilizando .net core 6, docker, blazor pages e postgresql.
 
+https://github.com/ThreeDP/carshop/blob/main/carshop-preview%20(1)%20(1).mp4
+
 # Como executar:
 Para colocar o projeto em produção é necessário ter instalado `make`, `docker`, setar as variaveis de ambiente descritas no .env-sample e restaurar o dump do banco de dados no container `db`.
 
