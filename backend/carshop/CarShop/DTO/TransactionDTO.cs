@@ -24,11 +24,15 @@ public class TransactionRequestDTO {
     [JsonPropertyName("vehicle_id")]
     public int              VehicleId { get; set; }
 
-    public ICustomerDTO?     Customer { get; set; }
-    public IVehicleDTO?      Vehicle { get; set; }
+    public CustomerDTO?     Customer { get; set; }
+    public VehicleDTO?      Vehicle { get; set; }
 }
 
-public class TransactionDTO : ITransactionDTO {
+public class TransactionDTO : IValidatableObject {
+    private static readonly string[] transactionTypes = {
+        "VENDA", "COMPRA"
+    };
+
     [JsonPropertyName("id")]
     public int              Id { get; set; }
 
@@ -48,9 +52,10 @@ public class TransactionDTO : ITransactionDTO {
     [JsonPropertyName("vehicle_id")]
     public int              VehicleId { get; set; }
 
-    public ICustomerDTO?     Customer { get; set; }
-    public IVehicleDTO?      Vehicle { get; set; }
+    public CustomerDTO?     Customer { get; set; }
+    public VehicleDTO?      Vehicle { get; set; }
 
+    public TransactionDTO(){}
     public TransactionDTO(FinancialTransactionsDB? other) {
         if (other is not null) {
             this.Id = other.Id;
@@ -62,6 +67,18 @@ public class TransactionDTO : ITransactionDTO {
                 this.Customer = new CustomerDTO(other.Customer);
             if (other.Vehicle is not null)
                 this.Vehicle = new VehicleDTO(other.Vehicle);
+        }
+    }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext vd) {
+        if (!string.IsNullOrEmpty(this.Type)) {
+            var type = this.Type.ToUpper().Normalize();
+            if (!transactionTypes.Contains(type)) {
+                yield return new ValidationResult("Tipo de transação inválida.",
+                    new []{
+                        nameof(this.Type)
+                });
+            }
         }
     }
 }

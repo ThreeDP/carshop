@@ -12,12 +12,12 @@ public class CustomerRepository : Repository<CustomerDB>, ICustomerRepository {
     }
 
     public PagedList<CustomerDB> GetCustomersWithFilter(CustomerQueryFilter filter) {
-        var customers = _ctx.Customers?.OrderBy(c => c.Name).AsQueryable();
+        var customers = _ctx.Customers.OrderBy(c => c.Name).AsQueryable();
         if (filter.docType is not null) {
             customers = customers.Where(c => c.DocType == filter.docType);
         }
         if (filter.name is not null) {
-            customers = customers.Where(c => c.Name.StartsWith(filter.name));
+            customers = customers.Where(c => c.Name != null && c.Name.StartsWith(filter.name));
         }
         return PagedList<CustomerDB>.ToPagedList(customers, filter.PageNumber, filter.PageSize);
     }

@@ -15,7 +15,7 @@ public class CustomerDB : IEquatable<CustomerDB>
         FinancialTransactions = new Collection<FinancialTransactionsDB>();
     }
 
-    public CustomerDB(ICustomerDTO? other) {
+    public CustomerDB(CustomerDTO? other) {
         if (other is not null) {
             Id = other.Id;
             Name = other.Name;
@@ -39,37 +39,30 @@ public class CustomerDB : IEquatable<CustomerDB>
 
     [Key]
     [Column("customer_id")]
-    [JsonPropertyName("customer_id")]
     public int Id { get; set; }
 
     [Required]
     [Column("name")]
     [StringLength(80)]
-    [JsonPropertyName("name")]
     public string? Name { get; set; }
 
     [Column("image_url")]
     [StringLength(300)]
-    [JsonPropertyName("url_profile")]
     public string? PerfilPhoto { get; set; }
 
     [Required]
     [Column("doc_type")]
     [StringLength(4)]
-    [JsonPropertyName("document_type")]
-    //[DocTypeAttribute]
     public string? DocType { get; set; }
 
     [Required]
     [Column("doc_number")]
     [StringLength(20)]
-    [JsonPropertyName("document_number")]
     public string? DocNumber { get; set; }
 
     [Required]
     [Column("phonenumber")]
     [StringLength(15)]
-    [JsonPropertyName("cellphone")]
     public string? Phone { get; set; }
 
     [JsonIgnore]

@@ -18,15 +18,15 @@ public class VehiclesController : ControllerBase
 
     [HttpGet]
     public ActionResult<IEnumerable<VehicleDTO>> GetVehicles([FromQuery] VehicleQueryFilter filter) {
-        var vehicles = _unitDB.VehicleRepository.GetVehiclesWithFilter(filter);
-        Response.Headers.Add("X-Pagination", vehicles.CreateMetaData());
-        var responseVehicles = vehicles.Select(v => new VehicleDTO(v)).ToList();
+        var vehicles = _unitDB.VehicleRepository?.GetVehiclesWithFilter(filter);
+        Response.Headers.Add("X-Pagination", vehicles?.CreateMetaData());
+        var responseVehicles = vehicles?.Select(v => new VehicleDTO(v)).ToList();
         return Ok(responseVehicles);
     }
 
     [HttpGet("{id:int:min(1)}", Name="obter-veiculo")]
     public ActionResult<VehicleDTO> GetVehicle(int id) {
-        var vehicle = _unitDB.VehicleRepository.Get(v => v.Id == id);
+        var vehicle = _unitDB.VehicleRepository?.Get(v => v.Id == id);
         if (vehicle is null) {
             return NotFound();
         }
@@ -38,9 +38,9 @@ public class VehiclesController : ControllerBase
         if (v is null) {
             return BadRequest();
         }
-        var newVehicle = _unitDB.VehicleRepository.Add(new VehicleDB(v));
-        var responseVehicle = new VehicleDTO(newVehicle);
+        var newVehicle = _unitDB.VehicleRepository?.Add(new VehicleDB(v));
         _unitDB.Commit();
+        var responseVehicle = new VehicleDTO(newVehicle);
         return new CreatedAtRouteResult("obter-veiculo",
             new {id = responseVehicle.Id}, responseVehicle);
     }
@@ -50,18 +50,18 @@ public class VehiclesController : ControllerBase
         if (v is null) {
             return BadRequest();
         }
-        var vehicle = _unitDB.VehicleRepository.Update(new VehicleDB(v));
+        var vehicle = _unitDB.VehicleRepository?.Update(new VehicleDB(v));
         _unitDB.Commit();
         return Ok(new VehicleDTO(vehicle));
     }
 
     [HttpDelete("{id:int:min(1)}")]
     public ActionResult<VehicleDTO> DeleteVehicle(int id) {
-        var vehicleToDel = _unitDB.VehicleRepository.Get(v => v.Id == id);
+        var vehicleToDel = _unitDB.VehicleRepository?.Get(v => v.Id == id);
         if (vehicleToDel is null) {
             return BadRequest();
         }
-        var vehicle = _unitDB.VehicleRepository.Delete(vehicleToDel);
+        var vehicle = _unitDB.VehicleRepository?.Delete(vehicleToDel);
         _unitDB.Commit();
         return Ok(new VehicleDTO(vehicle));
     }

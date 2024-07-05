@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using CarShop.Models;
+using CarShop.Validations;
 
 namespace CarShop.DTO;
 
-public class CustomerDTO : ICustomerDTO
+public class CustomerDTO
 {
     [JsonPropertyName("customer_id")]
     public int          Id { get; set; }
@@ -18,6 +19,7 @@ public class CustomerDTO : ICustomerDTO
 
     [Required]
     [JsonPropertyName("document_type")]
+    [DocTypeAttribute]
     public string?      DocType { get; set; }
     
     [Required]
@@ -25,7 +27,6 @@ public class CustomerDTO : ICustomerDTO
     public string?      DocNumber { get; set; }
     
     [Required]
-    [JsonIgnore]
     [JsonPropertyName("cellphone")]
     public string?      Phone { get; set; }
 
@@ -39,4 +40,6 @@ public class CustomerDTO : ICustomerDTO
             this.Phone = other.Phone;
         }
     }
+
+    public CustomerDTO(){}
 }

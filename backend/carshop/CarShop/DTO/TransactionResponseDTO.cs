@@ -21,6 +21,7 @@ public class TransactionResponseDTO {
     [Required]
     public string?          Vehicle { get; set; }
 
+    public TransactionResponseDTO(){}
     public TransactionResponseDTO(FinancialTransactionsDB? other) {
         if (other is not null) {
             this.Id = other.Id;

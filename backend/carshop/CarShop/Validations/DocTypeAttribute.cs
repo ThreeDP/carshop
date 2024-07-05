@@ -8,8 +8,8 @@ public class DocTypeAttribute : ValidationAttribute {
         if (value is null || string.IsNullOrEmpty(value.ToString())) {
             return ValidationResult.Success;
         }
-        var docType = value.ToString()?.ToUpper();   
-        if (docType is not null && (docType != "CPF" || docType != "CNPJ")) {
+        var docType = value.ToString()?.ToUpper();
+        if (docType is not null && docType != "CPF" && docType != "CNPJ") {
             return new ValidationResult("Tipo inválido de documento.");
         }
         return ValidationResult.Success;

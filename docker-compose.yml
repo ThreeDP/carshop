@@ -1,6 +1,35 @@
 version: '3'
 
+networks:
+  controller_net:
+    name: controller_net
+  view_net:
+    name: view_net
+
 services:
+
+  back:
+    container_name: backend
+    build:
+      context: backend
+    image: back-image
+    secrets:
+      - secrets_env
+    environment:
+      ConnectionStrings__DefaultConn: "Server=${POSTGRESSQL_DB_SERVER}; DataBase=${POSTGRESSQL_DB_NAME}; Uid=${POSTGRESSQL_USER_NAME}; Pwd=${POSTGRESSQL_USER_PASSWORD}"
+      ConnectionStrings__LoggerDir: "${LOGGER_DIR}"
+      JWT__SecretKey: "${JWT__SecretKey}"
+      JWT__ValidAudience: "${JWT__ValidAudience}"
+      JWT__ValidIssuser: "${JWT__ValidIssuser}"
+      JWT__TokenValidityInMinutes: "${JWT__TokenValidityInMinutes}"
+      JWT__RefreshTokenValidityInMinutes: "${JWT__RefreshTokenValidityInMinutes}"
+    networks:
+      - view_net
+      - controller_net
+    depends_on:
+      db:
+        condition: service_healthy
+
   db:
     container_name: db
     image: postgres
@@ -8,13 +37,17 @@ services:
     user: postgres
     secrets:
       - db-password
+      - secrets_env
     volumes:
       - db-volume:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=CarShop
-      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-    ports:
-      - 5432:5432
+      POSTGRES_DB: "${POSTGRESSQL_DB_NAME}"
+      POSTGRES_USER: "${POSTGRESSQL_USER}"
+      POSTGRES_PASSWORD: "${POSTGRESSQL_USER_PASSWORD}"
+    expose:
+      - 5432
+    networks:
+      - controller_net
     healthcheck:
       test: [ "CMD", "pg_isready" ]
       interval: 10s
@@ -23,6 +56,8 @@ services:
 
   proxy:
     container_name: proxy
+    build:
+      context: frontend
     image: nginx
     volumes:
       - images-volume:/api/v1/images
@@ -32,6 +67,11 @@ services:
         read_only: true
     ports:
       - 8000:8000
+      - 9000:9000
+    depends_on:
+      - back
+    networks:
+      - view_net
 
 volumes:
   db-volume:
@@ -53,3 +93,5 @@ volumes:
 secrets:
   db-password:
     file: db/db-password.txt
+  secrets_env:
+    file: .env

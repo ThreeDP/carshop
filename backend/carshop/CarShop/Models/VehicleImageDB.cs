@@ -11,18 +11,14 @@ namespace CarShop.Models;
 public class VehicleImageDB {
     [Key]
     [Column("vehicle_id")]
-    [JsonPropertyName("vehicle_image_id")]
-    [JsonIgnore]
     public int      VehicleImageDBId { get; set; }
 
     [Required]
     [Column("vehicle_id")]
-    [JsonPropertyName("vehicle_id")]
     public int      VehicleDBId { get; set; }
 
     [Required]
     [Column("url", TypeName="varchar(300)")]
-    [JsonPropertyName("url")]
     public string?  Url { get; set; }
 
     [JsonIgnore]
@@ -30,7 +26,7 @@ public class VehicleImageDB {
 
     public VehicleImageDB(){}
 
-    public VehicleImageDB(IVehicleImageDTO? other) {
+    public VehicleImageDB(VehicleImageDTO? other) {
         if (other is not null) {
             this.VehicleImageDBId = other.Id;
             this.VehicleDBId = other.Id;

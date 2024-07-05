@@ -1,3 +1,21 @@
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (53ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+Information: Microsoft.EntityFrameworkCore.Migrations.MigrationApplying - Applying migration '20240701194841_applicatioUser'.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE "AspNetUsers" ADD "RefreshToken" text NULL;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE "AspNetUsers" ADD "RefreshTokenExpiryTime" timestamp with time zone NOT NULL DEFAULT TIMESTAMPTZ '-infinity';
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20240701194841_applicatioUser', '6.0.7');
 Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
@@ -6,515 +24,564 @@ Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
 Error: UnhandledException - An unhandled exception has occurred while executing the request.
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
 Error: UnhandledException - An unhandled exception has occurred while executing the request.
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (58ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Warning: PasswordValidationFailed - User password validation failed: PasswordRequiresNonAlphanumeric;PasswordRequiresDigit;PasswordRequiresUpper.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (40ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (8ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (25ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = DateTime), @p14='?', @p15='?' (DbType = Boolean), @p16='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenExpiryTime", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (25ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
 Error: 0 - Ocorreu um erro inesperado ou não tratado.
 Information: 0 - Application is shutting down...
 Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (59ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (4ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (68ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (5ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (2ms) [Parameters=[@p16='?', @p0='?' (DbType = Int32), @p1='?', @p17='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?', @p12='?' (DbType = DateTime), @p13='?', @p14='?' (DbType = Boolean), @p15='?'], CommandType='Text', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Email" = @p2, "EmailConfirmed" = @p3, "LockoutEnabled" = @p4, "LockoutEnd" = @p5, "NormalizedEmail" = @p6, "NormalizedUserName" = @p7, "PasswordHash" = @p8, "PhoneNumber" = @p9, "PhoneNumberConfirmed" = @p10, "RefreshToken" = @p11, "RefreshTokenExpiryTime" = @p12, "SecurityStamp" = @p13, "TwoFactorEnabled" = @p14, "UserName" = @p15
+WHERE "Id" = @p16 AND "ConcurrencyStamp" = @p17;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Local to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (8ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = DateTime), @p14='?', @p15='?' (DbType = Boolean), @p16='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenExpiryTime", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (0ms) [Parameters=[@p16='?', @p0='?' (DbType = Int32), @p1='?', @p17='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?', @p12='?' (DbType = DateTime), @p13='?', @p14='?' (DbType = Boolean), @p15='?'], CommandType='Text', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Email" = @p2, "EmailConfirmed" = @p3, "LockoutEnabled" = @p4, "LockoutEnd" = @p5, "NormalizedEmail" = @p6, "NormalizedUserName" = @p7, "PasswordHash" = @p8, "PhoneNumber" = @p9, "PhoneNumberConfirmed" = @p10, "RefreshToken" = @p11, "RefreshTokenExpiryTime" = @p12, "SecurityStamp" = @p13, "TwoFactorEnabled" = @p14, "UserName" = @p15
+WHERE "Id" = @p16 AND "ConcurrencyStamp" = @p17;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Local to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (65ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (8ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = DateTime), @p14='?', @p15='?' (DbType = Boolean), @p16='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenExpiryTime", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (1ms) [Parameters=[@p16='?', @p0='?' (DbType = Int32), @p1='?', @p17='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?', @p12='?' (DbType = DateTime), @p13='?', @p14='?' (DbType = Boolean), @p15='?'], CommandType='Text', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Email" = @p2, "EmailConfirmed" = @p3, "LockoutEnabled" = @p4, "LockoutEnd" = @p5, "NormalizedEmail" = @p6, "NormalizedUserName" = @p7, "PasswordHash" = @p8, "PhoneNumber" = @p9, "PhoneNumberConfirmed" = @p10, "RefreshToken" = @p11, "RefreshTokenExpiryTime" = @p12, "SecurityStamp" = @p13, "TwoFactorEnabled" = @p14, "UserName" = @p15
+WHERE "Id" = @p16 AND "ConcurrencyStamp" = @p17;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Local to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (59ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (4ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (27ms) [Parameters=[@p16='?', @p0='?' (DbType = Int32), @p1='?', @p17='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?', @p12='?' (DbType = DateTime), @p13='?', @p14='?' (DbType = Boolean), @p15='?'], CommandType='Text', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Email" = @p2, "EmailConfirmed" = @p3, "LockoutEnabled" = @p4, "LockoutEnd" = @p5, "NormalizedEmail" = @p6, "NormalizedUserName" = @p7, "PasswordHash" = @p8, "PhoneNumber" = @p9, "PhoneNumberConfirmed" = @p10, "RefreshToken" = @p11, "RefreshTokenExpiryTime" = @p12, "SecurityStamp" = @p13, "TwoFactorEnabled" = @p14, "UserName" = @p15
+WHERE "Id" = @p16 AND "ConcurrencyStamp" = @p17;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (9ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = DateTime), @p14='?', @p15='?' (DbType = Boolean), @p16='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenExpiryTime", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@p16='?', @p0='?' (DbType = Int32), @p1='?', @p17='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?', @p12='?' (DbType = DateTime), @p13='?', @p14='?' (DbType = Boolean), @p15='?'], CommandType='Text', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Email" = @p2, "EmailConfirmed" = @p3, "LockoutEnabled" = @p4, "LockoutEnd" = @p5, "NormalizedEmail" = @p6, "NormalizedUserName" = @p7, "PasswordHash" = @p8, "PhoneNumber" = @p9, "PhoneNumberConfirmed" = @p10, "RefreshToken" = @p11, "RefreshTokenExpiryTime" = @p12, "SecurityStamp" = @p13, "TwoFactorEnabled" = @p14, "UserName" = @p15
+WHERE "Id" = @p16 AND "ConcurrencyStamp" = @p17;
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (74ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (5ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = DateTime), @p14='?', @p15='?' (DbType = Boolean), @p16='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenExpiryTime", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p16='?', @p0='?' (DbType = Int32), @p1='?', @p17='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?', @p12='?' (DbType = DateTime), @p13='?', @p14='?' (DbType = Boolean), @p15='?'], CommandType='Text', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Email" = @p2, "EmailConfirmed" = @p3, "LockoutEnabled" = @p4, "LockoutEnd" = @p5, "NormalizedEmail" = @p6, "NormalizedUserName" = @p7, "PasswordHash" = @p8, "PhoneNumber" = @p9, "PhoneNumberConfirmed" = @p10, "RefreshToken" = @p11, "RefreshTokenExpiryTime" = @p12, "SecurityStamp" = @p13, "TwoFactorEnabled" = @p14, "UserName" = @p15
+WHERE "Id" = @p16 AND "ConcurrencyStamp" = @p17;
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
 Error: UnhandledException - An unhandled exception has occurred while executing the request.
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Request on Customers with method Get [ 17:10:22 ] - modelo válido
-Information: 0 - Get on /clientes with params [1000  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:10:22 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:10:22 ] - modelo válido
-Information: 0 - Get on /clientes with params [10000  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:10:22 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:10:23 ] - modelo válido
-Information: 0 - Get on /clientes with params [100000  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:10:23 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:10:26 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:10:26 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:10:58 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:10:58 ]
-	Status Code: [ 200 ]
 Error: UnhandledException - An unhandled exception has occurred while executing the request.
-Information: 0 - Request on Customers with method Get [ 17:14:37 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:14:37 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (63ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Warning: PasswordValidationFailed - User password validation failed: PasswordTooShort.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (7ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = DateTime), @p14='?', @p15='?' (DbType = Boolean), @p16='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenExpiryTime", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (5ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (4ms) [Parameters=[@p16='?', @p0='?' (DbType = Int32), @p1='?', @p17='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?', @p12='?' (DbType = DateTime), @p13='?', @p14='?' (DbType = Boolean), @p15='?'], CommandType='Text', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Email" = @p2, "EmailConfirmed" = @p3, "LockoutEnabled" = @p4, "LockoutEnd" = @p5, "NormalizedEmail" = @p6, "NormalizedUserName" = @p7, "PasswordHash" = @p8, "PhoneNumber" = @p9, "PhoneNumberConfirmed" = @p10, "RefreshToken" = @p11, "RefreshTokenExpiryTime" = @p12, "SecurityStamp" = @p13, "TwoFactorEnabled" = @p14, "UserName" = @p15
+WHERE "Id" = @p16 AND "ConcurrencyStamp" = @p17;
+Error: UnhandledException - An unhandled exception has occurred while executing the request.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (60ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (6ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
 Error: 0 - Ocorreu um erro inesperado ou não tratado.
 Information: 0 - Application is shutting down...
 Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method Get [ 17:17:11 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:17:12 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
 Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Request on Customers with method Get [ 17:25:52 ] - modelo válido
-Information: 0 - Get on /clientes with params [mA  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:25:53 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Request on Customers with method Get [ 17:26:44 ] - modelo válido
-Information: 0 - Get on /clientes with params [mARI  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:26:44 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Request on Customers with method Get [ 17:28:04 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:28:04 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Request on Customers with method Get [ 17:30:57 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:30:57 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method Get [ 17:31:26 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:31:27 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method Get [ 17:32:31 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:32:31 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Request on Customers with method Get [ 17:36:05 ] - modelo válido
-Information: 0 - Get on /clientes with params [Maria  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:36:05 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: 0 - Request on Customers with method Get [ 17:36:57 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:36:57 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Request on Customers with method Get [ 17:37:41 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:37:41 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:39:26 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:39:26 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:39:33 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:39:33 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:39:37 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:39:37 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:39:41 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:39:41 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:40:00 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:40:00 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:42:27 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:42:27 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:42:36 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:42:36 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:42:39 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:42:39 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:43:19 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:43:19 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:44:09 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:44:09 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:44:23 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:44:23 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:44:27 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:44:27 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:44:29 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:44:29 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:51:46 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:51:46 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 17:52:04 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 17:52:04 ]
-	Status Code: [ 200 ]
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method Get [ 19:05:17 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:05:17 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:05:50 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:05:50 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Request on Customers with method Get [ 19:06:17 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:06:17 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Request on Customers with method Get [ 19:08:19 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:08:19 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:09:00 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:09:00 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:09:18 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:09:18 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:14:55 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:14:55 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:15:30 ] - modelo válido
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:15:30 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:29:44 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:29:44 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:30:16 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:30:16 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:30:53 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:30:53 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:47:53 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:47:53 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:48:02 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ma  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:48:02 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:48:09 ] - modelo válido
-Information: 0 - Get on /clientes with params [ RG 10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:48:09 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:48:13 ] - modelo válido
-Information: 0 - Get on /clientes with params [ RG 10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:48:13 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:48:19 ] - modelo válido
-Information: 0 - Get on /clientes with params [ CPF 10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:48:19 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 19:48:26 ] - modelo válido
-Information: 0 - Get on /clientes with params [ CNPJ 10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 19:48:26 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:01:37 ] - modelo válido
-Information: 0 - Get on /clientes with params [da  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:01:37 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Request on Customers with method Get [ 20:01:50 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:01:50 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Post [ 20:06:56 ] - modelo válido
-Information: 0 - 	Response from [ Post/Customers ]
-	DateTime: [ 20:06:56 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Post [ 20:07:01 ] - modelo válido
-Information: 0 - 	Response from [ Post/Customers ]
-	DateTime: [ 20:07:01 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Post [ 20:07:48 ] - modelo válido
-Information: 0 - 	Response from [ Post/Customers ]
-	DateTime: [ 20:07:48 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:08:02 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:08:02 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:09:14 ] - modelo válido
-Information: 0 - Get on /clientes with params [h  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:09:14 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Request on Customers with method Get [ 20:10:31 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:10:31 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:12:47 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:12:47 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:12:49 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:12:49 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:13:07 ] - modelo válido
-Information: 0 - Get on /clientes with params [davy  1000]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:13:07 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:13:10 ] - modelo válido
-Information: 0 - Get on /clientes with params [ha  1000]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:13:10 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:13:10 ] - modelo válido
-Information: 0 - Get on /clientes with params [h  1000]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:13:10 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Post [ 20:13:55 ] - modelo válido
-Information: 0 - 	Response from [ Post/Customers ]
-	DateTime: [ 20:13:55 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:14:01 ] - modelo válido
-Information: 0 - Get on /clientes with params [Rica  1000]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:14:01 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:17:20 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:17:20 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:18:29 ] - modelo válido
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:18:29 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Delete [ 20:18:31 ] - modelo válido
-Information: 0 - 	Response from [ Delete/Customers ]
-	DateTime: [ 20:18:31 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:18:35 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:18:35 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:18:38 ] - modelo válido
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:18:38 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Put [ 20:18:44 ] - modelo válido
-Information: 0 - 	Response from [ Put/Customers ]
-	DateTime: [ 20:18:44 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:18:46 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:18:46 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:21:30 ] - modelo válido
-Information: 0 - Get on /clientes with params [Rica  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:21:30 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Request on Customers with method Get [ 20:22:04 ] - modelo válido
-Information: 0 - Get on /clientes with params [Ha  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:22:04 ]
-	Status Code: [ 200 ]
-Information: 0 - Get on /movimentacoes with params [ CarShop.DTO.TransactionRequestDTO ]
-Information: 0 - Request on Customers with method Get [ 20:23:18 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:23:18 ]
-	Status Code: [ 200 ]
-Information: 0 - Request on Customers with method Get [ 20:23:57 ] - modelo válido
-Information: 0 - Get on /clientes with params [  10]
-Information: 0 - 	Response from [ Get/Customers ]
-	DateTime: [ 20:23:57 ]
-	Status Code: [ 200 ]
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (60ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
 Error: 0 - Ocorreu um erro inesperado ou não tratado.
 Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
@@ -526,78 +593,430 @@ Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Application is shutting down...
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Error: 0 - Ocorreu um erro inesperado ou não tratado.
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: ListeningOnAddress - Now listening on: http://localhost:5103
-Information: 0 - Application started. Press Ctrl+C to shut down.
-Information: 0 - Hosting environment: Development
-Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method GetCustomers [ 12:01:10 ] - modelo válido
+Information: 0 - Request on Customers with method GetCustomers [ 11:01:17 ] - modelo válido
 Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (45ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (13ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
 Information: 0 - 	Response from [ GetCustomers/Customers ]
-	DateTime: [ 12:01:11 ]
+	DateTime: [ 11:01:18 ]
 	Status Code: [ 200 ]
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Application is shutting down...
 Information: ListeningOnAddress - Now listening on: http://localhost:5103
 Information: 0 - Application started. Press Ctrl+C to shut down.
 Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
-Information: 0 - Request on Customers with method GetCustomers [ 15:05:57 ] - modelo válido
+Information: 0 - Request on Customers with method GetCustomers [ 11:05:40 ] - modelo válido
 Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (7ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
 Information: 0 - 	Response from [ GetCustomers/Customers ]
-	DateTime: [ 15:05:58 ]
+	DateTime: [ 11:05:42 ]
 	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (12ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO customers (doc_number, doc_type, name, image_url, phonenumber)
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING customer_id;
+Error: UnhandledException - An unhandled exception has occurred while executing the request.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO customers (doc_number, doc_type, name, image_url, phonenumber)
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING customer_id;
+Error: UnhandledException - An unhandled exception has occurred while executing the request.
+Information: 0 - Request on Customers with method GetCustomers [ 11:14:16 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 11:14:16 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO customers (doc_number, doc_type, name, image_url, phonenumber)
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING customer_id;
+Error: UnhandledException - An unhandled exception has occurred while executing the request.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO customers (doc_number, doc_type, name, image_url, phonenumber)
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING customer_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO customers (doc_number, doc_type, name, image_url, phonenumber)
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING customer_id;
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (55ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO customers (doc_number, doc_type, name, image_url, phonenumber)
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING customer_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO customers (doc_number, doc_type, name, image_url, phonenumber)
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING customer_id;
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (58ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING financial_transation_id;
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Warning: NoXMLEncryptorConfiguredKeyMayBePersistedToStorageInUnencryptedForm - No XML encryptor configured. Key {f655bf62-9306-40b2-a0b7-b708684be76b} may be persisted to storage in unencrypted form.
+Information: ListeningOnAddress - Now listening on: http://localhost:5000
+Information: ListeningOnAddress - Now listening on: https://localhost:5001
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Production
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5000
+Information: ListeningOnAddress - Now listening on: https://localhost:5001
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Production
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5000
+Information: ListeningOnAddress - Now listening on: https://localhost:5001
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Production
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Request on Customers with method GetCustomers [ 15:46:47 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (54ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (8ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 15:46:49 ]
+	Status Code: [ 200 ]
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (63ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (2ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = DateTime), @p14='?', @p15='?' (DbType = Boolean), @p16='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenExpiryTime", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Local to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (0ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = DateTime), @p14='?', @p15='?' (DbType = Boolean), @p16='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenExpiryTime", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Local to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (7ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (6ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."RefreshToken", a."RefreshTokenExpiryTime", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (0ms) [Parameters=[@p16='?', @p0='?' (DbType = Int32), @p1='?', @p17='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?', @p12='?' (DbType = DateTime), @p13='?', @p14='?' (DbType = Boolean), @p15='?'], CommandType='Text', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Email" = @p2, "EmailConfirmed" = @p3, "LockoutEnabled" = @p4, "LockoutEnd" = @p5, "NormalizedEmail" = @p6, "NormalizedUserName" = @p7, "PasswordHash" = @p8, "PhoneNumber" = @p9, "PhoneNumberConfirmed" = @p10, "RefreshToken" = @p11, "RefreshTokenExpiryTime" = @p12, "SecurityStamp" = @p13, "TwoFactorEnabled" = @p14, "UserName" = @p15
+WHERE "Id" = @p16 AND "ConcurrencyStamp" = @p17;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Local to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Error: Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError - An error occurred using the connection to database 'CarShop' on server ''.
+Error: Microsoft.EntityFrameworkCore.Query.QueryIterationFailed - An exception occurred while iterating over the results of a query for context type 'CarShop.Context.CarShopDataContext'.
+System.Net.Internals.SocketExceptionFactory+ExtendedSocketException (00000001, 11): Resource temporarily unavailable
+   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.GetHostAddresses(String hostNameOrAddress, AddressFamily family)
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|195_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__19_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/

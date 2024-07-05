@@ -11,14 +11,15 @@ public class TransactionRepository : Repository<FinancialTransactionsDB>, ITrans
     public TransactionRepository(CarShopDataContext context) : base(context) {
 
     }
-    public PagedList<FinancialTransactionsDB> GetTransactionsWithFilter(TransactionQueryFilter? filter) {
+    public PagedList<FinancialTransactionsDB> GetTransactionsWithFilter(TransactionQueryFilter filter) {
         var transactions = _ctx.FinancialTransactions?
                             .Include(t => t.Customer)
                             .Include(t => t.Vehicle)
                             .AsQueryable();
         transactions = transactions.Where(t => t.Value > filter.MinValue);
-        if (filter.MaxValue is not null)
+        if (filter.MaxValue is not null) {
             transactions = transactions.Where(t => t.Value <= filter.MaxValue);
+        }
         return PagedList<FinancialTransactionsDB>.ToPagedList(transactions, filter.PageNumber, filter.PageSize);
     }
 }

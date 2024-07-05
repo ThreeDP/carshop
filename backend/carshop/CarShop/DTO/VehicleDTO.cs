@@ -4,11 +4,12 @@ using CarShop.Models;
 
 namespace CarShop.DTO;
 
-public class VehicleDTO : IVehicleDTO, IValidatableObject {
+public class VehicleDTO : IValidatableObject {
     private static readonly string[] situationOptions = { 
         "DISPONIVEL", "INDISPONIVEL", "VENDIDO"
     };
 
+    public VehicleDTO(){}
     public VehicleDTO(VehicleDB? other) {
         if (other is not null) {
             this.Id = other.Id;

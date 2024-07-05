@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db-dev:
+    container_name: db-dev
+    image: postgres
+    restart: always
+    user: postgres
+    secrets:
+      - secrets_env
+    volumes:
+      - db-volume-dev:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "${POSTGRESSQL_DB_NAME}"
+      POSTGRES_USER: "${POSTGRESSQL_USER}"
+      POSTGRES_PASSWORD: "${POSTGRESSQL_USER_PASSWORD}"
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db-volume-dev:
+    name: db-volume-dev
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: storage/database-dev
+
+secrets:
+  secrets_env:
+    file: .env-dev

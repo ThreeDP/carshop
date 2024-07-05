@@ -20,15 +20,15 @@ public class FinancialTransationsController : ControllerBase
 
     [HttpGet]
     public ActionResult<IEnumerable<TransactionResponseDTO>> GetTransactions([FromQuery] TransactionQueryFilter filter) {
-        var transactions = _unitDB.TransactionRepository.GetTransactionsWithFilter(filter);
-        Response.Headers.Append("X-Pagination", transactions.CreateMetaData());
-        var responseTransactions = transactions.Select(t => new TransactionResponseDTO(t)).ToList();
+        var transactions = _unitDB.TransactionRepository?.GetTransactionsWithFilter(filter);
+        Response.Headers.Append("X-Pagination", transactions?.CreateMetaData());
+        var responseTransactions = transactions?.Select(t => new TransactionResponseDTO(t)).ToList();
         return Ok(responseTransactions);
     }
 
     [HttpGet("{id:int:min(1)}", Name="nova-transacao")]
     public ActionResult<TransactionResponseDTO>    GetTransaction(int id) {
-        var transaction = _unitDB.TransactionRepository.Get(v => v.Id == id);
+        var transaction = _unitDB.TransactionRepository?.Get(v => v.Id == id);
         if (transaction is null) {
             return NotFound();
         }
@@ -42,12 +42,16 @@ public class FinancialTransationsController : ControllerBase
             return BadRequest();
         }
         if (mov.Vehicle is not null) {
-             _unitDB.VehicleRepository.Update(new VehicleDB(mov.Vehicle));
+             _unitDB.VehicleRepository?.Update(new VehicleDB(mov.Vehicle));
              mov.Vehicle = null;
         }
-        var newTransaction = _unitDB.TransactionRepository.Add(new FinancialTransactionsDB(mov));
-        var responseTransaction = new TransactionResponseDTO(newTransaction);
+        mov.Value = Math.Abs(mov.Value);
+        if (mov.Type == "COMPRA") {
+            mov.Value = -(mov.Value);
+        }
+        var newTransaction = _unitDB.TransactionRepository?.Add(new FinancialTransactionsDB(mov));
         _unitDB.Commit();
+        var responseTransaction = new TransactionResponseDTO(newTransaction);
         return new CreatedAtRouteResult("nova-transacao", 
             new {id = responseTransaction.Id}, responseTransaction);
     }
@@ -57,18 +61,19 @@ public class FinancialTransationsController : ControllerBase
         if (mov is null) {
             return BadRequest();
         }
-        var transaction = _unitDB.TransactionRepository.Update(new FinancialTransactionsDB(mov));
+        var transaction = _unitDB.TransactionRepository?.Update(new FinancialTransactionsDB(mov));
         _unitDB.Commit();
         return Ok(new TransactionResponseDTO(transaction));
     }
 
     [HttpDelete("{id:int:min(1)}")]
     public ActionResult<TransactionResponseDTO> DeleteTransaction(int id) {
-        var transactionToDel = _unitDB.TransactionRepository.Get(t => t.Id == id);
+        var transactionToDel = _unitDB.TransactionRepository?.Get(t => t.Id == id);
         if (transactionToDel is null) {
             return NotFound();
         }
-        var mov = _unitDB.TransactionRepository.Delete(transactionToDel);
+        var mov = _unitDB.TransactionRepository?.Delete(transactionToDel);
+        _unitDB.Commit();
         return Ok(new TransactionResponseDTO(mov));
     }
 }

@@ -17,7 +17,7 @@ public class VehicleDB : IValidatableObject
         VehicleImages = new Collection<VehicleImageDB>();
     }
 
-    public VehicleDB(IVehicleDTO? other) {
+    public VehicleDB(VehicleDTO? other) {
         if (other is not null) {
             Id = other.Id;
             Renavan = other.Renavan;
@@ -34,7 +34,7 @@ public class VehicleDB : IValidatableObject
         VehicleImages = new Collection<VehicleImageDB>();
     }
 
-    public VehicleDB Copy(IVehicleDTO? other) {
+    public VehicleDB Copy(VehicleDTO? other) {
         if (other is not null) {
             Renavan = other.Renavan;
             LicensePlate = other.LicensePlate;
@@ -62,46 +62,40 @@ public class VehicleDB : IValidatableObject
         ChangeDate = other.ChangeDate;
         Description = other.Description;
         Situation = other.Situation;
+        FinancialTransactions = new Collection<FinancialTransactionsDB>();
+        VehicleImages = new Collection<VehicleImageDB>();
     }
 
     [Key]
     [Column("vehicle_id")]
-    [JsonPropertyName("vehicle_id")]
     public int          Id { get; set; }
 
     [Required]
     [Column("renavan", TypeName="varchar(12)")]
-    [JsonPropertyName("renavan")]
     public string?      Renavan { get; set; }
 
     [Required]
     [Column("license_plate", TypeName="varchar(8)")]
-    [JsonPropertyName("license_plate")]
     public string?      LicensePlate { get; set; }
 
     [Required]
     [Column("brand", TypeName="varchar(40)")]
-    [JsonPropertyName("brand")]
     public string?      Brand { get; set; }
 
     [Required]
     [Column("model", TypeName="varchar(40)")]
-    [JsonPropertyName("model")]
     public string?      Model { get; set; }
 
     [Required]
     [Column("model_year")]
-    [JsonPropertyName("model_year")]
     public DateTime?     ModelYear { get; set; }
     
     [Required]
     [Column("vehicle_type")]
-    [JsonPropertyName("vehicle_type")]
     public string?      VehicleType { get; set; }
     
     [Required]
     [Column("year_manufacture")]
-    [JsonPropertyName("year_manufacture")]
     public DateTime?    YearManufacture { get; set; }
     
     [JsonIgnore]
@@ -114,12 +108,10 @@ public class VehicleDB : IValidatableObject
     
     [Required]
     [Column("description")]
-    [JsonPropertyName("description")]
     public string?      Description { get; set; }
 
     [Required]
     [Column("situation", TypeName="varchar(20)")]
-    [JsonPropertyName("situation")]
     public string?      Situation { get; set; }
 
     [JsonPropertyName("vehicle_images")]

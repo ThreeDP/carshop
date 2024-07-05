@@ -13,7 +13,7 @@ public class FinancialTransactionsDB
 
     public FinancialTransactionsDB(){}
 
-    public FinancialTransactionsDB(ITransactionDTO? other) {
+    public FinancialTransactionsDB(TransactionDTO? other) {
         if (other is not null) {
             Value = other.Value;
             FinancialTransactionType = other.Type;
@@ -32,7 +32,7 @@ public class FinancialTransactionsDB
         CustomerId = other.CustomerId;
         VehicleId = other.VehicleId;
         if (other != null) {
-            Customer = other.Customer != null ? new CustomerDB(other.Customer) : other.Customer;
+            Customer = other.Customer is not null ? new CustomerDB(other.Customer) : other.Customer;
             Vehicle = other.Vehicle;
         }
     }

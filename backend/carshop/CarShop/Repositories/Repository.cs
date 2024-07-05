@@ -21,17 +21,17 @@ public class Repository<T> : IRepository<T> where T : class {
         return _ctx.Set<T>().FirstOrDefault(opt);
     }
 
-    public T Add(T entity) {
+    public T? Add(T entity) {
         _ctx.Set<T>().Add(entity);
         return entity;
     }
 
-    public T Update(T entity) {
+    public T? Update(T entity) {
         _ctx.Entry(entity).State = EntityState.Modified;
         return entity;
     }
 
-    public T Delete(T entity) {
+    public T? Delete(T entity) {
         _ctx.Set<T>().Remove(entity);
         return entity;
     }

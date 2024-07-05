@@ -4,7 +4,7 @@ using CarShop.Models;
 
 namespace CarShop.DTO;
 
-public class VehicleImageDTO : IVehicleImageDTO {
+public class VehicleImageDTO {
     [JsonPropertyName("id")]
     public int Id { get; set; }
 
@@ -16,6 +16,7 @@ public class VehicleImageDTO : IVehicleImageDTO {
     [JsonPropertyName("vehicle_id")]
     public int  VehicleId { get; set; }
 
+    public VehicleImageDTO(){}
     public VehicleImageDTO(VehicleImageDB? other) {
         if (other is not null) {
             this.Id = other.VehicleImageDBId;

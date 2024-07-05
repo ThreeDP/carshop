@@ -12,7 +12,7 @@ public class VehicleRepository : Repository<VehicleDB>, IVehicleRepository {
     }
 
     public PagedList<VehicleDB> GetVehiclesWithFilter(VehicleQueryFilter filter) {
-        var vehicles = _ctx.Vehicles?.AsQueryable();
+        var vehicles = _ctx.Vehicles.AsQueryable();
         if (filter.Model is not null) {
             vehicles = vehicles.Where(v => v.Model == filter.Model);
         }
@@ -23,10 +23,10 @@ public class VehicleRepository : Repository<VehicleDB>, IVehicleRepository {
             vehicles = vehicles.Where(v => v.ModelYear == filter.ModelYear);
         }
         if (filter.Renavan is not null) {
-            vehicles = vehicles.Where(v => v.Renavan.StartsWith(filter.Renavan));
+            vehicles = vehicles.Where(v => v.Renavan != null && v.Renavan.StartsWith(filter.Renavan));
         }
         if (filter.LicensePlate is not null) {
-            vehicles = vehicles.Where(v => v.LicensePlate.StartsWith(filter.LicensePlate));
+            vehicles = vehicles.Where(v => v.LicensePlate != null && v.LicensePlate.StartsWith(filter.LicensePlate));
         }
         if (filter.Situation is not null) {
             vehicles = vehicles.Where(v => v.Situation == filter.Situation);

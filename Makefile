@@ -9,9 +9,12 @@ all: create_dirs build up
 test:
 	cd backend/carshop/CarShop.Tests && dotnet test
 
-dev:
-	docker compose up -d
-	cd backend/carshop/CarShop && dotnet build && dotnet watch
+build-dev:
+	docker-compose --file docker-compose-dev.yml build
+
+dev: build-dev
+	docker-compose --file docker-compose-dev.yml up -d
+	cd backend/carshop/CarShop && dotnet watch
 
 front:
 	cd frontend/CarShopView && dotnet watch
@@ -35,7 +38,7 @@ clean: down
 
 fclean: clean
 	docker rmi -f $(IMAGES)
-	docker volume rm $(VOLUMES)
-	docker network rm $(NETWORKS)
+#	docker volume rm $(VOLUMES)
+#	docker network rm $(NETWORKS)
 
 re: fclean all
