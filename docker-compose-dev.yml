@@ -33,4 +33,4 @@ volumes:
 
 secrets:
   secrets_env:
-    file: .env-dev
+    file: .env

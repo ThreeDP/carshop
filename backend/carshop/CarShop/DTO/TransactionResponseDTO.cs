@@ -13,7 +13,7 @@ public class TransactionResponseDTO {
     public decimal          Value { get; set; }
 
     [Required]
-    [JsonPropertyName("type_transation")]
+    [JsonPropertyName("type_transaction")]
     public string?          Type { get; set; }
 
     [Required]

@@ -18,7 +18,7 @@ else
         <thead>
             <tr>
                 <th>Tipo de Transação</th>
-                <th>Customere</th>
+                <th>Clientes</th>
                 <th>Veiculo</th>
                 <th>Valor (R$)</th>
             </tr>
@@ -27,9 +27,9 @@ else
             @foreach (var forecast in forecasts)
             {
                 <tr>
-                    <td>@forecast.TypeTransaction</td>
-                    <td>@forecast.Customer.Name</td>
-                    <td>@forecast.Vehicle.Brand | @forecast.Vehicle.Model | @forecast.Vehicle.ModelYear.Year</td>
+                    <td>@forecast.Type</td>
+                    <td>@forecast.Customer</td>
+                    <td>@forecast.Vehicle</td>
                     <td>@forecast.Value</td>
                 </tr>
             }
@@ -48,13 +48,13 @@ else
 }
 
 @code {
-    private Transaction[]? forecasts;
+    private TransactionResponse[]? forecasts;
     private decimal TotalValue = 0;
     private int     TotalMovimentation = 0;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<Transaction[]>("movimentacoes/?range=1000");
+        forecasts = await Http.GetFromJsonAsync<TransactionResponse[]>("movimentacoes/valores/?range=1000");
         if (forecasts is not null) {
             TotalValue = forecasts.Sum(f => f.Value);
             TotalMovimentation = forecasts.Count();

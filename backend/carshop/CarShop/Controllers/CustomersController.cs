@@ -20,7 +20,6 @@ public class CustomersController : ControllerBase
         _logger = logger;
     }
 
-    [Authorize]
     [HttpGet]
     [ServiceFilter(typeof(CarShopLoggingFilter))]
     public ActionResult<IEnumerable<CustomerDTO>> GetCustomers([FromQuery] CustomerQueryFilter filter) {

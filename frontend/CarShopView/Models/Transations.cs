@@ -27,3 +27,16 @@ public class Transaction
         return msg;
     }
 }
+
+public class TransactionResponse {
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+    [JsonPropertyName("type_transaction")]
+    public string Type { get; set; }
+    [JsonPropertyName("customer")]
+    public string Customer { get; set; }
+    [JsonPropertyName("vehicle")]
+    public string Vehicle { get; set; }
+    [JsonPropertyName("value")]
+    public decimal  Value { get; set; }
+}
