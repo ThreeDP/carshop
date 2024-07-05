@@ -1,19 +1,21 @@
-# Install for CarShop
-- dotnet-sdk-6.0
-- dotnet-sdk-8.0
+# CarShop
+> Projeto com o foco de desenvolver um pequeno projeto de gestão de compra e venda de carros utilizando .net core 6, docker, blazor pages e postgresql.
 
-# Como rodar o projeto
+# Como executar:
+Para colocar o projeto em produção é necessário ter instalado `make`, `docker`, setar as variaveis de ambiente descritas no .env-sample e restaurar o dump do banco de dados no container `db`.
 
-Ter instalado o `make` e o `docker` para executar os seguintes comandos e provissionar o serviço.
-
-### Para executar o projeto
-
+### Para subir o projeto:
+Execute os seguinte comando para subir o projeto:
 ```
-make
+sudo make
 ```
 
-### Para limpar o projeto
-
+### Para derrubar os containers e exclui-los:
 ```
-make fclean
+sudo make clean
+```
+
+### Para derrubar os containers e excluir as images:
+```
+sudo make fclean
 ```
