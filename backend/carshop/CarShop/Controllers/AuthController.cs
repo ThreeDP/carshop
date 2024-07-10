@@ -114,7 +114,6 @@ public class AuthController : ControllerBase {
     }
 
     [HttpPost]
-    [Authorize]
     [Route("revoke/{username}")]
     public async Task<IActionResult> Revoke(string username) {
         var user = await _userManager.FindByNameAsync(username);

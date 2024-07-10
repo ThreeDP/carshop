@@ -40,7 +40,7 @@ public class TransactionDTO : IValidatableObject {
     [JsonPropertyName("value")]
     public decimal          Value { get; set; }
 
-    [JsonPropertyName("type_transation")]
+    [JsonIgnore]
     public string?          Type { get; set; }
 
     [Required]

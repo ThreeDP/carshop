@@ -21,7 +21,6 @@ using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 using System.Security.Cryptography.Xml;
 
 var builder = WebApplication.CreateBuilder(args);
-Console.WriteLine($"Olha a variavel aqui: {builder.Configuration["ConnectionStrings:DefaultConn"]}");
 
 builder.Services.AddControllers(options => {
     options.Filters.Add(typeof(ApiExceptionFilter));
@@ -100,7 +99,6 @@ builder.Services.AddAuthentication(options =>
 });
 builder.Services.AddAuthorization();
 builder.Configuration.AddEnvironmentVariables();
-Console.WriteLine($"Olha a variavel aqui: {builder.Configuration["ConnectionStrings:SecretKey"]}");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -120,5 +118,4 @@ if (app.Environment.IsDevelopment())
 //app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-Console.WriteLine($"Olha a variavel aqui: {builder.Configuration["JWT:ValidAudience"]}");
 app.Run();
