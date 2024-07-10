@@ -50,7 +50,7 @@ public class CustomersController : ControllerBase
         return new CreatedAtRouteResult("obter-cliente", new { id = responseCustomer.Id}, responseCustomer);
     }
 
-    [HttpPut("id:int:min(1)")]
+    [HttpPut("{id:int:min(1)}")]
     public ActionResult<CustomerDTO> Put(int id, [FromBody] CustomerDTO requestCustomer) {
         if (requestCustomer is null) {
             return BadRequest();

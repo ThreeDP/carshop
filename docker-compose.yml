@@ -16,7 +16,7 @@ services:
     secrets:
       - secrets_env
     environment:
-      ConnectionStrings__DefaultConn: "Server=${POSTGRESSQL_DB_SERVER}; DataBase=${POSTGRESSQL_DB_NAME}; Uid=${POSTGRESSQL_USER_NAME}; Pwd=${POSTGRESSQL_USER_PASSWORD}"
+      ConnectionStrings__DefaultConn: "Server=${POSTGRESSQL_DB_SERVER}; DataBase=${POSTGRESSQL_DB_NAME}; Uid=${POSTGRESSQL_USER}; Pwd=${POSTGRESSQL_USER_PASSWORD}"
       ConnectionStrings__LoggerDir: "${LOGGER_DIR}"
       JWT__SecretKey: "${JWT__SecretKey}"
       JWT__ValidAudience: "${JWT__ValidAudience}"

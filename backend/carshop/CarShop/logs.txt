@@ -2009,3 +2009,1636 @@ FROM (
 ) AS t
 LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
 ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 17:40:56 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 17:40:56 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO customers (doc_number, doc_type, name, image_url, phonenumber)
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING customer_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+DELETE FROM customers
+WHERE customer_id = @p0;
+Information: 0 - Request on Customers with method GetCustomers [ 17:41:19 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 17:41:19 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: 0 - Request on Customers with method GetCustomers [ 17:41:39 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 17:41:39 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 17:41:56 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ R ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 17:41:56 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 17:41:56 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ Rica ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 17:41:56 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM vehicles AS v
+WHERE v.vehicle_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM vehicles AS v
+WHERE v.vehicle_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+DELETE FROM vehicles
+WHERE vehicle_id = @p0;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (7ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 12:50:59 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 12:50:59 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 12:51:01 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 12:51:01 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO customers (doc_number, doc_type, name, image_url, phonenumber)
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING customer_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+DELETE FROM customers
+WHERE customer_id = @p0;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 12:57:52 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 12:57:52 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 12:58:07 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 12:58:07 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 12:58:37 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ Ricardo ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (17ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 12:58:37 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 12:58:48 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ Ricardo ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 12:58:48 ]
+	Status Code: [ 200 ]
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (57ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (11ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 10:32:47 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:32:47 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: 0 - Request on Customers with method GetCustomers [ 10:34:44 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:34:44 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+DELETE FROM customers
+WHERE customer_id = @p0;
+Information: 0 - Request on Customers with method GetCustomers [ 10:35:15 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:35:15 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE c.customer_id = @__id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (23ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+UPDATE customers SET doc_number = @p0, doc_type = @p1, name = @p2, image_url = @p3, phonenumber = @p4
+WHERE customer_id = @p5;
+Error: UnhandledException - An unhandled exception has occurred while executing the request.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?', @p1='?', @p2='?', @p3='?', @p4='?'], CommandType='Text', CommandTimeout='30']
+UPDATE customers SET doc_number = @p0, doc_type = @p1, name = @p2, image_url = @p3, phonenumber = @p4
+WHERE customer_id = @p5;
+Information: 0 - Request on Customers with method GetCustomers [ 10:43:18 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:43:18 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (8ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 10:45:00 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ R ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (22ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:45:00 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 10:45:00 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ Ri ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:45:00 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (7ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (30ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING financial_transation_id;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_clients_client_id"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_clients_client_id"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: financial_transactions
+    ConstraintName: FK_financial_transactions_clients_client_id
+    File: ri_triggers.c
+    Line: 2608
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__104_0(DbContext _, ValueTuple`2 t)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = Int32), @p15='?' (DbType = Int32), @p4='?', @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?' (DbType = DateTime), @p10='?' (DbType = DateTime), @p11='?', @p12='?', @p13='?', @p14='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING financial_transation_id;
+UPDATE vehicles SET brand = @p4, change_date = @p5, description = @p6, license_plate = @p7, model = @p8, model_year = @p9, registration_date = @p10, renavan = @p11, situation = @p12, vehicle_type = @p13, year_manufacture = @p14
+WHERE vehicle_id = @p15;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_vehicles_vehicle_id"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_vehicles_vehicle_id"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: financial_transactions
+    ConstraintName: FK_financial_transactions_vehicles_vehicle_id
+    File: ri_triggers.c
+    Line: 2608
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__104_0(DbContext _, ValueTuple`2 t)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (62ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (7ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 09:39:11 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 09:39:11 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 09:39:14 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 09:39:14 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 09:39:40 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ kk ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (11ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 09:39:40 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 09:39:42 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ r ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 09:39:42 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 09:39:42 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ri ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 09:39:42 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 09:39:45 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ Ri ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 09:39:45 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (14ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = Int32), @p15='?' (DbType = Int32), @p4='?', @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?' (DbType = DateTime), @p10='?' (DbType = DateTime), @p11='?', @p12='?', @p13='?', @p14='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING financial_transation_id;
+UPDATE vehicles SET brand = @p4, change_date = @p5, description = @p6, license_plate = @p7, model = @p8, model_year = @p9, registration_date = @p10, renavan = @p11, situation = @p12, vehicle_type = @p13, year_manufacture = @p14
+WHERE vehicle_id = @p15;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_vehicles_vehicle_id"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_vehicles_vehicle_id"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: financial_transactions
+    ConstraintName: FK_financial_transactions_vehicles_vehicle_id
+    File: ri_triggers.c
+    Line: 2608
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__104_0(DbContext _, ValueTuple`2 t)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = Int32), @p15='?' (DbType = Int32), @p4='?', @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?' (DbType = DateTime), @p10='?' (DbType = DateTime), @p11='?', @p12='?', @p13='?', @p14='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING financial_transation_id;
+UPDATE vehicles SET brand = @p4, change_date = @p5, description = @p6, license_plate = @p7, model = @p8, model_year = @p9, registration_date = @p10, renavan = @p11, situation = @p12, vehicle_type = @p13, year_manufacture = @p14
+WHERE vehicle_id = @p15;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_clients_client_id"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_clients_client_id"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: financial_transactions
+    ConstraintName: FK_financial_transactions_clients_client_id
+    File: ri_triggers.c
+    Line: 2608
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__104_0(DbContext _, ValueTuple`2 t)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (9ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = Int32), @p15='?' (DbType = Int32), @p4='?', @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?' (DbType = DateTime), @p10='?' (DbType = DateTime), @p11='?', @p12='?', @p13='?', @p14='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING financial_transation_id;
+UPDATE vehicles SET brand = @p4, change_date = @p5, description = @p6, license_plate = @p7, model = @p8, model_year = @p9, registration_date = @p10, renavan = @p11, situation = @p12, vehicle_type = @p13, year_manufacture = @p14
+WHERE vehicle_id = @p15;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_vehicles_vehicle_id"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_vehicles_vehicle_id"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: financial_transactions
+    ConstraintName: FK_financial_transactions_vehicles_vehicle_id
+    File: ri_triggers.c
+    Line: 2608
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__104_0(DbContext _, ValueTuple`2 t)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (54ms) [Parameters=[@__mov_Vehicle_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM vehicles AS v
+WHERE v.vehicle_id = @__mov_Vehicle_Id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (7ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (10ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_clients_client_id"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_clients_client_id"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: financial_transactions
+    ConstraintName: FK_financial_transactions_clients_client_id
+    File: ri_triggers.c
+    Line: 2608
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__104_0(DbContext _, ValueTuple`2 t)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (53ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Error: Microsoft.EntityFrameworkCore.Database.Command.CommandError - Failed executing DbCommand (12ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Error: Microsoft.EntityFrameworkCore.Update.SaveChangesFailed - An exception occurred in the database while saving changes for context type 'CarShop.Context.CarShopDataContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_clients_client_id"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "financial_transactions" violates foreign key constraint "FK_financial_transactions_clients_client_id"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: financial_transactions
+    ConstraintName: FK_financial_transactions_clients_client_id
+    File: ri_triggers.c
+    Line: 2608
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__104_0(DbContext _, ValueTuple`2 t)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Information: 0 - Application is shutting down...
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (57ms) [Parameters=[@__mov_Vehicle_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM vehicles AS v
+WHERE v.vehicle_id = @__mov_Vehicle_Id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (6ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (6ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING financial_transation_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING financial_transation_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+WHERE f.value > @__filter_MinValue_0
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__filter_MinValue_0='?' (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    WHERE f.value > @__filter_MinValue_0
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 10:26:48 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ R ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:26:48 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 10:26:49 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ Rica ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:26:49 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__mov_Vehicle_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM vehicles AS v
+WHERE v.vehicle_id = @__mov_Vehicle_Id_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 10:27:38 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ R ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:27:38 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 10:27:38 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ Ri ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:27:38 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__mov_Vehicle_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM vehicles AS v
+WHERE v.vehicle_id = @__mov_Vehicle_Id_0
+LIMIT 1
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: ListeningOnAddress - Now listening on: http://localhost:5103
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: /home/dapaulin/WORK/backend/carshop/CarShop/
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (50ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (8ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 10:39:42 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ r ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (3ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:39:42 ]
+	Status Code: [ 200 ]
+Information: 0 - Request on Customers with method GetCustomers [ 10:39:45 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ R ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:39:45 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (4ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO vehicles (brand, change_date, description, license_plate, model, model_year, registration_date, renavan, situation, vehicle_type, year_manufacture)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
+RETURNING vehicle_id;
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (6ms) [Parameters=[@p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Decimal), @p14='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p11, @p12, @p13, @p14)
+RETURNING financial_transation_id;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__mov_VehicleId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM vehicles AS v
+WHERE v.vehicle_id = @__mov_VehicleId_0
+LIMIT 1
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 10:43:21 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ Ric ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:43:21 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__mov_VehicleId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM vehicles AS v
+WHERE v.vehicle_id = @__mov_VehicleId_0
+LIMIT 1
+Error: 0 - Ocorreu um erro inesperado ou não tratado.
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 10:44:17 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ Rica ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__filter_name_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+WHERE (@__filter_name_0 = '') OR ((c.name LIKE @__filter_name_0 || '%' ESCAPE '') AND (left(c.name, length(@__filter_name_0))::character varying(80) = @__filter_name_0::character varying(80)))
+ORDER BY c.name
+LIMIT @__p_2 OFFSET @__p_1
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:44:17 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__mov_VehicleId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM vehicles AS v
+WHERE v.vehicle_id = @__mov_VehicleId_0
+LIMIT 1
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = Int32), @p15='?' (DbType = Int32), @p4='?', @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?' (DbType = DateTime), @p10='?' (DbType = DateTime), @p11='?', @p12='?', @p13='?', @p14='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO financial_transactions (customer_id, type_transation, value, vehicle_id)
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING financial_transation_id;
+UPDATE vehicles SET brand = @p4, change_date = @p5, description = @p6, license_plate = @p7, model = @p8, model_year = @p9, registration_date = @p10, renavan = @p11, situation = @p12, vehicle_type = @p13, year_manufacture = @p14
+WHERE vehicle_id = @p15;
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 10:46:03 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:46:03 ]
+	Status Code: [ 200 ]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM financial_transactions AS f
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Warning: Microsoft.EntityFrameworkCore.Query.RowLimitingOperationWithoutOrderByWarning - The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.financial_transation_id, t.customer_id, t.type_transation, t.value, t.vehicle_id, c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber, v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+FROM (
+    SELECT f.financial_transation_id, f.customer_id, f.type_transation, f.value, f.vehicle_id
+    FROM financial_transactions AS f
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+INNER JOIN customers AS c ON t.customer_id = c.customer_id
+INNER JOIN vehicles AS v ON t.vehicle_id = v.vehicle_id
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM vehicles AS v
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT t.vehicle_id, t.brand, t.change_date, t.description, t.license_plate, t.model, t.model_year, t.registration_date, t.renavan, t.situation, t.vehicle_type, t.year_manufacture, v0.vehicle_id, v0.url
+FROM (
+    SELECT v.vehicle_id, v.brand, v.change_date, v.description, v.license_plate, v.model, v.model_year, v.registration_date, v.renavan, v.situation, v.vehicle_type, v.year_manufacture
+    FROM vehicles AS v
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN vehicle_image AS v0 ON t.vehicle_id = v0.vehicle_id
+ORDER BY t.vehicle_id
+Information: 0 - Request on Customers with method GetCustomers [ 10:46:11 ] - modelo válido
+Information: 0 - Get on /clientes with params [[ ]]
+Information: Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized - Entity Framework Core 6.0.7 initialized 'CarShopDataContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: None
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM customers AS c
+Information: Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c.customer_id, c.doc_number, c.doc_type, c.name, c.image_url, c.phonenumber
+FROM customers AS c
+ORDER BY c.name
+LIMIT @__p_1 OFFSET @__p_0
+Information: 0 - 	Response from [ GetCustomers/Customers ]
+	DateTime: [ 10:46:11 ]
+	Status Code: [ 200 ]

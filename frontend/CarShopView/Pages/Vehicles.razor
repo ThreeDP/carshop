@@ -183,6 +183,10 @@ else
                 <label for="vehicle-value">Valor de Compra: </label>
                 <CurrencyInput id="vehicle-value" TValue="decimal" @bind-Value="ValueV" Placeholder="Entre o valor" />
             </div>
+            <div class="col-6 mt-3 mb-5">
+                <label for="vehicle-value-sell">Valor de Venda: </label>
+                <CurrencyInput id="vehicle-value-sell" TValue="decimal" @bind-Value="ValueV" Placeholder="Entre o valor" />
+            </div>
 
             <div class="mt-3">
                 <button type="submit" class="btn btn-success">Submit</button>
@@ -314,7 +318,7 @@ else
             transaction.Vehicle.Situation = "INDISPONIVEL";
             transaction.Customer = null;
             Console.WriteLine(transaction.ToString());
-            var response = await Http.PostAsJsonAsync(routeFinancial, transaction);
+            var response = await Http.PostAsJsonAsync($"{routeFinancial}/venda", transaction);
             if (response.StatusCode == HttpStatusCode.Created) {
                 ShowMessage(new ToastSucessMessage("Veiculo vendido", "o veiculo foi vendido com sucesso."));
                 OnHideModalBuyVehicle();
@@ -333,11 +337,10 @@ else
         vehicle.ModelYear = dateTimeModelYear.ToUniversalTime();
         vehicle.YearManufacture = dateTimeYearManufacture.ToUniversalTime();
         if (validInputs) {
-            transaction.TypeTransaction = "COMPRA";
             transaction.Value = ValueV;
             transaction.Vehicle = vehicle;
             Console.WriteLine(transaction.ToString());
-            var response = await Http.PostAsJsonAsync(routeFinancial, transaction);
+            var response = await Http.PostAsJsonAsync($"{routeFinancial}/compra", transaction);
             if (response.StatusCode == HttpStatusCode.Created) {
                 ShowMessage(new ToastSucessMessage("Veiculo cadastrado", "o veiculo foi cadastrado com sucesso."));
                 OnHideModalBuyVehicle();

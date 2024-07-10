@@ -43,20 +43,35 @@ public class FinancialTransationsController : ControllerBase
         return Ok(new TransactionDTO(transaction));
     }
 
-    [HttpPost]
-    public ActionResult<TransactionDTO> PostTransaction(
+    [HttpPost("compra")]
+    public ActionResult<TransactionDTO> PostTransactionBuy(
         [FromBody] TransactionDTO mov) {
-        if (mov is null) {
+        if (mov is null || mov.Vehicle is null) {
             return BadRequest();
         }
-        // if (mov.Vehicle is not null) {
-        //      _unitDB.VehicleRepository?.Update(new VehicleDB(mov.Vehicle));
-        //      mov.Vehicle = null;
-        // }
-        mov.Value = Math.Abs(mov.Value);
-        if (mov.Type == "COMPRA") {
-            mov.Value = -(mov.Value);
+        mov.Type = "COMPRA";
+        mov.Value = -(Math.Abs(mov.Value));
+        var newTransaction = _unitDB.TransactionRepository?.Add(new FinancialTransactionsDB(mov));
+        _unitDB.Commit();
+        var responseTransaction = new TransactionDTO(newTransaction);
+        return new CreatedAtRouteResult("nova-transacao", 
+            new {id = responseTransaction.Id}, responseTransaction);
+    }
+
+    [HttpPost("venda")]
+    public ActionResult<TransactionDTO> PostTransactionSell(
+        [FromBody] TransactionDTO mov) {
+        if (mov is null || mov.Vehicle is null) {
+            return BadRequest();
         }
+        var vehicleOld = _unitDB.VehicleRepository?.Get(v => v.Id == mov.VehicleId);
+        if (vehicleOld is not null && vehicleOld.Id == mov.Vehicle.Id) {
+            vehicleOld.Copy(mov.Vehicle);
+            _unitDB.VehicleRepository?.Update(vehicleOld);
+            mov.Vehicle = null;
+        }
+        mov.Type = "VENDA";
+        mov.Value = (Math.Abs(mov.Value));
         var newTransaction = _unitDB.TransactionRepository?.Add(new FinancialTransactionsDB(mov));
         _unitDB.Commit();
         var responseTransaction = new TransactionDTO(newTransaction);

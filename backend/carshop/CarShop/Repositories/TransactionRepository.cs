@@ -16,7 +16,7 @@ public class TransactionRepository : Repository<FinancialTransactionsDB>, ITrans
                             .Include(t => t.Customer)
                             .Include(t => t.Vehicle)
                             .AsQueryable();
-        transactions = transactions.Where(t => t.Value > filter.MinValue);
+        // transactions = transactions.Where(t => t.Value > filter.MinValue);
         if (filter.MaxValue is not null) {
             transactions = transactions.Where(t => t.Value <= filter.MaxValue);
         }
