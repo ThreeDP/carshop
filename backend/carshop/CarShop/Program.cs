@@ -54,9 +54,21 @@ c => {
         }
     });
 });
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<CarShopDataContext>()
+        .AddDefaultTokenProviders();
 
-builder.Services
-    .AddCors();
+var CorsNamePolicy = "_CorsNamePolicy";
+builder.Services.AddCors(
+    options =>
+    options.AddPolicy(name: CorsNamePolicy,
+    policy => {
+        policy.AllowAnyHeader()
+            .AllowAnyOrigin()
+            .AllowAnyMethod();
+            // .AllowCredentials();
+    })
+);
 
 /* Configurações de Injeção de dependência declaradas em extensions */
 builder.Services
@@ -70,10 +82,6 @@ builder.Services.AddDbContext<CarShopDataContext>(options =>
 builder.Logging.AddProvider(new CustomLoggerProvider( new CustomLoggerProviderConfig {
     LogLevel = LogLevel.Information
 }));
-
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<CarShopDataContext>()
-        .AddDefaultTokenProviders();
 
 var secretKey = builder.Configuration["JWT:SecretKey"] ?? throw new ArgumentException("Invalid secret key!!");
 builder.Services.AddAuthentication(options =>
@@ -104,18 +112,12 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
     app.UseSwagger();
     app.UseSwaggerUI();
-if (app.Environment.IsDevelopment())
-{
+if (app.Environment.IsDevelopment()) {
     app.ConfigureExceptionHandler();
-    app.UseCors(x => x
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .SetIsOriginAllowed(origin => true));
-                    //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins separated with comma
-                    // .AllowCredentials());
 }
 
 //app.UseHttpsRedirection();
+app.UseCors(CorsNamePolicy);
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

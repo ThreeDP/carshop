@@ -30,7 +30,6 @@ public class CustomersController : ControllerBase
         return Ok(ResponseCustomers);
     }
 
-    [Authorize]
     [HttpGet("{id:int:min(1)}", Name="obter-cliente")]
     public ActionResult<CustomerDTO> GetCustomer(int id) {
         var customer = _unitDB.CustomerRepository?.Get(c => c.Id == id);

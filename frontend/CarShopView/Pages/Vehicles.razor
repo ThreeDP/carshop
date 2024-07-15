@@ -217,7 +217,7 @@ else
     </BodyTemplate>
 </Modal>
 
-<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopRight" />
+<DialogMessage Messages="@messages" />
 
 <ConfirmDialog @ref="dialogDeleteVehicle" />
 
@@ -255,11 +255,11 @@ else
     private async Task HandleDeleteVehicleSubmit() {
         var response = await Http.DeleteAsync($"{route}/{vehicle.Id}");
         if (response.StatusCode == HttpStatusCode.OK) {
-            ShowMessage(new ToastSucessMessage("Veiculo deletado", "o vehicle foi deletado com sucesso."));
+            ShowMessage(new DialogMessage.ToastSucessMessage("Veiculo deletado", "o vehicle foi deletado com sucesso."));
         } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
-            ShowMessage(new ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
+            ShowMessage(new DialogMessage.ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
         } else {
-            ShowMessage(new ToastWarningMessage("Informações incorretas", "error ao processar dados."));
+            ShowMessage(new DialogMessage.ToastWarningMessage("Informações incorretas", "error ao processar dados."));
         }
     }
 
@@ -301,11 +301,7 @@ else
     }
 
     List<ToastMessage> messages = new List<ToastMessage>();
-    private void ShowMessage(ToastMessage toastType) => messages.Add(CreateToastMessage(toastType));
-
-    private ToastMessage CreateToastMessage(ToastMessage toastType) {
-        return toastType;
-    }
+    private void ShowMessage(ToastMessage toastType) => messages.Add(DialogMessage.CreateToastMessage(toastType));
 
     private async Task HandleSellVehicleSubmit() {
         var validInputs = (editContext?.Validate() ?? false);
@@ -320,13 +316,13 @@ else
             Console.WriteLine(transaction.ToString());
             var response = await Http.PostAsJsonAsync($"{routeFinancial}/venda", transaction);
             if (response.StatusCode == HttpStatusCode.Created) {
-                ShowMessage(new ToastSucessMessage("Veiculo vendido", "o veiculo foi vendido com sucesso."));
+                ShowMessage(new DialogMessage.ToastSucessMessage("Veiculo vendido", "o veiculo foi vendido com sucesso."));
                 OnHideModalBuyVehicle();
             } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
-                ShowMessage(new ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
+                ShowMessage(new DialogMessage.ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
                 OnHideModalBuyVehicle();
             } else {
-                ShowMessage(new ToastWarningMessage("Informações incorretas", "error ao processar dados."));
+                ShowMessage(new DialogMessage.ToastWarningMessage("Informações incorretas", "error ao processar dados."));
             }
         };
     }
@@ -342,13 +338,13 @@ else
             Console.WriteLine(transaction.ToString());
             var response = await Http.PostAsJsonAsync($"{routeFinancial}/compra", transaction);
             if (response.StatusCode == HttpStatusCode.Created) {
-                ShowMessage(new ToastSucessMessage("Veiculo cadastrado", "o veiculo foi cadastrado com sucesso."));
+                ShowMessage(new DialogMessage.ToastSucessMessage("Veiculo cadastrado", "o veiculo foi cadastrado com sucesso."));
                 OnHideModalBuyVehicle();
             } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
-                ShowMessage(new ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
+                ShowMessage(new DialogMessage.ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
                 OnHideModalBuyVehicle();
             } else {
-                ShowMessage(new ToastWarningMessage("Informações incorretas", "error ao processar dados."));
+                ShowMessage(new DialogMessage.ToastWarningMessage("Informações incorretas", "error ao processar dados."));
             }
         }
     }
@@ -361,39 +357,6 @@ else
         vehicle = new Vehicle();
         transaction = new Transaction();
         editContext = new EditContext(vehicle);
-    }
-
-        private class ToastErrorMessage : ToastMessage
-    {
-        public ToastErrorMessage(string title, string message) {
-            Type = ToastType.Danger;
-            Title = title;
-            HelpText = $"{DateTime.Now}";
-            Message = $"{message} {DateTime.Now}";
-            AutoHide = true;
-        }
-    }
-
-    private class ToastWarningMessage : ToastMessage
-    {
-        public ToastWarningMessage(string title, string message) {
-            Type = ToastType.Warning;
-            Title = title;
-            HelpText = $"{DateTime.Now}";
-            Message = $"{message} {DateTime.Now}";
-            AutoHide = true;
-        }
-    }
-
-    private class ToastSucessMessage : ToastMessage
-    {
-        public ToastSucessMessage(string title, string message) {
-            Type = ToastType.Success;
-            Title = title;
-            HelpText = $"{DateTime.Now}";
-            Message = $"{message} {DateTime.Now}";
-            AutoHide = true;
-        }
     }
 
     string customerInputName;

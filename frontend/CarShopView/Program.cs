@@ -14,4 +14,5 @@ builder.Services.AddScoped(sp =>
         BaseAddress = new Uri("http://localhost:5103")
     });
 
-await builder.Build().RunAsync();
+var app = builder.Build();
+await app.RunAsync();
