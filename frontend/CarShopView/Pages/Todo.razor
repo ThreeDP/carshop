@@ -1,0 +1,12 @@
+﻿@page "/todo"
+@using CarShopView.Models;
+
+<h3>Todo</h3>
+<CustomerForm OnSubmit="Test1" />
+
+@code {
+    private async Task Test1(Customer c) {
+        await Task.Delay(1);
+        Console.WriteLine($"Olha ele ai {c.Name}");
+    }
+}
