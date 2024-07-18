@@ -1,13 +1,16 @@
 ﻿@page "/clientes"
 @inject HttpClient Http
+@inject ICustomerRepository refit
 @using System.ComponentModel.DataAnnotations
+@using CarShopView.Repositories
 @using CarShopView.Models
 @using System.Net
 @using System.Text.Json
+@using CarShopView.Services;
 
 <PageTitle>Clientes</PageTitle>
 
-<h1>Painel de Clientes</h1>
+@* <h1>Painel de Clientes</h1>
 <nav class="row row-cols-auto justify-content-end mb-5">
 	<div class="col justify-content-md-end">
 		<AutoComplete @bind-Value="customerInputName"
@@ -21,12 +24,11 @@
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<Button Class="col bi bi-person-plus-fill" Color="ButtonColor.Primary" @onclick='OnShowModalRegister'> Cadastrar Cliente</Button>
 	</div>
-</nav>
+</nav> *@
 
 <Grid TItem="Customer"
 	Class="table table-hover table-bordered table-striped"
-	DataProvider="CustomersDataProvider"
-	AllowPaging="true"
+	Data="service.CustomerList"
 	AllowSorting="true">
 
 	<GridColumns>
@@ -40,15 +42,28 @@
 			@context.DocNumber
 		</GridColumn>
 		<GridColumn TItem="Customer" Sortable="false">
-			<button class="btn btn-primary bi bi-pencil-square" @onclick="() => OnShowModalEdit(context)"></button>
+			@* <button class="btn btn-primary bi bi-pencil-square" @onclick="() => OnShowModalEdit(context)"></button> *@
 		</GridColumn>
 		<GridColumn TItem="Customer" Sortable="false">
-			<button class="btn btn-danger bi bi-trash3" @onclick='() => OnShowModalDelete(context)'></button>
+			@* <button class="btn btn-danger bi bi-trash3" @onclick='() => OnShowModalDelete(context)'></button> *@
 		</GridColumn>
 	</GridColumns>
 </Grid>
 
-<Modal @ref="deleteCustomerModal"
+<Pagination ActivePageNumber="@service.CurrentPageNumber"
+            TotalPages="@service.Pagination.TotalPages"
+            PageChanged="OnPageChangedAsync" />
+
+<text>Current Page Number: @service.CurrentPageNumber</text>
+
+
+@code {
+    
+
+
+}
+
+@* <Modal @ref="deleteCustomerModal"
 	OnHidden='OnHideModalDelete'
 	Title="Deseja prosseguir com a exclusão?">
 	<BodyTemplate>
@@ -76,83 +91,70 @@
 		<CustomerForm FormName="edit" Customer="@customer" OnSubmit="@HandleEditCustomerSubmit"/>
 	</BodyTemplate>
 </Modal>
+ *@
 
-<DialogMessage Messages="@messages" />
+
+@* <DialogMessage Messages="@messages" /> *@
 
 @code {
-	@* Config Route *@
-	const string                    route = "clientes";
-	private int                     deleteId = 0;
+	CustomerService					service;
+
+	protected override async Task OnInitializedAsync() {
+		var querys = new QueryCustomers();
+		var response = await refit.GetCustomers(querys);
+		var pagination = response.Headers.GetValues("X-Pagination").FirstOrDefault();
+		if (pagination is not null) {
+			service = new CustomerService {
+				Querys = querys,
+				ActualCustomer = new Customer(),
+				Pagination = JsonSerializer.Deserialize<PaginationHeader>(pagination),
+				CustomerList = response.Content
+			};
+		}
+		@* editContext = new EditContext(customer); *@
+	}
+
+	private async Task OnPageChangedAsync(int newPageNumber)
+    {
+		QueryCustomers test = new();
+		service.Querys.PageNumber = newPageNumber;
+		service.Querys.PageSize = 2;
+		var response = await refit.GetCustomers(service.Querys);
+		var pagination = response.Headers.GetValues("X-Pagination").FirstOrDefault();
+		if (pagination is not null) {
+			service.Pagination = JsonSerializer.Deserialize<PaginationHeader>(pagination);
+		}
+		service.CustomerList = response.Content;
+        await Task.Run(() => { service.CurrentPageNumber = newPageNumber; });
+    }
 
 	@* Config Modals *@
-	private Modal                   registerCustomerModal = default!;
+	@* private Modal                   registerCustomerModal = default!;
 	private Modal                   deleteCustomerModal = default!;
-	private Modal                   editCustomerModal = default!;
+	private Modal                   editCustomerModal = default!; *@
 
 	@* Config input context *@
-	private EditContext?            editContext;
+	@* private EditContext?            editContext; *@
 
 	@* Config Info Message *@
-	private List<ToastMessage> messages = new List<ToastMessage>();
-	private void ShowMessage(ToastMessage toastType) => messages.Add(DialogMessage.CreateToastMessage(toastType));
+	@* private List<ToastMessage> messages = new List<ToastMessage>();
+	private void ShowMessage(ToastMessage toastType) => messages.Add(DialogMessage.CreateToastMessage(toastType)); *@
 
 	@* Config search Input *@
-	private string?                 customerInputName;
+	@* private string?                 customerInputName; *@
 
-	@* Response and Request *@
-	private Customer                customer;
-	private IEnumerable<Customer>?  customers;
 
-	private async Task<HttpResponseMessage> GetCustomers(GridDataProviderRequest<Customer> request, string input) {
-		int numberOfParameters = 0;
-		var path = $"{route}/";
-		if (!string.IsNullOrEmpty(input)) {
-			path = $"{path}?name={input}";
-			numberOfParameters++;
-		}
-		if (numberOfParameters > 0) {
-			path = $"{path}&";
-		} else {
-			path = $"{path}?";
-		}
-		path = $"{path}PageNumber={request.PageNumber}&PageSize={request.PageSize}";
-		var res = await Http.GetAsync("clientes");
-		Console.WriteLine($"Olha Headers: {res.Headers}");
-        if (res.Content.Headers.TryGetValues("x-pagination", out var newPag)) {
-            Console.WriteLine($"Try Values: {newPag}");
-        }
-        if (res.Content.Headers.TryGetValues("content-type", out var newCont)) {
-            var n = newCont.FirstOrDefault();
-            Console.WriteLine($"Try Values content-type: {newCont}");
-            Console.WriteLine($"Novo: {n}");
-        }
-        if (res.Headers.TryGetValues("X-Pagination", out var newPag2)) {
-            Console.WriteLine($"Try Values x-pagination2: {newPag}");
-        }
-        if (res.Headers.TryGetValues("Content-Type", out var newCont2)) {
-            Console.WriteLine($"Try Values content-type2: {newCont2}");
-        }
-		Console.WriteLine($"Headers One: {res.Headers}");
-		Console.WriteLine($"Headers Two: {res.Content.Headers.ToString()}");
-		return res;
-	}
-	
-	private async Task<GridDataProviderResult<Customer>> CustomersDataProvider(GridDataProviderRequest<Customer> request)
+	@* private async Task<GridDataProviderResult<Customer>> CustomersDataProvider(GridDataProviderRequest<Customer> request)
 	{
-		var customerResponse = await GetCustomers(request, "");
-		var test1 = await customerResponse.Content.ReadAsStringAsync();
-		customers = JsonSerializer.Deserialize<Customer[]>(test1);
-		//if (customerResponse.Headers.Contains("Content-Type")) {
-			Console.WriteLine($"Headers: {customerResponse.Content.Headers}");
-		//}
-		if (customerResponse.Content.Headers.TryGetValues("x-pagination", out var pagesInfo)) {
-			//var pg = pagesInfo.FirstOrDefault();
-			//var pageInfo = JsonSerializer.Deserialize<PaginationHeader>(pg);
-			return await Task.FromResult(new GridDataProviderResult<Customer> { Data = customers, TotalCount = 8 });
+		var response = await refit.GetCustomers();
+		var pagination = response.Headers.GetValues("X-Pagination").FirstOrDefault();
+		if (pagination is not null) {
+			customerPagination = JsonSerializer.Deserialize<PaginationHeader>(pagination);
+			return await Task.FromResult(new GridDataProviderResult<Customer> { Data = response.Content, TotalCount = customerPagination.TotalCount });
 		}
-		return await Task.FromResult( new GridDataProviderResult<Customer> { Data = customers, TotalCount = 5} );
-	}
-
+		return await Task.FromResult( new GridDataProviderResult<Customer> { Data = response.Content, TotalCount = 5} );
+	} *@
+@* 
 	private void ResetCustomer() {
 		customer = new Customer();
 		editContext = new EditContext(customer);
@@ -185,30 +187,19 @@
 	private async Task OnHideModalRegister() {
 		ResetCustomer();
 		await registerCustomerModal.HideAsync();
-	}
+	} *@
 
-	private async Task<AutoCompleteDataProviderResult<Customer>> CustomersDataProvider(AutoCompleteDataProviderRequest<Customer> request) {
-		customers = await GetCustomers(request.Filter.Value);
-		return await Task.FromResult(request.ApplyTo(customers.OrderBy(Customer => Customer.Name)));
-	}
+	@* private async Task<AutoCompleteDataProviderResult<Customer>> CustomersDataProvider(AutoCompleteDataProviderRequest<Customer> request) {
+		var test = await refit.GetCustomers();
+		return await Task.FromResult(request.ApplyTo(test.Content.OrderBy(Customer => Customer.Name)));
+	} *@
 
-	private async Task<IEnumerable<Customer>> GetCustomers(string input) {
-		return await Http.GetFromJsonAsync<Customer[]?>($"{route}/?name={input}&range=1000");
-	}
-
-	private void OnAutoCompleteChanged(Customer customerInput) {
+	@* private void OnAutoCompleteChanged(Customer customerInput) {
 		Console.WriteLine($"'{customerInput?.Name}' selected.");
 		StateHasChanged();
-	}
+	} *@
 
-	protected override async Task OnInitializedAsync() {
-		var list = await Http.GetFromJsonAsync<Customer[]>(route);
-		customers = list;
-		customer = new Customer();
-		editContext = new EditContext(customer);
-	}
-
-	private async Task HandleInsertCustomerSubmit() {
+	@* private async Task HandleInsertCustomerSubmit() {
 		var validInputs = (editContext?.Validate() ?? false);
 
 		if (validInputs) {
@@ -249,5 +240,5 @@
 		} else {
 			ShowMessage(new DialogMessage.ToastWarningMessage("Informações incorretas", "error ao processar dados."));
 		}
-	}
+	} *@
 }

@@ -3,6 +3,7 @@ using CarShop.Models;
 using CarShop.Repositories;
 using CarShop.DTO;
 using CarShop.HandlerQueryStrings;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarShop.Controllers;
 
@@ -17,6 +18,7 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public ActionResult<IEnumerable<VehicleDTO>> GetVehicles([FromQuery] VehicleQueryFilter filter) {
         var vehicles = _unitDB.VehicleRepository?.GetVehiclesWithFilter(filter);
         Response.Headers.Add("X-Pagination", vehicles?.CreateMetaData());
@@ -25,6 +27,7 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpGet("{id:int:min(1)}", Name="obter-veiculo")]
+    [Authorize]
     public ActionResult<VehicleDTO> GetVehicle(int id) {
         var vehicle = _unitDB.VehicleRepository?.Get(v => v.Id == id);
         if (vehicle is null) {
@@ -34,6 +37,7 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public ActionResult<VehicleDTO> PostVehicle([FromBody] VehicleDTO v) {
         if (v is null) {
             return BadRequest();
@@ -46,6 +50,7 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpPut("{id:int:min(1)}")]
+    [Authorize]
     public ActionResult<VehicleDTO> PutVehicle(int id, [FromBody] VehicleDTO v) {
         if (v is null) {
             return BadRequest();
@@ -56,6 +61,7 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpDelete("{id:int:min(1)}")]
+    [Authorize(Policy = "AdminOnly")]
     public ActionResult<VehicleDTO> DeleteVehicle(int id) {
         var vehicleToDel = _unitDB.VehicleRepository?.Get(v => v.Id == id);
         if (vehicleToDel is null) {

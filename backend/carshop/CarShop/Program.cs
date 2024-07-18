@@ -58,18 +58,6 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<CarShopDataContext>()
         .AddDefaultTokenProviders();
 
-var CorsNamePolicy = "_CorsNamePolicy";
-builder.Services.AddCors(
-    options =>
-    options.AddPolicy(name: CorsNamePolicy,
-    policy => {
-        policy.AllowAnyHeader()
-            .AllowAnyOrigin()
-            .AllowAnyMethod();
-            // .AllowCredentials();
-    })
-);
-
 /* Configurações de Injeção de dependência declaradas em extensions */
 builder.Services
     .AddRepositoriesDependencyGroup()
@@ -83,6 +71,29 @@ builder.Logging.AddProvider(new CustomLoggerProvider( new CustomLoggerProviderCo
     LogLevel = LogLevel.Information
 }));
 
+builder.Services.AddCors(
+    options =>
+    options.AddDefaultPolicy(
+    policy => {
+        policy.AllowAnyHeader()
+            .WithOrigins("http://localhost:8000", "http://localhost:5000")
+            .AllowAnyMethod();
+            //.AllowAnyOrigin()
+
+        policy.WithExposedHeaders(
+            "Connection",
+            "Authorization",
+            "Content-Type",
+            "Cache-Control",
+            "Date",
+            "Server",
+            "Transfer-encoding",
+            "User-Agent",
+            "X-Pagination"
+        );
+    })
+);
+
 var secretKey = builder.Configuration["JWT:SecretKey"] ?? throw new ArgumentException("Invalid secret key!!");
 builder.Services.AddAuthentication(options =>
 {
@@ -93,7 +104,7 @@ builder.Services.AddAuthentication(options =>
     options.RequireHttpsMetadata = false;
     options.TokenValidationParameters = new TokenValidationParameters()
     {
-        ValidateIssuer = true,
+        ValidateIssuer = false,
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
@@ -105,19 +116,29 @@ builder.Services.AddAuthentication(options =>
         )
     };
 });
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options => {
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("SuperAdminOnly", policy =>
+        policy.RequireRole("Admin").RequireClaim("id", "davy"));
+    options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
+    options.AddPolicy("ExclusiveOnly",
+        policy => policy.RequireAssertion(context =>
+        context.User.HasClaim(claim =>  claim.Type == "id" &&
+                                        claim.Value == "davy") ||
+                                        context.User.IsInRole("Super Admin")));
+});
 builder.Configuration.AddEnvironmentVariables();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 if (app.Environment.IsDevelopment()) {
     app.ConfigureExceptionHandler();
 }
 
 //app.UseHttpsRedirection();
-app.UseCors(CorsNamePolicy);
+app.UseCors();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

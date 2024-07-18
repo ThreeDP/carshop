@@ -23,6 +23,7 @@ services:
       JWT__ValidIssuser: "${JWT__ValidIssuser}"
       JWT__TokenValidityInMinutes: "${JWT__TokenValidityInMinutes}"
       JWT__RefreshTokenValidityInMinutes: "${JWT__RefreshTokenValidityInMinutes}"
+      FRONT__ALLOWHTTP: "${FRONT__ALLOWHTTP}"
     networks:
       - view_net
       - controller_net
@@ -65,6 +66,10 @@ services:
         source: ./proxy/nginx.conf
         target: /etc/nginx/conf.d/default.conf
         read_only: true
+    secrets:
+      - secrets_env
+    environment:
+      BaseAddress: "${BACK__HTTP}"
     ports:
       - 8000:8000
       - 9000:9000
