@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using CarShopView;
 using Refit;
 using CarShopView.Repositories;
+using CarShopView.Models;
+using CarShopView.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -11,6 +13,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddBlazorBootstrap();
 builder.Services.AddHttpClient();
 builder.Configuration.AddEnvironmentVariables();
+builder.Services.AddScoped<ICustomer, Customer>();
+builder.Services.AddScoped<IQueryCustomers, QueryCustomers>();
+builder.Services.AddScoped<IPaginationHeader, PaginationHeader>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 //var baseAddress = builder.Configuration["BaseAddress"] ?? throw new ArgumentException("Error: back end api not set.");
 builder.Services.AddScoped(sp =>
     new HttpClient {

@@ -3,10 +3,27 @@ using CarShopView.Repositories;
 
 namespace CarShopView.Services;
 
-public class CustomerService {
+public interface ICustomerService {
+    public int                          CurrentPageNumber { get; set; }
+    public IQueryCustomers?              Querys { get; set; }
+    public IPaginationHeader?            Pagination { get; set; }
+    public IEnumerable<ICustomer>?       CustomerList { get; set; }
+    public ICustomer?                    ActualCustomer { get; set; }
+}
+
+public class CustomerService : ICustomerService {
     public int                          CurrentPageNumber { get; set; } = 1;
-    public QueryCustomers?              Querys { get; set; }
-    public PaginationHeader?            Pagination { get; set; }
-    public IEnumerable<Customer>?       CustomerList { get; set; }
-    public Customer?                    ActualCustomer { get; set; }
+    public CustomerService(
+        IQueryCustomers qc,
+        IPaginationHeader ph,
+        ICustomer c) {
+        Querys = qc;
+        Pagination = ph;
+        ActualCustomer = c;
+        CustomerList = new List<Customer>();
+    }
+    public IQueryCustomers?              Querys { get; set; }
+    public IPaginationHeader?            Pagination { get; set; }
+    public IEnumerable<ICustomer>?       CustomerList { get; set; }
+    public ICustomer?                    ActualCustomer { get; set; }
 }

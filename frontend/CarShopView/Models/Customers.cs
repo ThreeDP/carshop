@@ -6,7 +6,17 @@ using System.Text.Json.Serialization;
 
 namespace CarShopView.Models;
 
-public class Customer
+public interface ICustomer
+{
+  public int                Id { get; set; }
+  public string?            Name { get; set; }
+  public string?            UrlImage { get; set; }
+  public string?            DocType { get; set; }
+  public string?            DocNumber { get; set; }
+  public string?            CellPhone { get; set; }
+}
+
+public class Customer : ICustomer
 {
   [JsonPropertyName("customer_id")]
   public int                Id { get; set; }

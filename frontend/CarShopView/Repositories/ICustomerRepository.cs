@@ -11,5 +11,5 @@ public interface ICustomerRepository {
     Task<ApiResponse<IEnumerable<Customer>>> GetCustomers();
 
     [Get("/clientes")]
-    Task<ApiResponse<IEnumerable<Customer>>> GetCustomers(QueryCustomers filter);
+    Task<ApiResponse<IEnumerable<Customer>>> GetCustomers(IQueryCustomers filter);
 }

@@ -7,6 +7,7 @@
 @using System.Net
 @using System.Text.Json
 @using CarShopView.Services;
+@inject ICustomerService service
 
 <PageTitle>Clientes</PageTitle>
 
@@ -26,42 +27,36 @@
 	</div>
 </nav> *@
 
-<Grid TItem="Customer"
+<Grid TItem="ICustomer"
 	Class="table table-hover table-bordered table-striped"
 	Data="service.CustomerList"
 	AllowSorting="true">
 
 	<GridColumns>
-		<GridColumn TItem="Customer" HeaderText="Nome" SortKeySelector="@(item => item.Name)">
+		<GridColumn TItem="ICustomer" HeaderText="Nome" SortKeySelector="@(item => item.Name)">
 			@context.Name
 		</GridColumn>
-		<GridColumn TItem="Customer" HeaderText="Tipo de documento" SortKeySelector="@(item => item.DocType)">
+		<GridColumn TItem="ICustomer" HeaderText="Tipo de documento" SortKeySelector="@(item => item.DocType)">
 			@context.DocType
 		</GridColumn>
-		<GridColumn TItem="Customer" HeaderText="Número do documento" Sortable="false">
+		<GridColumn TItem="ICustomer" HeaderText="Número do documento" Sortable="false">
 			@context.DocNumber
 		</GridColumn>
-		<GridColumn TItem="Customer" Sortable="false">
-			@* <button class="btn btn-primary bi bi-pencil-square" @onclick="() => OnShowModalEdit(context)"></button> *@
+		<GridColumn TItem="ICustomer" Sortable="false">
+			@* <button class="btn btn-primary bi bi-pencil-square" @onclick="() => OnShowModalEdit(context)"></button>  *@
 		</GridColumn>
-		<GridColumn TItem="Customer" Sortable="false">
-			@* <button class="btn btn-danger bi bi-trash3" @onclick='() => OnShowModalDelete(context)'></button> *@
+		<GridColumn TItem="ICustomer" Sortable="false">
+			@* <button class="btn btn-danger bi bi-trash3" @onclick='() => OnShowModalDelete(context)'></button>  *@
 		</GridColumn>
 	</GridColumns>
 </Grid>
+
 
 <Pagination ActivePageNumber="@service.CurrentPageNumber"
             TotalPages="@service.Pagination.TotalPages"
             PageChanged="OnPageChangedAsync" />
 
 <text>Current Page Number: @service.CurrentPageNumber</text>
-
-
-@code {
-    
-
-
-}
 
 @* <Modal @ref="deleteCustomerModal"
 	OnHidden='OnHideModalDelete'
@@ -97,26 +92,19 @@
 @* <DialogMessage Messages="@messages" /> *@
 
 @code {
-	CustomerService					service;
 
 	protected override async Task OnInitializedAsync() {
-		var querys = new QueryCustomers();
-		var response = await refit.GetCustomers(querys);
+		var response = await refit.GetCustomers(service.Querys);
 		var pagination = response.Headers.GetValues("X-Pagination").FirstOrDefault();
 		if (pagination is not null) {
-			service = new CustomerService {
-				Querys = querys,
-				ActualCustomer = new Customer(),
-				Pagination = JsonSerializer.Deserialize<PaginationHeader>(pagination),
-				CustomerList = response.Content
-			};
+			service.Pagination = JsonSerializer.Deserialize<PaginationHeader>(pagination);
 		}
+		service.CustomerList = response.Content;
 		@* editContext = new EditContext(customer); *@
 	}
 
 	private async Task OnPageChangedAsync(int newPageNumber)
     {
-		QueryCustomers test = new();
 		service.Querys.PageNumber = newPageNumber;
 		service.Querys.PageSize = 2;
 		var response = await refit.GetCustomers(service.Querys);
