@@ -42,7 +42,7 @@ public class CustomersController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(AuthenticationSchemes = "Bearer")]
+    // [Authorize(AuthenticationSchemes = "Bearer")]
     public ActionResult<CustomerDTO> PostCustomer([FromBody] CustomerDTO requestCustomer) {
         if (requestCustomer is null) {
             return BadRequest();
@@ -54,7 +54,7 @@ public class CustomersController : ControllerBase
     }
 
     [HttpPut("{id:int:min(1)}")]
-    [Authorize]
+    // [Authorize]
     public ActionResult<CustomerDTO> Put(int id, [FromBody] CustomerDTO requestCustomer) {
         if (requestCustomer is null) {
             return BadRequest();
@@ -65,7 +65,7 @@ public class CustomersController : ControllerBase
         return Ok(responseCustomer);
     }
 
-    [Authorize(Policy = "AdminOnly")]
+    // [Authorize(Policy = "AdminOnly")]
     [HttpDelete("{id:int}")]
     public ActionResult<CustomerDTO> Delete(int id) {
         var customerToDelete = _unitDB.CustomerRepository?.Get(c => c.Id == id);

@@ -2,7 +2,11 @@
 @inject HttpClient Http
 @using System.ComponentModel.DataAnnotations;
 @using CarShopView.Models;
+@using CarShopView.Services
+@using CarShopView.Repositories
 @using System.Net;
+@inject IAuthService auth
+@inject IVehicleRepository refit
 
 <PageTitle>Veiculos</PageTitle>
 
@@ -21,7 +25,7 @@
         <Button Class="col bi bi-car-front-fill" Color="ButtonColor.Success" @onclick='OnShowModalBuyVehicle'> Comprar Veiculo</Button>
     </div>
 </nav>
-
+<h1>@auth.Token</h1>
 @if (vehicles == null)
 {
     <p><em>Carregando Veiculos...</em></p>
@@ -350,8 +354,8 @@ else
     }
 
     protected override async Task OnInitializedAsync() {
-        var list = await Http.GetFromJsonAsync<Vehicle[]>(route);
-        vehicles = list;
+        var list = await refit.GetVehicles(auth.Token);
+        vehicles = list.Content;
         dateTimeModelYear = DateTime.Now;
         dateTimeYearManufacture = DateTime.Now;
         vehicle = new Vehicle();

@@ -5,10 +5,10 @@ namespace CarShopView.Services;
 
 public interface ICustomerService {
     public int                          CurrentPageNumber { get; set; }
-    public IQueryCustomers?              Querys { get; set; }
-    public IPaginationHeader?            Pagination { get; set; }
-    public IEnumerable<ICustomer>?       CustomerList { get; set; }
-    public ICustomer?                    ActualCustomer { get; set; }
+    public IQueryCustomers?             Querys { get; set; }
+    public IPaginationHeader?           Pagination { get; set; }
+    public IEnumerable<ICustomer>?      CustomerList { get; set; }
+    public ICustomer?                   ActualCustomer { get; set; }
 }
 
 public class CustomerService : ICustomerService {

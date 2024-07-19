@@ -1,4 +1,5 @@
 @using CarShopView.Models;
+@inject ICustomer customer
 
 <EditForm Model="@customer" OnValidSubmit="@(() => OnSubmit.Invoke(customer))">
     <DataAnnotationsValidator />
@@ -20,18 +21,17 @@
     <ValidationMessage For="@(() => customer.CellPhone)" />
 
     <div class="mt-3">
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success">Enviar</button>
     </div>
 </EditForm>
 
 @code {
-    Customer customer = new();
 
     [Parameter]
-    public Customer Customer { get { return customer; } set { customer = value; } }
+    public ICustomer Customer { get { return customer; } set { customer = value; } }
 
     [Parameter]
-    public Func<Customer, Task> OnSubmit { get; set; }
+    public Func<ICustomer, Task> OnSubmit { get; set; }
 
     [Parameter]
     public string FormName { get; set; }
