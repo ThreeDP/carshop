@@ -40,8 +40,7 @@ public class TransactionDTO : IValidatableObject {
     [JsonPropertyName("value")]
     public decimal          Value { get; set; }
 
-    [Required]
-    [JsonPropertyName("type_transation")]
+    [JsonIgnore]
     public string?          Type { get; set; }
 
     [Required]
@@ -63,10 +62,8 @@ public class TransactionDTO : IValidatableObject {
             this.Type = other.FinancialTransactionType;
             this.CustomerId = other.CustomerId;
             this.VehicleId = other.VehicleId;
-            if (other.Customer is not null)
-                this.Customer = new CustomerDTO(other.Customer);
-            if (other.Vehicle is not null)
-                this.Vehicle = new VehicleDTO(other.Vehicle);
+            this.Customer = new CustomerDTO(other.Customer);
+            this.Vehicle = new VehicleDTO(other.Vehicle);
         }
     }
 
@@ -79,6 +76,13 @@ public class TransactionDTO : IValidatableObject {
                         nameof(this.Type)
                 });
             }
+        }
+        if (this.Vehicle is not null && this.VehicleId != this.Vehicle.Id) {
+            yield return new ValidationResult("Id inválido.",
+                new []{
+                    nameof(this.VehicleId),
+                    nameof(this.Vehicle.Id)
+            });
         }
     }
 }

@@ -4,7 +4,7 @@ namespace CarShop.Models;
 
 public class ApplicationUser : IdentityUser {
     public string? RefreshToken { get; set; }
-    private DateTime _rtet = DateTime.Now;
+    private DateTime _rtet = DateTime.Now.ToUniversalTime();
     public DateTime RefreshTokenExpiryTime { 
         get {
             return _rtet;

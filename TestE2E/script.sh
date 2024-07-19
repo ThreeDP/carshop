@@ -15,4 +15,4 @@ mkdir -p $PATH_OUT
 }
 
 
-rm -rf $PATH_OUT
+rm -rf $PATH_

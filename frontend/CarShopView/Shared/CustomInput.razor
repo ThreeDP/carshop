@@ -1,0 +1,29 @@
+@typeparam TValue
+
+<div class="form-group mt-3">
+    <label for="@Id">@InputName: </label>
+    <input id="@Id" class="form-control" @bind-value="Value"  @oninput="UpdateValue" />
+</div>
+
+@code {
+    [Parameter]
+    public string InputName { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public TValue Value { get; set; }
+
+    [Parameter]
+    public EventCallback<TValue> ValueChanged { get; set; }
+
+    private void UpdateValue(ChangeEventArgs e)
+    {
+        if (e.Value is TValue value)
+        {
+            Value = value;
+            ValueChanged.InvokeAsync(Value);
+        }
+    }
+}

@@ -1,0 +1,29 @@
+@using CarShopView.Models;
+@inject IUser user
+
+<EditForm Model="@user" OnValidSubmit="@(() => OnSubmit.Invoke(user))">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    <CustomInput TValue="string" InputName="Usuário" Id='@(FormName + "-name")' @bind-Value="user.Username"/>
+    <ValidationMessage For="@(() => user.Username)" />
+
+    <CustomInput TValue="string" InputName="Senha" Id='@(FormName + "-name")' @bind-Value="user.Password"/>
+    <ValidationMessage For="@(() => user.Password)" />
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-success">Login</button>
+    </div>
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public IUser User { get { return user; } set { user = value; } }
+
+    [Parameter]
+    public Func<IUser, Task> OnSubmit { get; set; }
+
+    [Parameter]
+    public string FormName { get; set; }
+}

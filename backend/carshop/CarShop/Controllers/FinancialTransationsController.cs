@@ -3,6 +3,7 @@ using CarShop.Models;
 using CarShop.Repositories;
 using CarShop.DTO;
 using CarShop.HandlerQueryStrings;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarShop.Controllers;
 
@@ -19,6 +20,7 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpGet("valores")]
+    [Authorize]
     public ActionResult<IEnumerable<TransactionResponseDTO>> GetTransactionsValues([FromQuery] TransactionQueryFilter filter) {
         var transactions = _unitDB.TransactionRepository?.GetTransactionsWithFilter(filter);
         Response.Headers.Append("X-Pagination", transactions?.CreateMetaData());
@@ -27,6 +29,7 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public ActionResult<IEnumerable<TransactionDTO>> GetTransactions([FromQuery] TransactionQueryFilter filter) {
         var transactions = _unitDB.TransactionRepository?.GetTransactionsWithFilter(filter);
         Response.Headers.Append("X-Pagination", transactions?.CreateMetaData());
@@ -35,6 +38,7 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpGet("{id:int:min(1)}", Name="nova-transacao")]
+    [Authorize]
     public ActionResult<TransactionDTO>    GetTransaction(int id) {
         var transaction = _unitDB.TransactionRepository?.Get(v => v.Id == id);
         if (transaction is null) {
@@ -43,20 +47,37 @@ public class FinancialTransationsController : ControllerBase
         return Ok(new TransactionDTO(transaction));
     }
 
-    [HttpPost]
-    public ActionResult<TransactionDTO> PostTransaction(
+    [HttpPost("compra")]
+    [Authorize]
+    public ActionResult<TransactionDTO> PostTransactionBuy(
         [FromBody] TransactionDTO mov) {
-        if (mov is null) {
+        if (mov is null || mov.Vehicle is null) {
             return BadRequest();
         }
-        // if (mov.Vehicle is not null) {
-        //      _unitDB.VehicleRepository?.Update(new VehicleDB(mov.Vehicle));
-        //      mov.Vehicle = null;
-        // }
-        mov.Value = Math.Abs(mov.Value);
-        if (mov.Type == "COMPRA") {
-            mov.Value = -(mov.Value);
+        mov.Type = "COMPRA";
+        mov.Value = -(Math.Abs(mov.Value));
+        var newTransaction = _unitDB.TransactionRepository?.Add(new FinancialTransactionsDB(mov));
+        _unitDB.Commit();
+        var responseTransaction = new TransactionDTO(newTransaction);
+        return new CreatedAtRouteResult("nova-transacao", 
+            new {id = responseTransaction.Id}, responseTransaction);
+    }
+
+    [HttpPost("venda")]
+    [Authorize]
+    public ActionResult<TransactionDTO> PostTransactionSell(
+        [FromBody] TransactionDTO mov) {
+        if (mov is null || mov.Vehicle is null) {
+            return BadRequest();
         }
+        var vehicleOld = _unitDB.VehicleRepository?.Get(v => v.Id == mov.VehicleId);
+        if (vehicleOld is not null && vehicleOld.Id == mov.Vehicle.Id) {
+            vehicleOld.Copy(mov.Vehicle);
+            _unitDB.VehicleRepository?.Update(vehicleOld);
+            mov.Vehicle = null;
+        }
+        mov.Type = "VENDA";
+        mov.Value = (Math.Abs(mov.Value));
         var newTransaction = _unitDB.TransactionRepository?.Add(new FinancialTransactionsDB(mov));
         _unitDB.Commit();
         var responseTransaction = new TransactionDTO(newTransaction);
@@ -65,6 +86,7 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpPut("{id:int:min(1)}")]
+    [Authorize]
     public ActionResult<TransactionDTO> PutTrnsaction([FromBody] TransactionDTO mov) {
         if (mov is null) {
             return BadRequest();
@@ -74,6 +96,7 @@ public class FinancialTransationsController : ControllerBase
         return Ok(new TransactionDTO(transaction));
     }
 
+    [Authorize(Policy = "AdminOnly")]
     [HttpDelete("{id:int:min(1)}")]
     public ActionResult<TransactionDTO> DeleteTransaction(int id) {
         var transactionToDel = _unitDB.TransactionRepository?.Get(t => t.Id == id);

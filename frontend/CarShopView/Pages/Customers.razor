@@ -1,330 +1,219 @@
 ﻿@page "/clientes"
-@inject HttpClient Http
-@using System.ComponentModel.DataAnnotations;
-@using CarShopView.Models;
-@using System.Net;
+@using System.ComponentModel.DataAnnotations
+@using CarShopView.Repositories
+@using CarShopView.Models
+@using System.Net
+@using System.Text.Json
+@using CarShopView.Services;
+@inject ICustomerRepository refit
+@inject ICustomerService service
 
 <PageTitle>Clientes</PageTitle>
 
 <h1>Painel de Clientes</h1>
 <nav class="row row-cols-auto justify-content-end mb-5">
-    <div class="col justify-content-md-end">
-        <AutoComplete @bind-Value="customerInputName"
+	<div class="col justify-content-md-end">
+        <AutoComplete @bind-Value="customerName"
                       TItem="Customer"
                       DataProvider="CustomersDataProvider"
                       PropertyName="Name"
-                      Placeholder="Procure por clientes..."
-                      OnChanged="(Customer customerInput) => OnAutoCompleteChanged(customerInput)"
-                      Size="AutoCompleteSize.Small" />
+                      Placeholder="Search a customer..."
+                      OnChanged="(Customer customer) => OnAutoCompleteChanged(customer)" />
     </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <Button Class="col bi bi-person-plus-fill" Color="ButtonColor.Primary" @onclick='OnShowModalRegister'> Cadastrar Cliente</Button>
-    </div>
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<Button Class="col bi bi-person-plus-fill" Color="ButtonColor.Primary" @onclick='OnShowModalRegister'> Cadastrar Cliente</Button>
+	</div>
 </nav>
 
-@if (customers == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Tipo de Documento</th>
-                <th>Numero Documento</th>
-                <th>Celular</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var c in customers)
-            {
-                <tr>
-                    <td>@c.Name</td>
-                    <td>@c.DocType</td>
-                    <td>@c.DocNumber</td>
-                    <td>@c.CellPhone</td>
-                    <td><button class="btn btn-primary bi bi-pencil-square" @onclick="() => OnShowModalEdit(c.Id)"></button></td>
-                    <td><button class="btn btn-danger bi bi-trash3" @onclick='() => OnShowModalDelete(c.Id)'></button></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<Grid TItem="ICustomer"
+	Class="table table-hover table-bordered table-striped"
+	Data="service.CustomerList"
+	AllowSorting="true">
 
-<Modal @ref="deleteCustomerModal"
-    OnHidden='OnHideModalDelete'
-    Title="Deseja prosseguir com a exclusão?">
-    <BodyTemplate>
-        Ao confirmar essa ação o cliente @customer.Name será excluido.
-    </BodyTemplate>
-    <FooterTemplate>
-        <Button Color="ButtonColor.Secondary" @onclick='OnHideModalDelete'>Close</Button>
-        <Button Color="ButtonColor.Primary" @onclick='HandleDeleteCustomerSubmit'>Save changes</Button>
-    </FooterTemplate>
+	<GridColumns>
+		<GridColumn TItem="ICustomer" HeaderText="Nome" SortKeySelector="@(item => item.Name)">
+			@context.Name
+		</GridColumn>
+		<GridColumn TItem="ICustomer" HeaderText="Tipo de documento" SortKeySelector="@(item => item.DocType)">
+			@context.DocType
+		</GridColumn>
+		<GridColumn TItem="ICustomer" HeaderText="Número do documento" Sortable="false">
+			@context.DocNumber
+		</GridColumn>
+		<GridColumn TItem="ICustomer" Sortable="false">
+			<button class="btn btn-primary bi bi-pencil-square" @onclick="() => OnShowModalEdit(context)"></button> 
+		</GridColumn>
+		<GridColumn TItem="ICustomer" Sortable="false">
+			<button class="btn btn-danger bi bi-trash3" @onclick='() => OnShowModalDelete(context)'></button> 
+		</GridColumn>
+	</GridColumns>
+</Grid>
+
+<Modal @ref="editCustomerModal"
+	OnHidden='OnHideModalEdit'
+	Title="Editar Cliente">
+	<BodyTemplate>
+		<CustomerForm FormName="Editar Cliente" Customer="@service.ActualCustomer" OnSubmit="@HandleEditCustomerSubmit" />
+	</BodyTemplate>
 </Modal>
 
 <Modal @ref="registerCustomerModal"
-    OnShow='OnShowModalRegister'
-    OnHidden='OnHideModalRegister'
-    Title="Cadastrar Cliente">
-    <BodyTemplate>
-        <EditForm Model="@customer" OnValidSubmit="@HandleInsertCustomerSubmit">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
-
-            <div class="form-group mt-3">
-                <label for="name">Name: <span class="text-danger">*</span></label>
-                <InputText id="name" class="form-control" @bind-Value="@customer.Name" />
-                <ValidationMessage For="@(() => customer.Name)" />
-            </div>
-
-            <div class="form-group mt-3">
-                <label for="url">Image de Perfil:</label>
-                <InputText id="url" class="form-control" @bind-Value="@customer.UrlImage" />
-                <ValidationMessage For="@(() => customer.UrlImage)" />
-            </div>
-
-            <div class="form-group mt-3">
-                <label for="documentType">Tipo de Documento: <span class="text-danger">*</span></label>
-                <InputSelect id="documentType" class="form-control" @bind-Value="customer.DocType">
-                    <option value="">Selecione uma opção</option>
-                    <option value="CPF">CPF</option>
-                    <option value="CNPJ">CNPJ</option>
-                </InputSelect>
-                <ValidationMessage For="@(() => customer.DocType)" />
-            </div>
-
-            <div class="form-group mt-3">
-                <label for="documentNumber">Número do documento: <span class="text-danger">*</span></label>
-                <InputText id="documentNumber" class="form-control" @bind-Value="@customer.DocNumber" />
-                <ValidationMessage For="@(() => customer.DocNumber)" />
-            </div>
-
-            <div class="form-group mt-3">
-                <label for="cellphone">Celular: <span class="text-danger">*</span></label>
-                <InputText id="cellphone" class="form-control" @bind-Value="@customer.CellPhone" />
-                <ValidationMessage For="@(() => customer.CellPhone)" />
-            </div>
-
-            <div class="mt-3">
-                <button type="submit" class="btn btn-success">Submit</button>
-            </div>
-        </EditForm>
-    </BodyTemplate>
+	OnShow='OnShowModalRegister'
+	OnHidden='OnHideModalRegister'
+	Title="Cadastrar Cliente">
+	<BodyTemplate>
+		<CustomerForm FormName="register" Customer="@service.ActualCustomer" OnSubmit="@HandleInsertCustomerSubmit"/>
+	</BodyTemplate>
 </Modal>
 
-<Modal @ref="editCustomerModal"
-    OnHidden='OnHideModalEdit'
-    Title="Editar Cliente">
-    <BodyTemplate>
-        <EditForm Model="@customer" OnValidSubmit="@HandleEditCustomerSubmit">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
-
-            <div class="form-group mt-3">
-                <label for="name">Name:</label>
-                <InputText id="name" class="form-control" @bind-Value="@customer.Name" />
-                <ValidationMessage For="@(() => customer.Name)" />
-            </div>
-
-            <div class="form-group mt-3">
-                <label for="url">Image de Perfil:</label>
-                <InputText id="url" class="form-control" @bind-Value="@customer.UrlImage" />
-                <ValidationMessage For="@(() => customer.UrlImage)" />
-            </div>
-
-            <div class="form-group mt-3">
-                <label for="documentType">Tipo de Documento:</label>
-                <InputSelect id="documentType" class="form-control" @bind-Value="customer.DocType">
-                    <option value="">Selecione uma opção</option>
-                    <option value="CPF">CPF</option>
-                    <option value="CNPJ">CNPJ</option>
-                </InputSelect>
-                <ValidationMessage For="@(() => customer.DocType)" />
-            </div>
-
-            <div class="form-group mt-3">
-                <label for="documentNumber">Número do documento:</label>
-                <InputText id="documentNumber" class="form-control" @bind-Value="@customer.DocNumber" />
-                <ValidationMessage For="@(() => customer.DocNumber)" />
-            </div>
-
-            <div class="form-group mt-3">
-                <label for="cellphone">Celular:</label>
-                <InputText id="cellphone" class="form-control" @bind-Value="@customer.CellPhone" />
-                <ValidationMessage For="@(() => customer.CellPhone)" />
-            </div>
-
-            <div class="mt-3">
-                <button type="submit" class="btn btn-success">Submit</button>
-            </div>
-        </EditForm>
-    </BodyTemplate>
+ <Modal @ref="deleteCustomerModal"
+	OnHidden='OnHideModalDelete'
+	Title="Deseja prosseguir com a exclusão?">
+	<BodyTemplate>
+		Ao confirmar essa ação o cliente @service.ActualCustomer.Name será excluido.
+	</BodyTemplate>
+	<FooterTemplate>
+		<Button Color="ButtonColor.Secondary" @onclick='OnHideModalDelete'>Cancelar</Button>
+		<Button Color="ButtonColor.Danger" @onclick='HandleDeleteCustomerSubmit'>Confirmar</Button>
+	</FooterTemplate>
 </Modal>
 
-<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopRight" />
+<Pagination ActivePageNumber="@service.CurrentPageNumber"
+            TotalPages="@service.Pagination.TotalPages"
+            PageChanged="OnPageChangedAsync" />
 
+<text>Current Page Number: @service.CurrentPageNumber</text>
+
+<DialogMessage Messages="@messages" />
 
 @code {
-    @* Config Route *@
-    const string                    route = "clientes";
-    private int                     deleteId = 0;
+	private Modal                   editCustomerModal = default!;
+	private Modal                   deleteCustomerModal = default!;
+	private Modal                   registerCustomerModal = default!;
 
-    @* Config Modals *@
-    private Modal                   registerCustomerModal = default!;
-    private Modal                   deleteCustomerModal = default!;
-    private Modal                   editCustomerModal = default!;
+	// Config input context
+	private EditContext?            editContext;
 
-    @* Config input context *@
-    private EditContext?            editContext;
+	// Config Info Message
+	private List<ToastMessage> messages = new List<ToastMessage>();
+	private void ShowMessage(ToastMessage toastType) => messages.Add(DialogMessage.CreateToastMessage(toastType));
 
-    @* Config Info Message *@
-    List<ToastMessage> messages = new List<ToastMessage>();
-    private void ShowMessage(ToastMessage toastType) => messages.Add(CreateToastMessage(toastType));
+	private void ResetCustomer() {
+		service.ActualCustomer = new Customer();
+		editContext = new EditContext(service.ActualCustomer);
+	}
 
-    @* Config search Input *@
-    private string?                 customerInputName;
+	protected override async Task OnInitializedAsync() {
+		var response = await refit.GetCustomers(service.Querys);
+		var pagination = response.Headers.GetValues("X-Pagination").FirstOrDefault();
+		if (pagination is not null) {
+			service.Pagination = JsonSerializer.Deserialize<PaginationHeader>(pagination);
+		}
+		service.CustomerList = response.Content;
+		editContext = new EditContext(service.ActualCustomer);
+	}
 
-    @* Response and Request *@
-    private Customer                customer;
-    private IEnumerable<Customer>?  customers;
-
-    private void ResetCustomer() {
-        customer = new Customer();
-        editContext = new EditContext(customer);
-    }
-
-    private async Task OnShowModalDelete(int id) {
-        customer = await Http.GetFromJsonAsync<Customer?>($"{route}/{id}");
-        await deleteCustomerModal.ShowAsync();
-    }
-
-    private async Task OnHideModalDelete() {
-        ResetCustomer();
-        await deleteCustomerModal.HideAsync();
-    }
-
-    private async Task OnShowModalEdit(int id) {
-        customer = await Http.GetFromJsonAsync<Customer?>($"{route}/{id}");
-        await editCustomerModal.ShowAsync();
-    }
-
-    private async Task OnHideModalEdit() {
-        ResetCustomer();
-        await editCustomerModal.HideAsync();
-    }
-
-    private async Task OnShowModalRegister() {
-        await registerCustomerModal.ShowAsync();
-    }
-
-    private async Task OnHideModalRegister() {
-        ResetCustomer();
-        await registerCustomerModal.HideAsync();
-    }
-
-    private ToastMessage CreateToastMessage(ToastMessage toastType) {
-        return toastType;
-    }
-
-    private async Task<AutoCompleteDataProviderResult<Customer>> CustomersDataProvider(AutoCompleteDataProviderRequest<Customer> request) {
-        customers = await GetCustomers(request.Filter.Value);
-        return await Task.FromResult(request.ApplyTo(customers.OrderBy(Customer => Customer.Name)));
-    }
-
-    private async Task<IEnumerable<Customer>> GetCustomers(string input) {
-        return await Http.GetFromJsonAsync<Customer[]?>($"{route}/?name={input}&range=1000");
-    }
-
-    private void OnAutoCompleteChanged(Customer customerInput) {
-        Console.WriteLine($"'{customerInput?.Name}' selected.");
-        StateHasChanged();
-    }
-
-    protected override async Task OnInitializedAsync() {
-        var list = await Http.GetFromJsonAsync<Customer[]>(route);
-        customers = list;
-        customer = new Customer();
-        editContext = new EditContext(customer);
-    }
-
-    private class ToastErrorMessage : ToastMessage
+	private async Task OnPageChangedAsync(int newPageNumber)
     {
-        public ToastErrorMessage(string title, string message) {
-            Type = ToastType.Danger;
-            Title = title;
-            HelpText = $"{DateTime.Now}";
-            Message = $"{message} {DateTime.Now}";
-            AutoHide = true;
-        }
+		service.Querys.PageNumber = newPageNumber;
+		service.Querys.PageSize = 2;
+		var response = await refit.GetCustomers(service.Querys);
+		var pagination = response.Headers.GetValues("X-Pagination").FirstOrDefault();
+		if (pagination is not null) {
+			service.Pagination = JsonSerializer.Deserialize<PaginationHeader>(pagination);
+		}
+		service.CustomerList = response.Content;
+        await Task.Run(() => { service.CurrentPageNumber = newPageNumber; });
     }
 
-    private class ToastWarningMessage : ToastMessage
+	private async Task OnShowModalEdit(ICustomer selectedCustomer) {
+		service.ActualCustomer = selectedCustomer;
+		await editCustomerModal.ShowAsync();
+	}
+
+	private async Task OnHideModalEdit() {
+		ResetCustomer();
+		await editCustomerModal.HideAsync();
+	}
+
+	private async Task HandleEditCustomerSubmit(ICustomer c) {
+		var response = await refit.PutCustomer(c.Id, c);
+		if (response.StatusCode == HttpStatusCode.OK) {
+			ShowMessage(new DialogMessage.ToastSucessMessage("Cliente editado", "o cliente foi editado com sucesso."));
+			OnHideModalEdit();
+		} else if (response.StatusCode == HttpStatusCode.InternalServerError) {
+			ShowMessage(new DialogMessage.ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
+			OnHideModalEdit();
+		} else {
+			ShowMessage(new DialogMessage.ToastWarningMessage("Informações incorretas", "error ao processar dados."));
+		}
+	}
+
+	private async Task OnShowModalDelete(ICustomer selectedCustomer) {
+		service.ActualCustomer = selectedCustomer;
+		await deleteCustomerModal.ShowAsync();
+	}
+
+	private async Task OnHideModalDelete() {
+		ResetCustomer();
+		await deleteCustomerModal.HideAsync();
+	}
+	
+	private async Task HandleDeleteCustomerSubmit() {
+		var response = await refit.DeleteCustomer(service.ActualCustomer.Id);
+		if (response.StatusCode == HttpStatusCode.OK) {
+			ShowMessage(new DialogMessage.ToastSucessMessage("Cliente deletado", "o cliente foi deletado com sucesso."));
+			OnHideModalDelete();
+		} else if (response.StatusCode == HttpStatusCode.InternalServerError) {
+			ShowMessage(new DialogMessage.ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
+			OnHideModalDelete();
+		} else {
+			ShowMessage(new DialogMessage.ToastWarningMessage("Informações incorretas", "error ao processar dados."));
+		}
+	}
+
+	private async Task OnShowModalRegister() {
+		await registerCustomerModal.ShowAsync();
+	}
+
+	private async Task OnHideModalRegister() {
+		ResetCustomer();
+		await registerCustomerModal.HideAsync();
+	}
+
+	private async Task HandleInsertCustomerSubmit(ICustomer customer) {
+		var validInputs = (editContext?.Validate() ?? false);
+
+		if (validInputs) {
+			var response = await refit.PostCustomer(customer);
+			if (response.StatusCode == HttpStatusCode.Created) {
+				ShowMessage(new DialogMessage.ToastSucessMessage("Cliente cadastrado", "o cliente foi cadastrado com sucesso."));
+				OnHideModalRegister();
+			} else if (response.StatusCode == HttpStatusCode.InternalServerError) {
+				ShowMessage(new DialogMessage.ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
+				OnHideModalRegister();
+			} else {
+				ShowMessage(new DialogMessage.ToastWarningMessage("Informações incorretas", "error ao processar dados."));
+			}
+		}
+	}
+
+	private string customerName = default!;
+
+	private async Task<AutoCompleteDataProviderResult<Customer>> CustomersDataProvider(AutoCompleteDataProviderRequest<Customer> request)
     {
-        public ToastWarningMessage(string title, string message) {
-            Type = ToastType.Warning;
-            Title = title;
-            HelpText = $"{DateTime.Now}";
-            Message = $"{message} {DateTime.Now}";
-            AutoHide = true;
-        }
+		service.Querys.Name = request.Filter.Value;
+        var response = await refit.GetCustomers(service.Querys);
+		var customers = response.Content;
+		service.CustomerList = response.Content;
+		var pagination = response.Headers.GetValues("X-Pagination").FirstOrDefault();
+		if (pagination is not null) {
+			service.Pagination = JsonSerializer.Deserialize<PaginationHeader>(pagination);
+		}
+        return await Task.FromResult(new AutoCompleteDataProviderResult<Customer> { Data = customers, TotalCount = customers.Count() });
     }
 
-    private class ToastSucessMessage : ToastMessage
-    {
-        public ToastSucessMessage(string title, string message) {
-            Type = ToastType.Success;
-            Title = title;
-            HelpText = $"{DateTime.Now}";
-            Message = $"{message} {DateTime.Now}";
-            AutoHide = true;
-        }
-    }
+    private async void OnAutoCompleteChanged(Customer customer) {
 
-    private async Task HandleInsertCustomerSubmit() {
-        var validInputs = (editContext?.Validate() ?? false);
-
-        if (validInputs) {
-            var response = await Http.PostAsJsonAsync(route, customer);
-            if (response.StatusCode == HttpStatusCode.Created) {
-                ShowMessage(new ToastSucessMessage("Cliente cadastrado", "o cliente foi cadastrado com sucesso."));
-                OnHideModalRegister();
-            } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
-                ShowMessage(new ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
-                OnHideModalRegister();
-            } else {
-                ShowMessage(new ToastWarningMessage("Informações incorretas", "error ao processar dados."));
-            }
-        }
-    }
-
-    private async Task HandleEditCustomerSubmit() {
-        var response = await Http.PutAsJsonAsync($"{route}/{customer.Id}", customer);
-        if (response.StatusCode == HttpStatusCode.OK) {
-            ShowMessage(new ToastSucessMessage("Cliente editado", "o cliente foi editado com sucesso."));
-            OnHideModalEdit();
-        } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
-            ShowMessage(new ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
-            OnHideModalEdit();
-        } else {
-            ShowMessage(new ToastWarningMessage("Informações incorretas", "error ao processar dados."));
-        }
-    }
-
-    private async Task HandleDeleteCustomerSubmit() {
-        var response = await Http.DeleteAsync($"{route}/{customer.Id}");
-        if (response.StatusCode == HttpStatusCode.OK) {
-            ShowMessage(new ToastSucessMessage("Cliente deletado", "o cliente foi deletado com sucesso."));
-            OnHideModalDelete();
-        } else if (response.StatusCode == HttpStatusCode.InternalServerError) {
-            ShowMessage(new ToastErrorMessage("Error ao processar sua solicitação", "Ocorreu um erro ao processar sua mensagem tente mais tarde..."));
-            OnHideModalDelete();
-        } else {
-            ShowMessage(new ToastWarningMessage("Informações incorretas", "error ao processar dados."));
-        }
-    }
+	}
 }

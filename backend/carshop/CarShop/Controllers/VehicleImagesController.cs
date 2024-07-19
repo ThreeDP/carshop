@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using CarShop.Models;
 using CarShop.Repositories;
 using CarShop.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarShop.Controllers;
 
@@ -16,6 +17,7 @@ public class VehicleImagesController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public ActionResult<IEnumerable<VehicleImageDTO>> GetImages() {
         var images = _unitDB.VehicleImageRepository?.GetAll();
         var responseImages = images?.Select(i => new VehicleImageDTO(i)).ToList();
@@ -23,6 +25,7 @@ public class VehicleImagesController : ControllerBase
     }
 
     [HttpGet("{id:int:min(1)}", Name="obter-imagem-veiculo")]
+    [Authorize]
     public ActionResult<VehicleImageDTO> GetImage(int id) {
         var image = _unitDB.VehicleImageRepository?.Get( i => i.VehicleImageDBId == id);
         if (image is null) {
@@ -32,6 +35,7 @@ public class VehicleImagesController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public ActionResult<VehicleImageDTO> PostImage([FromBody] VehicleImageDTO img) {
         if (img is null) {
             return BadRequest();
@@ -44,6 +48,7 @@ public class VehicleImagesController : ControllerBase
     }
 
     [HttpPut("{id:int:min(1)}")]
+    [Authorize]
     public ActionResult<VehicleImageDTO> PutImage(int id, [FromBody] VehicleImageDTO img) {
         if (img is null) {
             return BadRequest();
@@ -54,6 +59,7 @@ public class VehicleImagesController : ControllerBase
     }
 
     [HttpDelete("id:int:min(1)")]
+    [Authorize]
     public ActionResult<VehicleImageDTO> DeleteImage(int id) {
         var image = _unitDB.VehicleImageRepository?.Get(i => i.VehicleImageDBId == id);
         if (image is null) {

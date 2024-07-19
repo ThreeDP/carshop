@@ -1,0 +1,43 @@
+<Toasts class="p-3" Messages="Messages" Placement="ToastsPlacement.TopRight" />
+
+@code {
+    [Parameter]
+    public List<ToastMessage> Messages { get; set; }
+
+    public static ToastMessage CreateToastMessage(ToastMessage toastType) {
+        return toastType;
+    }
+
+    public class ToastErrorMessage : ToastMessage
+    {
+        public ToastErrorMessage(string title, string message) {
+            Type = ToastType.Danger;
+            Title = title;
+            HelpText = $"{DateTime.Now}";
+            Message = $"{message} {DateTime.Now}";
+            AutoHide = true;
+        }
+    }
+
+    public class ToastWarningMessage : ToastMessage
+    {
+        public ToastWarningMessage(string title, string message) {
+            Type = ToastType.Warning;
+            Title = title;
+            HelpText = $"{DateTime.Now}";
+            Message = $"{message} {DateTime.Now}";
+            AutoHide = true;
+        }
+    }
+
+    public class ToastSucessMessage : ToastMessage
+    {
+        public ToastSucessMessage(string title, string message) {
+            Type = ToastType.Success;
+            Title = title;
+            HelpText = $"{DateTime.Now}";
+            Message = $"{message} {DateTime.Now}";
+            AutoHide = true;
+        }
+    }
+}

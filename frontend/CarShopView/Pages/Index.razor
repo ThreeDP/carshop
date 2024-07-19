@@ -2,9 +2,25 @@
 @using System 
 @using System.IO
 @using Microsoft.AspNetCore.Hosting
+@using CarShopView.Models
+@using CarShopView.Repositories
+@inject IAuthService auth
+@inject IUserRepository refit
+@inject IUser user
 @* @inject ILogger<FileUpload1> Logger *@
 @* @inject IWebHostEnvironment Environment  *@
 
-<PageTitle>Inicio</PageTitle>
-
+<PageTitle>Login</PageTitle>
 <h1>Login</h1>
+
+<UserForm FormName="Login" User="@user" OnSubmit="@test"/>
+
+@code {
+    private async Task<IUser> test(IUser user) {
+        var response = await refit.Login(user);
+        auth.Token = response.Content.Token;
+        auth.RefreshToken = response.Content.RefreshToken;
+        Console.WriteLine($"Login: {response.Content.Token}");
+        return new User();
+    }
+}
