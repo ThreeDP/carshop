@@ -20,7 +20,7 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpGet("valores")]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public ActionResult<IEnumerable<TransactionResponseDTO>> GetTransactionsValues([FromQuery] TransactionQueryFilter filter) {
         var transactions = _unitDB.TransactionRepository?.GetTransactionsWithFilter(filter);
         Response.Headers.Append("X-Pagination", transactions?.CreateMetaData());
@@ -29,7 +29,7 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public ActionResult<IEnumerable<TransactionDTO>> GetTransactions([FromQuery] TransactionQueryFilter filter) {
         var transactions = _unitDB.TransactionRepository?.GetTransactionsWithFilter(filter);
         Response.Headers.Append("X-Pagination", transactions?.CreateMetaData());
@@ -38,7 +38,7 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpGet("{id:int:min(1)}", Name="nova-transacao")]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public ActionResult<TransactionDTO>    GetTransaction(int id) {
         var transaction = _unitDB.TransactionRepository?.Get(v => v.Id == id);
         if (transaction is null) {
@@ -48,7 +48,7 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpPost("compra")]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public ActionResult<TransactionDTO> PostTransactionBuy(
         [FromBody] TransactionDTO mov) {
         if (mov is null || mov.Vehicle is null) {
@@ -64,7 +64,7 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpPost("venda")]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public ActionResult<TransactionDTO> PostTransactionSell(
         [FromBody] TransactionDTO mov) {
         if (mov is null || mov.Vehicle is null) {
@@ -86,7 +86,7 @@ public class FinancialTransationsController : ControllerBase
     }
 
     [HttpPut("{id:int:min(1)}")]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public ActionResult<TransactionDTO> PutTrnsaction([FromBody] TransactionDTO mov) {
         if (mov is null) {
             return BadRequest();
@@ -96,7 +96,7 @@ public class FinancialTransationsController : ControllerBase
         return Ok(new TransactionDTO(transaction));
     }
 
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = "AdminOnly", AuthenticationSchemes = "Bearer")]
     [HttpDelete("{id:int:min(1)}")]
     public ActionResult<TransactionDTO> DeleteTransaction(int id) {
         var transactionToDel = _unitDB.TransactionRepository?.Get(t => t.Id == id);

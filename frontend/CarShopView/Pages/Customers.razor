@@ -2,11 +2,13 @@
 @using System.ComponentModel.DataAnnotations
 @using CarShopView.Repositories
 @using CarShopView.Models
+@using CarShopView.Querys
 @using System.Net
 @using System.Text.Json
 @using CarShopView.Services;
 @inject ICustomerRepository refit
 @inject ICustomerService service
+@inject IAuthService auth
 
 <PageTitle>Clientes</PageTitle>
 
@@ -104,7 +106,7 @@
 	}
 
 	protected override async Task OnInitializedAsync() {
-		var response = await refit.GetCustomers(service.Querys);
+		var response = await refit.GetCustomers(service.Querys, auth.Token);
 		var pagination = response.Headers.GetValues("X-Pagination").FirstOrDefault();
 		if (pagination is not null) {
 			service.Pagination = JsonSerializer.Deserialize<PaginationHeader>(pagination);
@@ -117,7 +119,7 @@
     {
 		service.Querys.PageNumber = newPageNumber;
 		service.Querys.PageSize = 2;
-		var response = await refit.GetCustomers(service.Querys);
+		var response = await refit.GetCustomers(service.Querys, auth.Token);
 		var pagination = response.Headers.GetValues("X-Pagination").FirstOrDefault();
 		if (pagination is not null) {
 			service.Pagination = JsonSerializer.Deserialize<PaginationHeader>(pagination);
@@ -137,7 +139,7 @@
 	}
 
 	private async Task HandleEditCustomerSubmit(ICustomer c) {
-		var response = await refit.PutCustomer(c.Id, c);
+		var response = await refit.PutCustomer(c.Id, c, auth.Token);
 		if (response.StatusCode == HttpStatusCode.OK) {
 			ShowMessage(new DialogMessage.ToastSucessMessage("Cliente editado", "o cliente foi editado com sucesso."));
 			OnHideModalEdit();
@@ -160,7 +162,7 @@
 	}
 	
 	private async Task HandleDeleteCustomerSubmit() {
-		var response = await refit.DeleteCustomer(service.ActualCustomer.Id);
+		var response = await refit.DeleteCustomer(service.ActualCustomer.Id, auth.Token);
 		if (response.StatusCode == HttpStatusCode.OK) {
 			ShowMessage(new DialogMessage.ToastSucessMessage("Cliente deletado", "o cliente foi deletado com sucesso."));
 			OnHideModalDelete();
@@ -185,7 +187,7 @@
 		var validInputs = (editContext?.Validate() ?? false);
 
 		if (validInputs) {
-			var response = await refit.PostCustomer(customer);
+			var response = await refit.PostCustomer(customer, auth.Token);
 			if (response.StatusCode == HttpStatusCode.Created) {
 				ShowMessage(new DialogMessage.ToastSucessMessage("Cliente cadastrado", "o cliente foi cadastrado com sucesso."));
 				OnHideModalRegister();
@@ -203,7 +205,7 @@
 	private async Task<AutoCompleteDataProviderResult<Customer>> CustomersDataProvider(AutoCompleteDataProviderRequest<Customer> request)
     {
 		service.Querys.Name = request.Filter.Value;
-        var response = await refit.GetCustomers(service.Querys);
+        var response = await refit.GetCustomers(service.Querys, auth.Token);
 		var customers = response.Content;
 		service.CustomerList = response.Content;
 		var pagination = response.Headers.GetValues("X-Pagination").FirstOrDefault();

@@ -22,7 +22,7 @@ public class CustomersController : ControllerBase
 
     [HttpGet]
     [ServiceFilter(typeof(CarShopLoggingFilter))]
-    //[Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public ActionResult<IEnumerable<CustomerDTO>> GetCustomers([FromQuery] CustomerQueryFilter filter) {
         _logger.LogInformation($"Get on /clientes with params [{filter}]");
         var customers = _unitDB.CustomerRepository?.GetCustomersWithFilter(filter);
@@ -31,7 +31,7 @@ public class CustomersController : ControllerBase
         return Ok(ResponseCustomers);
     }
 
-    //[Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [HttpGet("{id:int:min(1)}", Name="obter-cliente")]
     public ActionResult<CustomerDTO> GetCustomer(int id) {
         var customer = _unitDB.CustomerRepository?.Get(c => c.Id == id);
@@ -42,7 +42,7 @@ public class CustomersController : ControllerBase
     }
 
     [HttpPost]
-    // [Authorize(AuthenticationSchemes = "Bearer")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public ActionResult<CustomerDTO> PostCustomer([FromBody] CustomerDTO requestCustomer) {
         if (requestCustomer is null) {
             return BadRequest();
@@ -65,7 +65,7 @@ public class CustomersController : ControllerBase
         return Ok(responseCustomer);
     }
 
-    // [Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = "AdminOnly", AuthenticationSchemes = "Bearer")]
     [HttpDelete("{id:int}")]
     public ActionResult<CustomerDTO> Delete(int id) {
         var customerToDelete = _unitDB.CustomerRepository?.Get(c => c.Id == id);

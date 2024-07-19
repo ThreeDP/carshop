@@ -1,63 +1,51 @@
 ﻿@page "/movimentacoes"
-@inject HttpClient Http
+@using CarShopView.Repositories
+@using CarShopView.Services
 @using CarShopView.Models;
+@using CarShopView.Querys;
+@inject IAuthService auth
+@inject ITransactionsRepository refit
+@inject IQueryTransactions querys
 
 <PageTitle>Movimentações Financeiras</PageTitle>
 
 <h1>Movimentações Financeiras</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<Grid TItem="ITransactionResponse"
+	Class="table table-hover table-bordered table-striped"
+	Data="transactions"
+	AllowSorting="true">
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Tipo de Transação</th>
-                <th>Clientes</th>
-                <th>Veiculo</th>
-                <th>Valor (R$)</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Type</td>
-                    <td>@forecast.Customer</td>
-                    <td>@forecast.Vehicle</td>
-                    <td>@forecast.Value</td>
-                </tr>
-            }
-            <tr>
-                <th colspan="2"></th>
-                <th>Numero de Movimentações</th>
-                <th>Valor Total</th>
-            </tr>
-            <tr>
-                <td colspan="2"></td>
-                <td>@TotalMovimentation</td>
-                <td>@TotalValue</td>
-            </tr>
-        </tbody>
-    </table>
-}
+	<GridColumns>
+		<GridColumn TItem="ITransactionResponse" HeaderText="Tipo de Transação" SortKeySelector="@(item => item.Type)">
+			@context.Type
+		</GridColumn>
+		<GridColumn TItem="ITransactionResponse" HeaderText="Cliente" SortKeySelector="@(item => item.Customer)">
+			@context.Customer
+		</GridColumn>
+		<GridColumn TItem="ITransactionResponse" HeaderText="Veículo" SortKeySelector="@(item => item.Vehicle)">
+			@context.Vehicle
+		</GridColumn>
+		<GridColumn TItem="ITransactionResponse" HeaderText="Valor (R\$)" SortKeySelector="@(item => item.Value)">
+			@context.Value
+		</GridColumn>
+	</GridColumns>
+</Grid>
 
 @code {
-    private TransactionResponse[]? forecasts;
+    private IEnumerable<ITransactionResponse>? transactions;
     private decimal TotalValue = 0;
     private int     TotalMovimentation = 0;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<TransactionResponse[]>("movimentacoes/valores/?range=1000");
-        if (forecasts is not null) {
-            TotalValue = forecasts.Sum(f => f.Value);
-            TotalMovimentation = forecasts.Count();
+        transactions = new List<TransactionResponse>();
+        var response = await refit.GetTransactions(querys, auth.Token);
+        transactions = response.Content;
+        // Colocar essa parte como resposta da api no header
+        if (transactions is not null) {
+            TotalValue = transactions.Sum(f => f.Value);
+            TotalMovimentation = transactions.Count();
         }
     }
 }

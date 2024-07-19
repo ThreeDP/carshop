@@ -5,6 +5,7 @@ using Refit;
 using CarShopView.Repositories;
 using CarShopView.Models;
 using CarShopView.Services;
+using CarShopView.Querys;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -13,11 +14,18 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddBlazorBootstrap();
 builder.Services.AddHttpClient();
 builder.Configuration.AddEnvironmentVariables();
-builder.Services.AddScoped<ICustomer, Customer>();
-builder.Services.AddScoped<IQueryCustomers, QueryCustomers>();
-builder.Services.AddScoped<IPaginationHeader, PaginationHeader>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+
+builder.Services.AddScoped<ICustomer, Customer>();
 builder.Services.AddScoped<IUser, User>();
+
+builder.Services.AddScoped<ITransactionResponse, TransactionResponse>();
+
+builder.Services.AddScoped<IPaginationHeader, PaginationHeader>();
+builder.Services.AddScoped<IQueryPagination, QueryPagination>();
+builder.Services.AddScoped<IQueryCustomers, QueryCustomers>();
+builder.Services.AddScoped<IQueryTransactions, QueryTransactions>();
+
 builder.Services.AddSingleton<IAuthService, AuthService>();
 //var baseAddress = builder.Configuration["BaseAddress"] ?? throw new ArgumentException("Error: back end api not set.");
 builder.Services.AddScoped(sp =>
@@ -31,6 +39,9 @@ builder.Services.AddRefitClient<IUserRepository>().ConfigureHttpClient(c => {
     c.BaseAddress = new Uri("http://localhost:9000");
 });
 builder.Services.AddRefitClient<IVehicleRepository>().ConfigureHttpClient(c => {
+    c.BaseAddress = new Uri("http://localhost:9000");
+});
+builder.Services.AddRefitClient<ITransactionsRepository>().ConfigureHttpClient(c => {
     c.BaseAddress = new Uri("http://localhost:9000");
 });
 var app = builder.Build();

@@ -1,6 +1,6 @@
 using CarShopView.Models;
 using CarShopView.Repositories;
-
+using CarShopView.Querys;
 namespace CarShopView.Services;
 
 public interface ICustomerService {

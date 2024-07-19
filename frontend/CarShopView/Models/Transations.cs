@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace CarShopView.Models;
+
 public class Transaction
 {
     [JsonPropertyName("value")]
@@ -28,7 +29,15 @@ public class Transaction
     }
 }
 
-public class TransactionResponse {
+public interface ITransactionResponse {
+    public int Id { get; set; }
+    public string Type { get; set; }
+    public string Customer { get; set; }
+    public string Vehicle { get; set; }
+    public decimal  Value { get; set; }
+}
+
+public class TransactionResponse : ITransactionResponse {
     [JsonPropertyName("id")]
     public int Id { get; set; }
     [JsonPropertyName("type_transaction")]

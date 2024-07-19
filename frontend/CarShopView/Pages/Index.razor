@@ -3,6 +3,7 @@
 @using System.IO
 @using Microsoft.AspNetCore.Hosting
 @using CarShopView.Models
+@using CarShopView.Services
 @using CarShopView.Repositories
 @inject IAuthService auth
 @inject IUserRepository refit
@@ -21,6 +22,7 @@
         auth.Token = response.Content.Token;
         auth.RefreshToken = response.Content.RefreshToken;
         Console.WriteLine($"Login: {response.Content.Token}");
+        // StateHasChanged();
         return new User();
     }
 }
